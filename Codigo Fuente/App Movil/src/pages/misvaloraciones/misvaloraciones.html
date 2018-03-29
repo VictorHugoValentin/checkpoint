@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/img/logo.png" width="30" height="40" />
+    </ion-title>
+    <button ion-button menuToggle end>
+                <ion-icon name="menu"></ion-icon>
+        </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list show-delete="showDeleteItem">
+
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon [name]="item.icon" item-left></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-right>
+        {{item.note}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Mis valoraciones</ion-title>
+  </ion-toolbar>
+</ion-footer>

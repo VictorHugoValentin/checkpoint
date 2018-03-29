@@ -1,0 +1,41 @@
+ion-header {
+    .button-md {
+      box-shadow: none;
+    }
+
+    .toolbar-background {
+      background-color: #8cb778;
+    }
+    .toolbar-title {
+     display: -webkit-flex;
+     display: flex;
+     -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: center;
+      justify-content: center;
+     -webkit-align-items: center;
+      align-items: center;
+      color: white;
+    }
+  }
+  ion-footer {
+    .button-md {
+      box-shadow: none;
+    }
+
+    .toolbar-background {
+      background-color: #FFB342;
+    }
+  
+    .toolbar-title {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      color: white;
+    }
+  }

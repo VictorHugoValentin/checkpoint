@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/img/logo.png" width="30" height="40" />
+    </ion-title>
+    <button ion-button menuToggle end>
+                        <ion-icon name="menu"></ion-icon>
+                    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="form-content">
+
+  <!-- INICIO del formulario -->
+  <form [formGroup]="sampleForm" class="form" >
+<!--(ngSubmit)="onSubmit(sampleForm.value)"-->
+    <!-- INICIO del boton fotografia -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label stacked>Fotografia</ion-label>
+          <img [src]="base64Image" />
+        </ion-col>
+        <ion-col>
+          <div *ngIf="permite_foto==1">
+            <ion-label stacked></ion-label>
+            <button ion-button color="verdea" icon-right full large (click)="tomarFoto()">
+                    <ion-icon name="camera">
+                    </ion-icon>
+                  </button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- FIN  del boton fotografia -->
+
+    <!-- INICIO  del campo email -->
+    <ion-item *ngIf="permite_email==1">
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <div *ngIf="formErrors.email">
+      <div *ngFor="let errors of formErrors.email">
+        <p class="alert">{{ errors }}
+          <p>
+      </div>
+    </div>
+    <!-- FIN  del campo email -->
+
+    <!-- INICIO  del campo descripcion -->
+    <ion-item *ngIf="permite_descripcion==1" >
+      <ion-label floating>Descripcion</ion-label>
+      <ion-input type="text" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <!-- FIN  del campo descripcion -->
+
+    <!-- Botón que envía datos opcionales de valoracion -->
+    <button ion-button full type="submit" color="verdea"  (click)="concatenarValoracionActual()">VALORAR</button>
+<!--[disabled]="!sampleForm.valid"-->
+  </form>
+  <!-- FIN del formulario -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Opcionales</ion-title>
+  </ion-toolbar>
+</ion-footer>
