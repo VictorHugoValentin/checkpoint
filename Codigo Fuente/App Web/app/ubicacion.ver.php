@@ -25,8 +25,7 @@ ControlAcceso::requierePermiso(PermisosSistema::PERMISO_UBICACION);
                     <h3>Gesti&oacute;n de Ubicaciones</h3>
                     <p>A continuaci&oacute;n se muestran las ubicaciones en las que se podra realizar valoraciones.</p>
                     <div id="tree-container"></div>
-
-
+                    <div id="event_result"></div>
                 </div>
             </article>
         </section>
@@ -103,7 +102,13 @@ ControlAcceso::requierePermiso(PermisosSistema::PERMISO_UBICACION);
                             .fail(function () {
                                 data.instance.refresh();
                             });
-                });
+                }).on('changed.jstree', function (e, data) {
+    var i, j, r = [];
+    for(i = 0, j = data.selected.length; i < j; i++) {
+      r.push(data.instance.get_node(data.selected[i]).text);
+    }
+    $('#event_result').html('Selected: ' + r.join(', '));
+  });
             });
 
         </script>
