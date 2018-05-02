@@ -60,6 +60,8 @@ if(isset($_GET['operation'])) {
                                 $aux = $node;
                                 $nombre = "";
                                 $contador=0;
+                                
+                                // se toma como NULL el id para finalizacion porque se trata de la raiz
                                 while( $aux!=NULL && $contador<10){
                                     $sql ="SELECT * FROM `ubicacion` where idubicacion=".$aux;
                                     $resulta = mysqli_query($conn, $sql);
@@ -67,9 +69,12 @@ if(isset($_GET['operation'])) {
                                         $aux = $row["fk_ubicacion_idubicacion"];
                                         $nombre = $row["nombre"]."@".$nombre;
                                     }
+                                    //solucionar: la cadena que se va formando con el nombre, excede la cantidad de caracteres permitidos
+                                    /*
                                     echo "<br>aux:".$aux;
                                     echo "<br>nombre:".$nombre;
                                     echo "<br>sql:".$sql;
+                                     */
                                     $contador++;
                                 }
                                 $nombre = $nombre.$nodeText;
@@ -85,7 +90,29 @@ if(isset($_GET['operation'])) {
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? (int)$_GET['id'] : 0;
 				//print_R($_GET);
 				$nodeText = isset($_GET['text']) && $_GET['text'] !== '' ? $_GET['text'] : '';
-				$sql ="UPDATE `ubicacion` SET `nombre`='".$nodeText."',`codigo_qr`='".$nodeText."' WHERE `idubicacion`= '".$node."'";
+                                
+                                //ahora el codigo_qr se cambia teniendo en cuenta la cadena desde la raiz.
+                                //ejemplo, qr actual: raiz@sactor@aula@computador1 Y nuevo qr, pc1 ==> raiz@sactor@aula@pc1 
+                                //
+                                //tener en cuenta al momento de cambiar el nombre
+                                
+                                //obtener el codigo_qr
+                                $sql ="SELECT nombre,codigo_qr,fk_ubicacion_idubicacion FROM `ubicacion` where idubicacion=".$node;
+                                $resulta = mysqli_query($conn, $sql);
+                                if($row = mysqli_fetch_assoc($resulta)){
+                                    $qr = $row["codigo_qr"];
+                                }
+                                echo"<br>consulta_qr:".$sql;
+                                echo"<br>codigo_qr:".$qr;
+                                $pos = strripos($qr,"@");
+                                if($pos === false){
+                                    //estado de inconsistencia
+                                    echo "<br>estado de inconsistencia.";
+                                }else{
+                                    $nuevonombre = substr($qr, 0,$pos+1).$nodeText;
+                                }
+                                echo "<br>nuevo nombre editado:".$nuevonombre;
+				$sql ="UPDATE `ubicacion` SET `nombre`='".$nodeText."',`codigo_qr`='".$nuevonombre."' WHERE `idubicacion`= '".$node."'";
 				mysqli_query($conn, $sql);
 				break;
 			case 'delete_node':
