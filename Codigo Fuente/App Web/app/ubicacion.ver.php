@@ -58,8 +58,10 @@ ControlAcceso::requierePermiso(PermisosSistema::PERMISO_UBICACION);
                 }).on('create_node.jstree', function (e, data) {
                     console.log("creando:");
                     $.get('ubicacion.ver.response.php?operation=create_node', {'id': data.node.parent, 'position': data.position, 'text': data.node.text})
-                            .done(function (d) {d = JSON.parse(d);
-                                //console.log("done al crear:"+d.id);
+                            .done(function (d) {
+                                console.log("done al crear:"+d);                
+                                d = JSON.parse(d);
+                                
                                 data.instance.set_id(data.node, d.id);
                                 console.log("rama:"+d.id + 'padre:' + data.node.parent);
                             })
