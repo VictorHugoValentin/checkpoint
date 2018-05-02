@@ -56,7 +56,25 @@ if(isset($_GET['operation'])) {
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? (int)$_GET['id'] : 0;
 				
 				$nodeText = isset($_GET['text']) && $_GET['text'] !== '' ? $_GET['text'] : '';
-				$sql ="INSERT INTO `ubicacion` (`nombre`, `codigo_qr`, `fk_ubicacion_idubicacion`) VALUES('".$nodeText."', '".$nodeText."', '".$node."')";
+                                //obtener el path de nodos padres para colocar como nombre del QR
+                                $aux = $node;
+                                $nombre = "";
+                                $contador=0;
+                                while( $aux!=NULL && $contador<10){
+                                    $sql ="SELECT * FROM `ubicacion` where idubicacion=".$aux;
+                                    $resulta = mysqli_query($conn, $sql);
+                                    if($row = mysqli_fetch_assoc($resulta)){
+                                        $aux = $row["fk_ubicacion_idubicacion"];
+                                        $nombre = $row["nombre"]."@".$nombre;
+                                    }
+                                    echo "<br>aux:".$aux;
+                                    echo "<br>nombre:".$nombre;
+                                    echo "<br>sql:".$sql;
+                                    $contador++;
+                                }
+                                $nombre = $nombre.$nodeText;
+                                echo "<br>nombre asignado:".$nombre;
+				$sql ="INSERT INTO `ubicacion` (`nombre`, `codigo_qr`, `fk_ubicacion_idubicacion`) VALUES('".$nodeText."', '".$nombre."', '".$node."')";
 				mysqli_query($conn, $sql);
 				
 				$result = array('id' => mysqli_insert_id($conn));
