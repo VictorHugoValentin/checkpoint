@@ -10,7 +10,14 @@
 </ion-header>
 
 <ion-content padding>
-
+    <ion-list>
+        <ion-item *ngFor="let ubicacion of ubicaciones">
+          <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.idubicacion)">
+            <h1>{{ubicacion.nombreubicacion}}</h1>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
 </ion-content>
 
 <ion-footer>

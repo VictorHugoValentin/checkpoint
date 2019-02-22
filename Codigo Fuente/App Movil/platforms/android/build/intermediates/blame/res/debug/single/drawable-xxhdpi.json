@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\mailo\\Desktop\\Appcheck\\lectoQR2\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\launcher_icon.png",
         "source": "C:\\Users\\mailo\\Desktop\\Appcheck\\lectoQR2\\platforms\\android\\build\\intermediates\\exploded-aar\\barcodescanner\\res\\drawable-xxhdpi\\launcher_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\launcher_icon.png",
+        "source": "C:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\build\\intermediates\\exploded-aar\\barcodescanner\\res\\drawable-xxhdpi\\launcher_icon.png"
     }
 ]

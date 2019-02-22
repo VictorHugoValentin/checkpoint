@@ -11,7 +11,27 @@
 
 
 <ion-content padding>
-    <ion-grid>
+        <ion-list>
+                <ion-item>
+                    <h2>{{ servicio }}</h2>
+                    <h3>{{ valoracion }}</h3>
+                    <ion-thumbnail item-left>
+                      <img src={{foto}}>
+                    </ion-thumbnail>
+                    
+                    <div>
+                        <p>e-Mail: {{email}}</p>
+                        <p>Descripcion: {{descripcion}}</p>
+                    </div>
+                  </ion-item>
+                  <!--<ion-item-options side="right">
+                    <button ion-button  color="blanco" (click)="borrarElemento(elemento.codigo)">
+                      <ion-icon color="rojo" name="trash" style="zoom:2.0;"></ion-icon>
+                    </button>
+                  </ion-item-options>
+                </ion-item-sliding>-->
+              </ion-list>
+    <!--<ion-grid>
         <ion-row>
             <ion-col col-4>
                 Servicio:
@@ -52,7 +72,7 @@
                 {{descripcion}}
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid>-->
 
     <ion-grid>
         <ion-row>

@@ -4,9 +4,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DatabaseMySqlProvider {
-api: string = "http://10.0.1.140/checkpointA/";
-  //api: string = "http://192.168.0.136/checkpointA/";
-  //api: string = "http://10.0.1.199/checkpointA/";
+//api: string = "http://10.0.1.140/checkpointA/";
+  api: string = "http://192.168.0.136/checkpoint/appMovil/";
+  //api: string = "http://192.168.1.121/checkpointA/";
   
   
   constructor(public http: Http) { }

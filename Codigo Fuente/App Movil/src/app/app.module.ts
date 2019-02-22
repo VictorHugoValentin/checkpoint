@@ -11,10 +11,12 @@ import { MisvaloracionesPage } from '../pages/misvaloraciones/misvaloraciones';
 import { ServiciosPage } from '../pages/servicios/servicios';
 import { ValoracionesPage } from '../pages/valoraciones/valoraciones';
 import { AcercaPage } from '../pages/acerca/acerca';
-
-import { Camera } from '@ionic-native/camera';
 import {OpcionalesPage} from '../pages/opcionales/opcionales';
 import {ConfirmacionPage} from '../pages/confirmacion/confirmacion';
+import {UbmanualPage} from '../pages/ubmanual/ubmanual';
+
+import { Camera } from '@ionic-native/camera';
+
 
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
@@ -35,7 +37,8 @@ import { DatabaseMySqlProvider } from '../providers/database-my-sql/database-my-
     ServiciosPage,
     OpcionalesPage,
     AcercaPage,
-    ConfirmacionPage
+    ConfirmacionPage,
+    UbmanualPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { DatabaseMySqlProvider } from '../providers/database-my-sql/database-my-
     ValoracionesPage,
     OpcionalesPage,
     AcercaPage,
-    ConfirmacionPage
+    ConfirmacionPage,
+    UbmanualPage
   ],
   providers: [
     StatusBar,

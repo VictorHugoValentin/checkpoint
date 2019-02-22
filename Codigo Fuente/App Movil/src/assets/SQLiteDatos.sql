@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS servicios;
+
 CREATE TABLE IF NOT EXISTS servicios(idservicio INTEGER PRIMARY KEY,  
                                      nombreservicio TEXT, 
                                      iconoservicio INTEGER,
@@ -33,4 +35,6 @@ CREATE TABLE IF NOT EXISTS valoracion_Hecha(idvaloracion_hecha INTEGER PRIMARY K
                                         email TEXT,            
                                         FOREIGN KEY(ubicacion_valoracion) 
                                         REFERENCES ubicacion_valoracion(idubicacion_valoracion));
+
+
 

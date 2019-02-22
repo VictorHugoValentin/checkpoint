@@ -15,7 +15,37 @@
   <form [formGroup]="sampleForm" class="form" >
 <!--(ngSubmit)="onSubmit(sampleForm.value)"-->
     <!-- INICIO del boton fotografia -->
-    <ion-grid>
+    <ion-list>
+      <ion-item>
+          <h2>{{ servicio }}</h2>
+          <h3>{{ valoracion }}</h3>
+          <ion-thumbnail item-left>
+            <ion-label stacked>Fotografia</ion-label>
+            <img [src]="base64Image" />
+          </ion-thumbnail>
+          
+          <div>
+              <p>e-Mail: {{email}}</p>
+              <p>Descripcion: {{descripcion}}</p>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div *ngIf="permite_foto==1">
+            <ion-label stacked></ion-label>
+            <button ion-button color="verdea" icon-right full large (click)="tomarFoto()">
+                    <ion-icon name="camera">
+                    </ion-icon>
+                  </button>
+          </div>
+        </ion-item>
+        <!--<ion-item-options side="right">
+          <button ion-button  color="blanco" (click)="borrarElemento(elemento.codigo)">
+            <ion-icon color="rojo" name="trash" style="zoom:2.0;"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>-->
+    </ion-list>
+   <!-- <ion-grid>
       <ion-row>
         <ion-col>
           <ion-label stacked>Fotografia</ion-label>
@@ -31,7 +61,7 @@
           </div>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid>-->
     <!-- FIN  del boton fotografia -->
 
     <!-- INICIO  del campo email -->

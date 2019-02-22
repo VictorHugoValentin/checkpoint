@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 581:
+/***/ 583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AcercaPageModule", function() { return AcercaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmacionPageModule", function() { return ConfirmacionPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__acerca__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__confirmacion__ = __webpack_require__(136);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AcercaPageModule = (function () {
-    function AcercaPageModule() {
+var ConfirmacionPageModule = (function () {
+    function ConfirmacionPageModule() {
     }
-    return AcercaPageModule;
+    return ConfirmacionPageModule;
 }());
-AcercaPageModule = __decorate([
+ConfirmacionPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__acerca__["a" /* AcercaPage */],
+            __WEBPACK_IMPORTED_MODULE_2__confirmacion__["a" /* ConfirmacionPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__acerca__["a" /* AcercaPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__confirmacion__["a" /* ConfirmacionPage */]),
         ],
     })
-], AcercaPageModule);
+], ConfirmacionPageModule);
 
-//# sourceMappingURL=acerca.module.js.map
+//# sourceMappingURL=confirmacion.module.js.map
 
 /***/ })
 

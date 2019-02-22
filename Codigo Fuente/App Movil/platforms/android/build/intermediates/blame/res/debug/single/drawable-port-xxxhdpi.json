@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxxhdpi\\screen.png",
+        "source": "C:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\res\\drawable-port-xxxhdpi\\screen.png"
+    },
+    {
         "merged": "C:\\Users\\mailo\\Desktop\\Appcheck\\lectoQR2\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxxhdpi\\screen.png",
         "source": "C:\\Users\\mailo\\Desktop\\Appcheck\\lectoQR2\\platforms\\android\\res\\drawable-port-xxxhdpi\\screen.png"
     }

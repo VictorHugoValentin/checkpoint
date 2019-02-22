@@ -66,15 +66,17 @@ export class OpcionalesPage {
   tomarFoto() {
     const options: CameraOptions = {
       quality: 20,
-      destinationType: this.camara.DestinationType.FILE_URI,
-      encodingType: this.camara.EncodingType.JPEG,
-      mediaType: this.camara.MediaType.PICTURE
+      destinationType: this.camara.DestinationType.DATA_URL,
+      //encodingType: this.camara.EncodingType.JPEG,
+      //mediaType: this.camara.MediaType.PICTURE
+      targetWidth: 1000,
+      targetHeight: 1000,
     }
 
     this.camara.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      this.base64Image = imageData;
+      this.base64Image = `data:base64Image/jpeg;base64,${imageData}`;
     }, (err) => {
       // Handle error
     });
@@ -104,7 +106,7 @@ export class OpcionalesPage {
   }
 
   concatenarValoracionActual(){
-    var existe: number=0;
+    //var existe: number=0;
     if(this.base64Image!="null"){
       this.valoracion_actual = this.valoracion_actual+'"foto":"'+this.base64Image+'",';
     } else{
