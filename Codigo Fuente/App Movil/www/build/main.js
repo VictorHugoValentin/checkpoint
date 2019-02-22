@@ -236,12 +236,6 @@ var ServiciosPage = (function () {
             });
         }
         else {
-            console.log("LA UBICACION ES NULA POR ENTRAR MANUALMENTE ");
-            console.log("PARAMETROS ACA: ");
-            console.log("IDSERVICIO: " + servicio);
-            console.log("ICONOSERVICIO: " + icono);
-            console.log("NOMBRESERVICIO: " + nombre);
-            console.log("DESCRIPCION: " + descripcion);
             this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ubmanual_ubmanual__["a" /* UbmanualPage */], {
                 idservicio: servicio,
                 iconoservicio: icono,
@@ -256,11 +250,10 @@ ServiciosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-servicios',template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\servicios\servicios.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img src="assets/img/logo.png" width="30" height="40" />\n        </ion-title>\n        <button ion-button menuToggle end>\n                        <ion-icon name="menu"></ion-icon>\n                    </button>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-grid>\n        <ion-row text-center>\n            <ion-col col-3 col-md-2 col-xl-2 *ngFor="let icono of iconos">\n                <div class="image-container" [style.background-image]="\'url(assets/servicios/\'+icono.iconoservicio+\'.png)\'" (click)="valoraciones(icono.idservicio,icono.descripcionservicio,icono.nombreservicio,icono.iconoservicio)"></div>\n                <div class="servicio">{{icono.nombreservicio}}</div>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar>\n        <ion-title>Servicios</ion-title>\n    </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\servicios\servicios.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _c || Object])
 ], ServiciosPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=servicios.js.map
 
 /***/ }),
@@ -488,13 +481,11 @@ var UbmanualPage = (function () {
         this.nombreservicio = this.navParams.get('nombreservicio');
         this.iconoservicio = this.navParams.get('iconoservicio');
         this.idservicio = this.navParams.get('idservicio');
-        console.log("EL IDSERVICIO CONSTRUCTOR UBMANUAL " + this.idservicio);
         this.getUbicaciones(this.idservicio);
     }
     UbmanualPage.prototype.getUbicaciones = function (servicio) {
         var _this = this;
         if (servicio) {
-            console.log("EL IDSERVICIO EN GETUBICACIONES UBMANUAL " + servicio);
             this.databaseProvider.getUbicaciones(servicio)
                 .then(function (data) {
                 return _this.ubicaciones = JSON.parse(data);
@@ -502,7 +493,6 @@ var UbmanualPage = (function () {
         }
     };
     UbmanualPage.prototype.valoraciones = function (servicio, descripcion, nombre, icono, ubicacion) {
-        console.log("LA UBICACION EN VALORACIONES UBMANUAL " + ubicacion);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__valoraciones_valoraciones__["a" /* ValoracionesPage */], {
             idservicio: servicio,
             iconoservicio: icono,
@@ -518,13 +508,12 @@ var UbmanualPage = (function () {
 }());
 UbmanualPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-ubmanual',template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title>\n          <img src="assets/img/logo.png" width="30" height="40" />\n      </ion-title>\n      <button ion-button menuToggle end>\n                      <ion-icon name="menu"></ion-icon>\n                  </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-list>\n        <!--<ion-item *ngFor="let ubicacion of ubicaciones">\n            <h1>{{ubicacion.nombreubicacion}}</h1>\n        </ion-item>-->\n        \n\n\n      <ion-item *ngFor="let ubicacion of ubicaciones">\n        <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.idubicacion)">\n          <h1>"HOLA"</h1>\n          <h1>{{ubicacion.nombreubicacion}}</h1>\n        </div>\n    </ion-item>\n    </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n      <ion-title>Ubicación</ion-title>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/,
+        selector: 'page-ubmanual',template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <img src="assets/img/logo.png" width="30" height="40" />\n        </ion-title>\n        <button ion-button menuToggle end>\n                      <ion-icon name="menu"></ion-icon>\n                  </button>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <ion-item *ngFor="let ubicacion of ubicaciones">\n            <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.idubicacion)">\n                <h1>{{ubicacion.nombreubicacion}}</h1>\n            </div>\n        </ion-item>\n    </ion-list>\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar>\n        <ion-title>Ubicación</ion-title>\n    </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _c || Object])
 ], UbmanualPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=ubmanual.js.map
 
 /***/ }),
@@ -563,19 +552,19 @@ var map = {
 		4
 	],
 	"../pages/servicios/servicios.module": [
-		585,
+		588,
 		3
 	],
 	"../pages/ub-manual/ub-manual.module": [
-		586,
+		587,
 		0
 	],
 	"../pages/ubmanual/ubmanual.module": [
-		587,
+		585,
 		2
 	],
 	"../pages/valoraciones/valoraciones.module": [
-		588,
+		586,
 		1
 	]
 };
@@ -746,10 +735,10 @@ AppModule = __decorate([
                     { loadChildren: '../pages/acerca/acerca.module#AcercaPageModule', name: 'AcercaPage', segment: 'acerca', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/confirmacion/confirmacion.module#ConfirmacionPageModule', name: 'ConfirmacionPage', segment: 'confirmacion', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/opcionales/opcionales.module#OpcionalesPageModule', name: 'OpcionalesPage', segment: 'opcionales', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/servicios/servicios.module#ServiciosPageModule', name: 'ServiciosPage', segment: 'servicios', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/ub-manual/ub-manual.module#UbManualPageModule', name: 'UbManualPage', segment: 'ub-manual', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/ubmanual/ubmanual.module#UbmanualPageModule', name: 'UbmanualPage', segment: 'ubmanual', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/valoraciones/valoraciones.module#ValoracionesPageModule', name: 'ValoracionesPage', segment: 'valoraciones', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/valoraciones/valoraciones.module#ValoracionesPageModule', name: 'ValoracionesPage', segment: 'valoraciones', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/ub-manual/ub-manual.module#UbManualPageModule', name: 'UbManualPage', segment: 'ub-manual', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/servicios/servicios.module#ServiciosPageModule', name: 'ServiciosPage', segment: 'servicios', priority: 'low', defaultHistory: [] }
                 ]
             }),
         ],
@@ -835,33 +824,10 @@ var DatabaseProvider = (function () {
             })
                 .then(function (db) {
                 _this.database = db;
-                //this.storage.get('database_filled').then(val => {
-                //if (val) {
-                //this.databaseReady.next(true);
-                //} else {
                 _this.fillDatabase();
-                //}
             });
         });
-        // });
     }
-    /*getLog(){
-      return this.database.executeSql("SELECT idlog from log", [])
-      .then((data) => {
-        let log: string;
-        if (data.rows.length > 0) {
-          log = "[";
-          for (let i = 0; i < data.rows.length; i++) {
-            if (log.charAt(log.length - 1) != "[") {
-              log = log.concat(",");
-            }
-            log = log.concat('{"idlog": "' + data.rows.item(i).idlog + '"}');
-          }
-          log = log.concat("]");
-        }
-        return log;
-      });
-    }*/
     DatabaseProvider.prototype.fillDatabase = function () {
         var _this = this;
         this.http.get('assets/SQLiteDatos.sql')
@@ -870,7 +836,6 @@ var DatabaseProvider = (function () {
             _this.sqlitePorter.importSqlToDb(_this.database, sql)
                 .then(function (data) {
                 _this.databaseReady.next(true);
-                //this.storage.set('database_filled', true);
             })
                 .catch(function (e) { return console.error(e); });
         });
@@ -929,6 +894,14 @@ var DatabaseProvider = (function () {
         var data;
         data = this.database.executeSql("INSERT INTO log (idlog) VALUES (?)", log);
         return data;
+    };
+    DatabaseProvider.prototype.getLogs = function () {
+        return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
+            .then(function (data) {
+            var log;
+            log = data.rows.item(0).idlog;
+            return log;
+        });
     };
     DatabaseProvider.prototype.getServicios = function (ubicacion) {
         if (ubicacion != null) {
@@ -1260,11 +1233,26 @@ var MyApp = (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            _this.getServiciosMysql();
-            _this.getValoracionesMysql();
-            _this.getUbicacionesMysql();
-            _this.getUbicacionesValoracionesMysql();
-            _this.getLogsMysql();
+            _this.cargaBaseInterna();
+        });
+    };
+    MyApp.prototype.cargaBaseInterna = function () {
+        var _this = this;
+        this.databaseMySqlProvider.getLogs().subscribe(function (data) {
+            _this.logExterno = data[0].idlog;
+            _this.databaseProvider.getLogs().then(function (data) {
+                _this.logInterno = data;
+                if (_this.logInterno == null) {
+                    _this.logInterno = 0;
+                }
+                if (_this.logExterno > _this.logInterno) {
+                    _this.databaseProvider.setLog(_this.logExterno);
+                    _this.getServiciosMysql();
+                    _this.getValoracionesMysql();
+                    _this.getUbicacionesMysql();
+                    _this.getUbicacionesValoracionesMysql();
+                }
+            });
         });
     };
     //GET's datos MySQL
@@ -1304,15 +1292,6 @@ var MyApp = (function () {
             console.log(err);
         });
     };
-    MyApp.prototype.getLogsMysql = function () {
-        var _this = this;
-        this.databaseMySqlProvider.getLogs().subscribe(function (data) {
-            _this.logs = data;
-            _this.databaseProvider.setLog(_this.logs);
-        }, function (err) {
-            console.log(err);
-        });
-    };
     MyApp.prototype.openPage = function (page) {
         this.nav.setRoot(page.component);
     };
@@ -1320,19 +1299,15 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\app\app.html"*/'<ion-menu id="rightMenu" [content]="content" side="right" color="verde" type="reveal">\n  <ion-header>\n    <ion-toolbar color="verde">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content >\n    <ion-list >\n      <button  menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\app\app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-        __WEBPACK_IMPORTED_MODULE_7__providers_database_database__["a" /* DatabaseProvider */],
-        __WEBPACK_IMPORTED_MODULE_8__ionic_native_sqlite__["a" /* SQLite */],
-        __WEBPACK_IMPORTED_MODULE_9__providers_database_my_sql_database_my_sql__["a" /* DatabaseMySqlProvider */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_sqlite__["a" /* SQLite */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_sqlite__["a" /* SQLite */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_9__providers_database_my_sql_database_my_sql__["a" /* DatabaseMySqlProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__providers_database_my_sql_database_my_sql__["a" /* DatabaseMySqlProvider */]) === "function" && _g || Object])
 ], MyApp);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),

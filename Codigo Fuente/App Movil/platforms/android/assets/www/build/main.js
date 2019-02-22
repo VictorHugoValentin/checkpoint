@@ -518,7 +518,7 @@ var UbmanualPage = (function () {
 }());
 UbmanualPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-ubmanual',template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title>\n          <img src="assets/img/logo.png" width="30" height="40" />\n      </ion-title>\n      <button ion-button menuToggle end>\n                      <ion-icon name="menu"></ion-icon>\n                  </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-list>\n        <ion-item *ngFor="let ubicacion of ubicaciones">\n            <h1>{{ubicacion.nombreubicacion}}</h1>\n        </ion-item>\n        \n\n\n      <!--<ion-item *ngFor="let ubicacion of ubicaciones">\n        <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.idubicacion)">\n          <h1>"HOLA"</h1>\n          <h1>{{ubicacion.nombreubicacion}}</h1>\n        </div>\n      </ion-item>-->\n    </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n      <ion-title>Ubicación</ion-title>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/,
+        selector: 'page-ubmanual',template:/*ion-inline-start:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title>\n          <img src="assets/img/logo.png" width="30" height="40" />\n      </ion-title>\n      <button ion-button menuToggle end>\n                      <ion-icon name="menu"></ion-icon>\n                  </button>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n    <ion-list>\n        <!--<ion-item *ngFor="let ubicacion of ubicaciones">\n            <h1>{{ubicacion.nombreubicacion}}</h1>\n        </ion-item>-->\n        \n\n\n      <ion-item *ngFor="let ubicacion of ubicaciones">\n        <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.idubicacion)">\n          <h1>"HOLA"</h1>\n          <h1>{{ubicacion.nombreubicacion}}</h1>\n        </div>\n    </ion-item>\n    </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n      <ion-title>Ubicación</ion-title>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\pages\ubmanual\ubmanual.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
@@ -563,19 +563,19 @@ var map = {
 		4
 	],
 	"../pages/servicios/servicios.module": [
-		585,
+		588,
 		3
 	],
 	"../pages/ub-manual/ub-manual.module": [
-		586,
+		587,
 		0
 	],
 	"../pages/ubmanual/ubmanual.module": [
-		587,
+		585,
 		2
 	],
 	"../pages/valoraciones/valoraciones.module": [
-		588,
+		586,
 		1
 	]
 };
@@ -746,10 +746,10 @@ AppModule = __decorate([
                     { loadChildren: '../pages/acerca/acerca.module#AcercaPageModule', name: 'AcercaPage', segment: 'acerca', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/confirmacion/confirmacion.module#ConfirmacionPageModule', name: 'ConfirmacionPage', segment: 'confirmacion', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/opcionales/opcionales.module#OpcionalesPageModule', name: 'OpcionalesPage', segment: 'opcionales', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/servicios/servicios.module#ServiciosPageModule', name: 'ServiciosPage', segment: 'servicios', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/ub-manual/ub-manual.module#UbManualPageModule', name: 'UbManualPage', segment: 'ub-manual', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/ubmanual/ubmanual.module#UbmanualPageModule', name: 'UbmanualPage', segment: 'ubmanual', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/valoraciones/valoraciones.module#ValoracionesPageModule', name: 'ValoracionesPage', segment: 'valoraciones', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/valoraciones/valoraciones.module#ValoracionesPageModule', name: 'ValoracionesPage', segment: 'valoraciones', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/ub-manual/ub-manual.module#UbManualPageModule', name: 'UbManualPage', segment: 'ub-manual', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/servicios/servicios.module#ServiciosPageModule', name: 'ServiciosPage', segment: 'servicios', priority: 'low', defaultHistory: [] }
                 ]
             }),
         ],
@@ -835,33 +835,10 @@ var DatabaseProvider = (function () {
             })
                 .then(function (db) {
                 _this.database = db;
-                //this.storage.get('database_filled').then(val => {
-                //if (val) {
-                //this.databaseReady.next(true);
-                //} else {
                 _this.fillDatabase();
-                //}
             });
         });
-        // });
     }
-    /*getLog(){
-      return this.database.executeSql("SELECT idlog from log", [])
-      .then((data) => {
-        let log: string;
-        if (data.rows.length > 0) {
-          log = "[";
-          for (let i = 0; i < data.rows.length; i++) {
-            if (log.charAt(log.length - 1) != "[") {
-              log = log.concat(",");
-            }
-            log = log.concat('{"idlog": "' + data.rows.item(i).idlog + '"}');
-          }
-          log = log.concat("]");
-        }
-        return log;
-      });
-    }*/
     DatabaseProvider.prototype.fillDatabase = function () {
         var _this = this;
         this.http.get('assets/SQLiteDatos.sql')
@@ -870,7 +847,6 @@ var DatabaseProvider = (function () {
             _this.sqlitePorter.importSqlToDb(_this.database, sql)
                 .then(function (data) {
                 _this.databaseReady.next(true);
-                //this.storage.set('database_filled', true);
             })
                 .catch(function (e) { return console.error(e); });
         });
@@ -929,6 +905,14 @@ var DatabaseProvider = (function () {
         var data;
         data = this.database.executeSql("INSERT INTO log (idlog) VALUES (?)", log);
         return data;
+    };
+    DatabaseProvider.prototype.getLogs = function () {
+        return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
+            .then(function (data) {
+            var log;
+            log = data.rows.item(0).idlog;
+            return log;
+        });
     };
     DatabaseProvider.prototype.getServicios = function (ubicacion) {
         if (ubicacion != null) {
@@ -1260,11 +1244,29 @@ var MyApp = (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            _this.getServiciosMysql();
-            _this.getValoracionesMysql();
-            _this.getUbicacionesMysql();
-            _this.getUbicacionesValoracionesMysql();
-            _this.getLogsMysql();
+            _this.cargaBaseInterna();
+        });
+    };
+    MyApp.prototype.cargaBaseInterna = function () {
+        var _this = this;
+        this.databaseMySqlProvider.getLogs().subscribe(function (data) {
+            _this.logExterno = data[0].idlog;
+            _this.databaseProvider.getLogs().then(function (data) {
+                _this.logInterno = data;
+                if (_this.logInterno == null) {
+                    _this.logInterno = 0;
+                }
+                console.log("LOG EXTERNO: " + _this.logExterno);
+                console.log("LOG INTERNO: " + _this.logInterno);
+                if (_this.logExterno > _this.logInterno) {
+                    console.log("ACTUALIZANDO BASE DE DATOS INTERNA");
+                    _this.databaseProvider.setLog(_this.logExterno);
+                    _this.getServiciosMysql();
+                    _this.getValoracionesMysql();
+                    _this.getUbicacionesMysql();
+                    _this.getUbicacionesValoracionesMysql();
+                }
+            });
         });
     };
     //GET's datos MySQL
@@ -1300,15 +1302,6 @@ var MyApp = (function () {
         this.databaseMySqlProvider.getUbicacionesValoraciones().subscribe(function (data) {
             _this.ubicacionesValoraciones = data;
             _this.databaseProvider.setUbicacionValoracion(_this.ubicacionesValoraciones);
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    MyApp.prototype.getLogsMysql = function () {
-        var _this = this;
-        this.databaseMySqlProvider.getLogs().subscribe(function (data) {
-            _this.logs = data;
-            _this.databaseProvider.setLog(_this.logs);
         }, function (err) {
             console.log(err);
         });

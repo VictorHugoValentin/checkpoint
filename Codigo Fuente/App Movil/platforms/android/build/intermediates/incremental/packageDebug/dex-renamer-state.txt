@@ -1,4 +1,4 @@
-#Thu Feb 21 19:53:56 ART 2019
+#Thu Feb 21 23:29:33 ART 2019
 base.0=C\:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=C\:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

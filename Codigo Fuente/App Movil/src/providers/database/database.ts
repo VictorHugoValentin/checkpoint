@@ -36,34 +36,10 @@ export class DatabaseProvider {
       })
         .then((db: SQLiteObject) => {
           this.database = db;
-          //this.storage.get('database_filled').then(val => {
-            //if (val) {
-              //this.databaseReady.next(true);
-            //} else {
-              this.fillDatabase();
-            //}
-          });
+          this.fillDatabase();
         });
-   // });
-  }
-
-  /*getLog(){
-    return this.database.executeSql("SELECT idlog from log", [])
-    .then((data) => {
-      let log: string;
-      if (data.rows.length > 0) {
-        log = "[";
-        for (let i = 0; i < data.rows.length; i++) {
-          if (log.charAt(log.length - 1) != "[") {
-            log = log.concat(",");
-          }
-          log = log.concat('{"idlog": "' + data.rows.item(i).idlog + '"}');
-        }
-        log = log.concat("]");
-      }
-      return log;
     });
-  }*/
+  }
 
   fillDatabase() {
     this.http.get('assets/SQLiteDatos.sql')
@@ -72,7 +48,6 @@ export class DatabaseProvider {
         this.sqlitePorter.importSqlToDb(this.database, sql)
           .then(data => {
             this.databaseReady.next(true);
-            //this.storage.set('database_filled', true);
           })
           .catch(e => console.error(e));
       });
@@ -80,7 +55,6 @@ export class DatabaseProvider {
 
   setServicios(servicios: Array<any>) {
     var data
-    console.log("DESCRIPCION ENTRANDO: "+servicios[0].descripcionservicio);
     for (var i = 0; i < servicios.length; i++) {
       data = this.database.executeSql("INSERT INTO servicios (idservicio, nombreservicio, iconoservicio, descripcionservicio)"
         + " VALUES (?, ?, ?, ?)", [servicios[i].idservicio,
@@ -134,8 +108,17 @@ export class DatabaseProvider {
 
   setLog(log: number) {
     var data;
-    data = this.database.executeSql("INSERT INTO log (idlog) VALUES (?)", log);
+    data = this.database.executeSql("INSERT INTO log (log,idlog) VALUES (?,?)", [log , log]);
     return data;
+  }
+
+  getLogs(){
+    return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
+    .then((data) => {
+      let log: number;
+      log = data.rows.item(0).idlog;
+      return log;
+    });
   }
 
   getServicios(ubicacion: string) {
@@ -150,7 +133,6 @@ export class DatabaseProvider {
       + ' WHERE ubicaciones.codigoqr = "' + ubicacion + '"'
       + ' GROUP BY servicios.idservicio', [])
       .then((data) => {
-        console.log("POR FINNNNNNNNNNNNN SERVICIOS");
         let servicios: string;
         if (data.rows.length > 0) {
           servicios = "[";
@@ -168,13 +150,10 @@ export class DatabaseProvider {
         return servicios;
       });
     } else {
-      console.log("GETSERVICIOS MANUALLLLLLLLLLLLLLLLLLLLLL"); 
       return this.database.executeSql('SELECT * FROM servicios', [])
         .then((data) => {
-          console.log("DENTRO DEL RETURN 1"); 
           let servicios: string;
           if (data.rows.length > 0) {
-            console.log("DENTRO DEL RETURN 2");
             servicios = "[";
             for (let i = 0; i < data.rows.length; i++) {
               if (servicios.charAt(servicios.length - 1) != "[") {
@@ -214,38 +193,7 @@ export class DatabaseProvider {
   }
 
   getUbicaciones(idservicio: number) {
-    console.log("ID SERVICIO ES: "+idservicio);
-   /*return this.database.executeSql(
-      'SELECT idubicacion, nombreubicacion FROM ubicaciones' 
-      +'INNER JOIN ubicacion_valoracion' 
-      +'ON ubicaciones.idubicacion = 	ubicacion_valoracion.ubicacion' 
-      +'INNER JOIN valoraciones' 
-      +'ON ubicacion_valoracion.valoracion = valoraciones.idvaloracion' 
-      +'INNER JOIN servicios' 
-      +'ON valoraciones.servicio = servicios.idservicio' 
-      +'WHERE servicios.idservicio ='+idservicio
-      +' GROUP BY ubicaciones.idubicacion'
-      ,[])
-
-      .then((data) => {
-        console.log("POR FINNNNNNNNNNNNN");
-        let ubicaciones: string;
-        if (data.rows.length > 0) {
-          ubicaciones = "[";
-         
-          for (let i = 0; i < data.rows.length; i++) {
-            if (ubicaciones.charAt(ubicaciones.length - 1) != "[") {
-              ubicaciones = ubicaciones.concat(",");
-            }
-            ubicaciones = ubicaciones.concat('{"idubicacion": "' + data.rows.item(i).idubicacion + '",');
-            ubicaciones = ubicaciones.concat('"nombreubicacion": "' + data.rows.item(i).nombreubicacion + '"}');
-          }
-          ubicaciones = ubicaciones.concat("]");
-        }
-       return ubicaciones;
-      });
-*/
-      return this.database.executeSql(
+    return this.database.executeSql(
         'SELECT idubicacion, nombreubicacion FROM ubicaciones' 
         +' INNER JOIN ubicacion_valoracion' 
         +' ON ubicaciones.idubicacion = 	ubicacion_valoracion.ubicacion' 
@@ -256,8 +204,6 @@ export class DatabaseProvider {
         +' WHERE servicios.idservicio = '+idservicio
         +' GROUP BY ubicaciones.idubicacion'
         ,[]).then((data) => {
-  
-        console.log("POR FINNNNNNNNNNNNN");
           let ubicaciones: string;
           if (data.rows.length > 0) {
             ubicaciones = "[";
