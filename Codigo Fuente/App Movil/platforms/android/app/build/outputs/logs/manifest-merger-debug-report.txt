@@ -1,0 +1,213 @@
+-- Merging decision tree log ---
+provider#org.apache.cordova.camera.FileProvider
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:14:9-16:20
+	android:grantUriPermissions
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:14:92-126
+	android:authorities
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:14:19-66
+	android:exported
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:14:67-91
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:14:127-180
+manifest
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+MERGED from [:barcodescanner-release-2.1.5:] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\barcodescanner-release-2.1.5.aar\e6d328d93a1e73ab2ebc3a6388f50434\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6258c988c8645d3fe1477da8a4768b73\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\2996d2414984fb0b284b4e5def68b5e9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\a7dd48ed8aa63df7f8f7137468a26db4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\311131efc7fbd7ead98c096fbdbbbc87\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\81af80df02bcb257c98ac0f2eded462c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f652e0bd0762113510f60d0c5b88d147\AndroidManifest.xml:17:1-22:12
+MERGED from [:CordovaLib] C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bb29e328af5d6720569121a059090642\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\baea445dfd0965f3b674fe72d4b94d59\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\66293a9ed361cbf0c0808ccda9cbd8bd\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\579c8dbbd2443af6379c1bf56110e9b9\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:98-124
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:70-97
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+	android:hardwareAccelerated
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
+	xmlns:android
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:125-183
+	android:versionCode
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:2:46-69
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+supports-screens
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:5-191
+	android:largeScreens
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:49-76
+	android:smallScreens
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:132-159
+	android:normalScreens
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:77-105
+	android:xlargeScreens
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:160-188
+	android:resizeable
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:106-131
+	android:anyDensity
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:3:23-48
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
+application
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:5:5-17:19
+MERGED from [:barcodescanner-release-2.1.5:] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\barcodescanner-release-2.1.5.aar\e6d328d93a1e73ab2ebc3a6388f50434\AndroidManifest.xml:11:5-12:19
+MERGED from [:barcodescanner-release-2.1.5:] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\barcodescanner-release-2.1.5.aar\e6d328d93a1e73ab2ebc3a6388f50434\AndroidManifest.xml:11:5-12:19
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:22:5-26:19
+	android:supportsRtl
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:5:114-140
+	android:label
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:5:81-113
+	android:hardwareAccelerated
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
+	android:icon
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
+activity#io.ionic.starter.MainActivity
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
+	android:label
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:97-134
+	android:launchMode
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:135-165
+	android:windowSoftInputMode
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:257-299
+	android:configChanges
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:19-96
+	android:theme
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:194-256
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:6:166-193
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:7:13-10:29
+	android:label
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:7:28-65
+action#android.intent.action.MAIN
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:8:17-69
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:8:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:9:17-77
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
+activity#com.google.zxing.client.android.CaptureActivity
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:9-311
+	android:clearTaskOnLaunch
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:19-51
+	android:windowSoftInputMode
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:261-308
+	android:exported
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:114-138
+	android:configChanges
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:52-113
+	android:theme
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:202-260
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:12:139-201
+activity#com.google.zxing.client.android.encode.EncodeActivity
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:13:9-112
+	android:label
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:13:19-40
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:13:41-109
+uses-sdk
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:18:5-74
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:18:5-74
+MERGED from [:barcodescanner-release-2.1.5:] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\barcodescanner-release-2.1.5.aar\e6d328d93a1e73ab2ebc3a6388f50434\AndroidManifest.xml:7:5-9:41
+MERGED from [:barcodescanner-release-2.1.5:] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\barcodescanner-release-2.1.5.aar\e6d328d93a1e73ab2ebc3a6388f50434\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6258c988c8645d3fe1477da8a4768b73\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6258c988c8645d3fe1477da8a4768b73\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\2996d2414984fb0b284b4e5def68b5e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\2996d2414984fb0b284b4e5def68b5e9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\a7dd48ed8aa63df7f8f7137468a26db4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\a7dd48ed8aa63df7f8f7137468a26db4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\311131efc7fbd7ead98c096fbdbbbc87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\311131efc7fbd7ead98c096fbdbbbc87\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\81af80df02bcb257c98ac0f2eded462c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\81af80df02bcb257c98ac0f2eded462c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f652e0bd0762113510f60d0c5b88d147\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f652e0bd0762113510f60d0c5b88d147\AndroidManifest.xml:20:5-44
+MERGED from [:CordovaLib] C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bb29e328af5d6720569121a059090642\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bb29e328af5d6720569121a059090642\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\baea445dfd0965f3b674fe72d4b94d59\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\baea445dfd0965f3b674fe72d4b94d59\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\66293a9ed361cbf0c0808ccda9cbd8bd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\66293a9ed361cbf0c0808ccda9cbd8bd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\579c8dbbd2443af6379c1bf56110e9b9\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\579c8dbbd2443af6379c1bf56110e9b9\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:18:5-74
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:18:42-71
+	android:minSdkVersion
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:18:15-41
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:19:5-65
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:19:22-62
+uses-permission#android.permission.FLASHLIGHT
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:20:5-69
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:20:22-66
+uses-feature#android.hardware.camera
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:21:5-84
+	android:required
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:21:58-81
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:21:19-57
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:22:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:23:5-80
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:23:22-77
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:15:13-123
+	android:resource
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:15:75-120
+	android:name
+		ADDED from C:\Users\mailo\Desktop\Proyecto\checkpoint\platforms\android\app\src\main\AndroidManifest.xml:15:24-74
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-25.4.0.aar\7b9a43125ccad6790874d0c8f9a4e323\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-25.4.0.aar\0e7058c47aec2f4c6dbb9ca1ad2c79e5\AndroidManifest.xml:23:9-25:38
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.4.0] C:\Users\mailo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\c148ae027cf72c9e8c2256a60957ff05\AndroidManifest.xml:27:13-51

@@ -1,0 +1,4 @@
+#Sun Mar 24 01:08:20 ART 2019
+base.0=C\:\\Users\\mailo\\Desktop\\Proyecto\\checkpoint\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
