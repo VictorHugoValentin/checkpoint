@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title text-center>
+          <img src="assets/img/logo.png" width="30" height="40" />
+    </ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col size="auto">
+              <img src="assets/servicios/{{iconoservicio}}.png" />
+            </ion-col>
+            <ion-col size="7">
+              <h1>{{nombreservicio}}</h1>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <p>{{descripcionservicio}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-list>
+    <ng-container *ngFor="let valor of valoraciones; let i=index">
+    <ng-container *ngIf="valor.tipovaloracion == 'rango'">
+    <ion-item text-wrap (click)="desplegarNivel('idx'+i)" [ngClass]="{active: rangoVisible('idx'+i)}">
+        <h3>
+          {{valor.nombrevaloracion}}
+          <ion-icon color="success" [name]="rangoVisible('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </h3>
+    </ion-item>
+      <ion-list *ngIf="rangoVisible('idx'+i)">
+          <ng-container *ngIf="valor.tipo == 'emoticon'"> 
+            <ion-grid>
+              <ion-row text-center>
+                <ion-col *ngFor="let subvalor of valor.subs" >
+                  <div class="image-container" [style.background-image]="'url(assets/rangos/'+subvalor.valor+'.png)'" (click)="valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)"></div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ng-container>
+          <ng-container *ngIf="valor.tipo == 'texto'" text-wrap>
+              <ion-item *ngFor="let subvalor of valor.subs" text-wrap (click)="valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)" >
+              {{subvalor.valor}}
+            </ion-item>
+          </ng-container>
+          <ng-container *ngIf="valor.tipo == 'numerico'" text-wrap>
+              <ion-grid>
+                  <ion-row text-center>
+                    <ion-col *ngFor="let subvalor of valor.subs" text-wrap>
+                      <div class="image-container" [style.background-image]="'url(assets/numeros/'+subvalor.valor+'.png)'" (click)="valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)"></div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ng-container>
+      </ion-list>
+  </ng-container>
+  <ng-container *ngIf="valor.tipovaloracion == 'reclamo'" >
+    <ng-container >
+      <ion-item (click)="reclamo(valor.idvaloracion, valor.nombrevaloracion, valor.descripcion, valor.foto, valor.email)">
+        <h3>
+            {{valor.nombrevaloracion}}
+          </h3>
+    </ion-item>
+    </ng-container>
+  </ng-container>
+</ng-container>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="tertiary">
+    <ion-title text-center color="light">Valoraciones</ion-title>
+  </ion-toolbar>
+</ion-footer>

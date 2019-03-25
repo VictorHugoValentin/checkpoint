@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title text-center>
+          <img src="assets/img/logo.png" width="30" height="40" />
+    </ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let ubicacion of ubicaciones">
+          <div (click)="valoraciones(idservicio,descripcionservicio,nombreservicio,iconoservicio,ubicacion.codigoqr,ubicacion.idubicacion)">
+              <h1>{{ubicacion.nombreubicacion}}</h1>
+          </div>
+      </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="tertiary">
+      <ion-title text-center color="light">Ubicación</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title text-center>
+              <img src="assets/img/logo.png" width="30" height="40" />
+        </ion-title>
+      </ion-toolbar> 
+</ion-header>
+
+
+<ion-content padding>
+          
+              <ion-item>
+                    <ion-grid>
+                            <ion-row >
+                                <ion-col size="Auto">
+                                        <ion-thumbnail item-left *ngIf="foto != ''">
+                                                <img src="{{ foto }}">
+                                            </ion-thumbnail>
+                                            <ion-thumbnail item-left *ngIf="tipo == 'rango' && tipo_rango == 'emoticon'">
+                                                  <div class="image-container" [style.background-image]="'url(assets/rangos/'+valoracion+'.png)'"></div>                 
+                                              </ion-thumbnail>
+                                              <ion-thumbnail item-left *ngIf="tipo == 'rango' && tipo_rango == 'numerico'">
+                                                      <div class="image-container" [style.background-image]="'url(assets/numeros/'+valoracion+'.png)'"></div>                 
+                                              </ion-thumbnail>
+                                            </ion-col>
+                                            <ion-col>
+                                                    <h3>{{ servicio }}</h3>
+                                                    <div *ngIf="tipo == 'rango' && tipo_rango == 'texto'"> 
+                                                            <h5>{{ valoracion }}</h5>
+                                                    </div>
+                                                            <div *ngIf="tipo == 'reclamo'"> 
+                                                                    <h5>{{ valoracion }}</h5>
+                                                            </div>
+                                            </ion-col>
+                            </ion-row>
+                                <ion-row >
+                                        <ion-col>
+                                                <div *ngIf="descripcion != ''">
+                                                        <p><b>Descripcion:</b> {{descripcion}}</p>
+                                                    </div> 
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row >
+                                            <ion-col>
+                                                    <div *ngIf="email != ''">
+                                                            <p><b>e-Mail:</b> {{email}}</p>
+                                                        </div>
+                                            </ion-col>
+                                        </ion-row>
+                        </ion-grid>  
+              </ion-item>
+          
+
+  <ion-grid>
+      <ion-row>
+          <ion-col col-12 col-sm>
+              <ion-button color="primary" expand="full" size="large" (click)="confirmar()"> 
+                 CONFIRMAR
+                 <ion-icon name="checkmark"></ion-icon> 
+              </ion-button>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col col-12 col-sm>
+              <ion-button color="primary" expand="full" size="large" (click)="cancelar()"> 
+        CANCELAR    
+        <ion-icon name="close"></ion-icon>
+     </ion-button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="tertiary">
+      <ion-title text-center color="light">Confirmación</ion-title>
+  </ion-toolbar>
+</ion-footer>

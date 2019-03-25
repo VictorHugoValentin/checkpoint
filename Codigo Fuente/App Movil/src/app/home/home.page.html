@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title text-center>
+              <img src="assets/img/logo.png" width="30" height="40" />
+        </ion-title>
+      </ion-toolbar> 
+</ion-header>
+
+<ion-content padding>
+<ion-grid>
+ <ion-row text-center>
+    <br/><b><i>Bienvenido</i></b><br/>
+ </ion-row>
+ <ion-row>
+    <p align="justify">Esta aplicación le permitira valorar los servicios brindados por la Unidad Academica Rio Gallegos
+                            de Universidad Nacional de la Patagonia Austral
+    </p><br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <br/>
+ </ion-row>
+ <ion-row>
+    <ion-col col-12 col-sm>
+       <ion-button color="primary" expand="full" size="large" (click)="servicios(null)"> 
+          Acceso Manual
+          <ion-icon name="hand"></ion-icon> 
+       </ion-button>
+    </ion-col>
+ </ion-row>
+ <ion-row>
+    <ion-col col-12 col-sm>
+       <ion-button color="primary" expand="full" size="large" (click)="scanCode()"> 
+          Codigo QR     
+          <ion-icon name="expand"></ion-icon>
+       </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+
+<ion-footer>
+<ion-toolbar color="tertiary">
+  <ion-title text-center><img src="assets/img/logoinf.png" width="110" height="20" /></ion-title>
+</ion-toolbar>
+</ion-footer>
