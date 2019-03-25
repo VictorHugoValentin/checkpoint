@@ -1,7 +1,0 @@
-{
-  "name": "lectoQR",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
