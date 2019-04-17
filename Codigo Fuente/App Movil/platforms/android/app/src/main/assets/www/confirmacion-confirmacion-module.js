@@ -58,7 +58,7 @@ var ConfirmacionPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-navbar>\n      <ion-title>\n          <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n      </ion-title>\n      <button ion-button menuToggle end>\n    <ion-icon name=\"menu\"></ion-icon>\n  </button>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n          <p> \n              <ion-item>\n                  <ion-thumbnail item-left *ngIf=\"foto\">\n                      <img src=\"{{ foto }}\">\n                  </ion-thumbnail>\n                  <h1>{{ servicio }}</h1>\n                  <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'emoticon'\">\n                      <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+valoracion+'.png)'\"></div>                 \n                  </ion-thumbnail>\n                  <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'numerico'\">\n                          <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+valoracion+'.png)'\"></div>                 \n                  </ion-thumbnail>\n                          <div *ngIf=\"tipo == 'rango' && tipo_rango == 'texto'\"> \n                          <h2>{{ valoracion }}</h2>\n                          </div>\n                          <div *ngIf=\"tipo == 'reclamo'\"> \n                                  <h2>{{ valoracion }}</h2>\n                          </div>\n                      \n                      \n                      <div *ngIf=\"descripcion\">\n                              <p><b>Descripcion:</b> {{descripcion}}</p>\n                          </div>     \n                          <div *ngIf=\"email\">\n                              <p><b>e-Mail:</b> {{email}}</p>\n                          </div>\n              </ion-item>\n          </p>\n  \n  <ion-grid>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <button color=\"verdea\" ion-button icon-only full large (click)=\"confirmar()\"> \n        CONFIRMAR\n        <ion-icon name=\"checkmark\"></ion-icon> \n     </button>\n          </ion-col>\n      </ion-row>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <button color=\"verdea\" ion-button icon-only full large (click)=\"cancelar()\"> \n        CANCELAR    \n        <ion-icon name=\"close\"></ion-icon>\n     </button>\n          </ion-col>\n      </ion-row>\n  </ion-grid>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n      <ion-title>Confirmación</ion-title>\n  </ion-toolbar>\n</ion-footer>"
+module.exports = "<ion-header>\n    <ion-toolbar color=\"secondary\">\n        <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title text-center>\n              <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n        </ion-title>\n      </ion-toolbar> \n</ion-header>\n\n\n<ion-content padding>\n          \n              <ion-item>\n                    <ion-grid>\n                            <ion-row >\n                                <ion-col size=\"Auto\">\n                                        <ion-thumbnail item-left *ngIf=\"foto != ''\">\n                                                <img src=\"{{ foto }}\">\n                                            </ion-thumbnail>\n                                            <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'emoticon'\">\n                                                  <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+valoracion+'.png)'\"></div>                 \n                                              </ion-thumbnail>\n                                              <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'numerico'\">\n                                                      <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+valoracion+'.png)'\"></div>                 \n                                              </ion-thumbnail>\n                                            </ion-col>\n                                            <ion-col>\n                                                    <h3>{{ servicio }}</h3>\n                                                    <div *ngIf=\"tipo == 'rango' && tipo_rango == 'texto'\"> \n                                                            <h5>{{ valoracion }}</h5>\n                                                    </div>\n                                                            <div *ngIf=\"tipo == 'reclamo'\"> \n                                                                    <h5>{{ valoracion }}</h5>\n                                                            </div>\n                                            </ion-col>\n                            </ion-row>\n                                <ion-row >\n                                        <ion-col>\n                                                <div *ngIf=\"descripcion != ''\">\n                                                        <p><b>Descripcion:</b> {{descripcion}}</p>\n                                                    </div> \n                                        </ion-col>\n                                    </ion-row>\n                                    <ion-row >\n                                            <ion-col>\n                                                    <div *ngIf=\"email != ''\">\n                                                            <p><b>e-Mail:</b> {{email}}</p>\n                                                        </div>\n                                            </ion-col>\n                                        </ion-row>\n                        </ion-grid>  \n              </ion-item>\n          \n\n  <ion-grid>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"confirmar()\"> \n                 CONFIRMAR\n                 <ion-icon name=\"checkmark\"></ion-icon> \n              </ion-button>\n          </ion-col>\n      </ion-row>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"cancelar()\"> \n        CANCELAR    \n        <ion-icon name=\"close\"></ion-icon>\n     </ion-button>\n          </ion-col>\n      </ion-row>\n  </ion-grid>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar color=\"tertiary\">\n      <ion-title text-center color=\"light\">Confirmación</ion-title>\n  </ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ module.exports = "<ion-header>\n  <ion-navbar>\n      <ion-title>\n          <im
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbmZpcm1hY2lvbi9jb25maXJtYWNpb24ucGFnZS5zY3NzIn0= */"
+module.exports = ".image-container {\n  background-size: cover;\n  min-height: 40px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybWFjaW9uL0M6XFxVc2Vyc1xcbWFpbG9cXERvY3VtZW50c1xcY2hlY2twb2ludFxcQ29kaWdvIEZ1ZW50ZVxcQXBwIE1vdmlsL3NyY1xcYXBwXFxjb25maXJtYWNpb25cXGNvbmZpcm1hY2lvbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxzQkFBc0I7RUFFdEIsZ0JBQWdCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb25maXJtYWNpb24vY29uZmlybWFjaW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pbWFnZS1jb250YWluZXJ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG5cclxuICAgIG1pbi1oZWlnaHQ6IDQwcHg7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -85,11 +85,148 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmacionPage", function() { return ConfirmacionPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _my_sql_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../my-sql.service */ "./src/app/my-sql.service.ts");
+/* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../s-qlite.service */ "./src/app/s-qlite.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+
+
+
+
 
 
 var ConfirmacionPage = /** @class */ (function () {
-    function ConfirmacionPage() {
+    function ConfirmacionPage(mysql, sqlite, router, route, file) {
+        this.mysql = mysql;
+        this.sqlite = sqlite;
+        this.router = router;
+        this.route = route;
+        this.file = file;
+        this.idubicacion_valoracion = parseInt(this.route.snapshot.paramMap.get('idubicacion_valoracion'));
+        this.nombre_ubicacion = this.route.snapshot.paramMap.get('nombre_ubicacion');
+        this.servicio = this.route.snapshot.paramMap.get('nombreservicio');
+        this.valoracion = this.route.snapshot.paramMap.get('valoracion');
+        this.valor = this.route.snapshot.paramMap.get('valor');
+        this.foto = this.route.snapshot.paramMap.get('foto');
+        this.base64Image = this.route.snapshot.paramMap.get('base64Image');
+        this.email = this.route.snapshot.paramMap.get('email');
+        this.descripcion = this.route.snapshot.paramMap.get('descripcion');
+        this.tipo_rango = this.route.snapshot.paramMap.get('tipo_rango');
+        this.tipo = this.route.snapshot.paramMap.get('tipo');
+        console.log("CONSTRUCTOR CONFIRMACION");
+        console.log("------------------------");
+        console.log("SERVICIO: " + this.servicio);
+        console.log("VALORACION: " + this.valoracion);
+        console.log("TIPO: " + this.tipo);
+        console.log("TIPO_RANGO: " + this.tipo_rango);
+        console.log("FOTO: " + this.foto);
+        console.log("EMAIL: " + this.email);
+        console.log("DESCRIPCION: " + this.descripcion);
+        console.log("IDUBICACION VALORACION: " + this.idubicacion_valoracion);
+        console.log("NOMBRE UBICACION: " + this.nombre_ubicacion);
+        console.log("------------------------");
     }
+    ConfirmacionPage.prototype.confirmar = function () {
+        var _this = this;
+        if (this.tipo == 'rango') {
+            if (this.tipo_rango == 'emoticon' || this.tipo_rango == 'numerico') {
+                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                    descripcion: this.descripcion,
+                    tipo: this.tipo,
+                    valoracion: this.valor,
+                    foto: this.foto,
+                    email: this.email };
+                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
+                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
+                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                        valoracion: _this.valoracion,
+                        tipo: _this.tipo,
+                        tipo_rango: _this.tipo_rango,
+                        foto: _this.foto,
+                        descripcion: _this.descripcion,
+                        email: _this.email,
+                        servicio: _this.servicio };
+                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                    _this.router.navigate(['home']);
+                });
+            }
+            else {
+                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                    descripcion: this.descripcion,
+                    tipo: this.tipo,
+                    valoracion: this.valor,
+                    foto: this.foto,
+                    email: this.email };
+                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
+                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
+                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                        valoracion: _this.valor,
+                        tipo: _this.tipo,
+                        tipo_rango: _this.tipo_rango,
+                        foto: _this.foto,
+                        descripcion: _this.descripcion,
+                        email: _this.email,
+                        servicio: _this.servicio };
+                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                    _this.router.navigate(['home']);
+                });
+            }
+        }
+        else {
+            if (this.foto == '') {
+                console.log("ENTRO SIN FOTO");
+                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                    descripcion: this.descripcion,
+                    tipo: this.tipo,
+                    valoracion: this.valoracion,
+                    foto: this.foto,
+                    email: this.email };
+                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
+                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
+                    console.log("CONFIRMACION INSERTADA :" + JSON.stringify(data));
+                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                        valoracion: _this.valoracion,
+                        tipo: _this.tipo,
+                        tipo_rango: null,
+                        foto: _this.foto,
+                        descripcion: _this.descripcion,
+                        email: _this.email,
+                        servicio: _this.servicio };
+                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                    _this.router.navigate(['home']);
+                });
+            }
+            else {
+                var ruta = this.base64Image.substr(0, this.base64Image.lastIndexOf('/') + 1);
+                var nombre = this.base64Image.substr(this.base64Image.lastIndexOf('/') + 1);
+                this.file.readAsDataURL(ruta, nombre)
+                    .then(function (base64File) {
+                    _this.valoracion_mySql = { ubicacionValoracion: _this.idubicacion_valoracion,
+                        descripcion: _this.descripcion,
+                        tipo: _this.tipo,
+                        valoracion: _this.valoracion,
+                        foto: base64File,
+                        email: _this.email };
+                    _this.mysql.insertarValoracion(_this.valoracion_mySql).subscribe(function (data) {
+                        console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
+                        _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                            valoracion: _this.valoracion,
+                            tipo: _this.tipo,
+                            tipo_rango: null,
+                            foto: _this.foto,
+                            descripcion: _this.descripcion,
+                            email: _this.email,
+                            servicio: _this.servicio };
+                        _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                    });
+                    _this.router.navigate(['home']);
+                });
+            }
+        }
+    };
+    ConfirmacionPage.prototype.cancelar = function () {
+        this.router.navigate(['home']);
+    };
     ConfirmacionPage.prototype.ngOnInit = function () {
     };
     ConfirmacionPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -98,7 +235,11 @@ var ConfirmacionPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./confirmacion.page.html */ "./src/app/confirmacion/confirmacion.page.html"),
             styles: [__webpack_require__(/*! ./confirmacion.page.scss */ "./src/app/confirmacion/confirmacion.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_my_sql_service__WEBPACK_IMPORTED_MODULE_2__["MySqlService"],
+            _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__["SQliteService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__["File"]])
     ], ConfirmacionPage);
     return ConfirmacionPage;
 }());

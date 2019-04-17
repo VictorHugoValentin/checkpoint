@@ -922,12 +922,57 @@ var routes = [
         path: 'list',
         loadChildren: './list/list.module#ListPageModule'
     },
-    { path: 'acerca', loadChildren: './acerca/acerca.module#AcercaPageModule' },
-    { path: 'confirmacion', loadChildren: './confirmacion/confirmacion.module#ConfirmacionPageModule' },
-    { path: 'opcionales', loadChildren: './opcionales/opcionales.module#OpcionalesPageModule' },
-    { path: 'servicios', loadChildren: './servicios/servicios.module#ServiciosPageModule' },
-    { path: 'ubmanual', loadChildren: './ubmanual/ubmanual.module#UbmanualPageModule' },
-    { path: 'valoraciones', loadChildren: './valoraciones/valoraciones.module#ValoracionesPageModule' }
+    {
+        path: 'acerca',
+        loadChildren: './acerca/acerca.module#AcercaPageModule'
+    },
+    {
+        path: 'confirmacion/:valoracion' +
+            '/:valor' +
+            '/:tipo' +
+            '/:idubicacion_valoracion' +
+            '/:nombreservicio' +
+            '/:tipo_rango' +
+            '/:nombre_ubicacion' +
+            '/:foto' +
+            '/:base64Image' +
+            '/:email' +
+            '/:descripcion',
+        loadChildren: './confirmacion/confirmacion.module#ConfirmacionPageModule'
+    },
+    {
+        path: 'opcionales/:valoracion' +
+            '/:valor' +
+            '/:tipo' +
+            '/:permite_descripcion' +
+            '/:permite_foto' +
+            '/:permite_email' +
+            '/:idubicacion_valoracion' +
+            '/:tipo_rango' +
+            '/:nombre_ubicacion' +
+            '/:nombreservicio',
+        loadChildren: './opcionales/opcionales.module#OpcionalesPageModule'
+    },
+    {
+        path: 'servicios/:ubicacion',
+        loadChildren: './servicios/servicios.module#ServiciosPageModule'
+    },
+    {
+        path: 'ubmanual/:servicio' +
+            '/:descripcion' +
+            '/:nombre' +
+            '/:icono',
+        loadChildren: './ubmanual/ubmanual.module#UbmanualPageModule'
+    },
+    {
+        path: 'valoraciones/:servicio' +
+            '/:descripcion' +
+            '/:nombre' +
+            '/:icono' +
+            '/:ubicacion' +
+            '/:idUbicacion',
+        loadChildren: './valoraciones/valoraciones.module#ValoracionesPageModule'
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -954,7 +999,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane>\n    <ion-menu>\n      <ion-header>\n        <ion-toolbar color=\"secondary\">\n          <ion-title></ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet main></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -970,19 +1015,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _my_sql_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./my-sql.service */ "./src/app/my-sql.service.ts");
+/* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./s-qlite.service */ "./src/app/s-qlite.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+
+
 
 
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar) {
+    function AppComponent(platform, splashScreen, statusBar, MySql, sQlite) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.MySql = MySql;
+        this.sQlite = sQlite;
         this.appPages = [
             {
                 title: 'Home',
@@ -990,11 +1041,21 @@ var AppComponent = /** @class */ (function () {
                 icon: 'home'
             },
             {
-                title: 'List',
+                title: 'Mis Valoraciones',
                 url: '/list',
                 icon: 'list'
-            }
+            },
+            {
+                title: 'Acerca',
+                url: '/acerca',
+                icon: 'information-circle'
+            },
         ];
+        //Declaracion arrays que guardan los datos de MySQL
+        this.servicios = {};
+        this.valoraciones = {};
+        this.ubicaciones = {};
+        this.ubicacionesValoraciones = {};
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
@@ -1002,6 +1063,71 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
+            console.log("ENTRO A CARGRA BASE");
+            _this.cargaBaseInterna();
+        });
+    };
+    AppComponent.prototype.cargaBaseInterna = function () {
+        console.log("ENTRO A CARGRA BASE INTERNA");
+        /*this.MySql.getLogs().subscribe(
+          data => {
+            console.log("ENTRO EN SOLICITUD MYSQL");
+            this.logExterno = data[0].idlog;
+            console.log("LOG EXTERNO: "+this.logExterno);
+            this.sQlite.getLogs().then(
+              data => {
+                this.logInterno = data;
+                if (this.logInterno == null) {
+                  this.logInterno = 0;
+                }
+                if (this.logExterno > this.logInterno) {*/
+        this.sQlite.BorrarActuales();
+        // this.sQlite.setLog(this.logExterno);
+        this.getServiciosMysql();
+        this.getValoracionesMysql();
+        this.getUbicacionesMysql();
+        this.getUbicacionesValoracionesMysql();
+        console.log("CARGO BASE INTERNA");
+        /*  }
+        });
+        
+    });*/
+    };
+    //GET's datos MySQL
+    AppComponent.prototype.getServiciosMysql = function () {
+        var _this = this;
+        this.MySql.getServicios().subscribe(function (data) {
+            _this.servicios = data;
+            _this.sQlite.setServicios(_this.servicios);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    AppComponent.prototype.getValoracionesMysql = function () {
+        var _this = this;
+        this.MySql.getValoraciones().subscribe(function (data) {
+            _this.valoraciones = data;
+            _this.sQlite.setValoraciones(_this.valoraciones);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    AppComponent.prototype.getUbicacionesMysql = function () {
+        var _this = this;
+        this.MySql.getUbicaciones().subscribe(function (data) {
+            _this.ubicaciones = data;
+            _this.sQlite.setUbicaciones(_this.ubicaciones);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    AppComponent.prototype.getUbicacionesValoracionesMysql = function () {
+        var _this = this;
+        this.MySql.getUbicacionesValoraciones().subscribe(function (data) {
+            _this.ubicacionesValoraciones = data;
+            _this.sQlite.setUbicacionValoracion(_this.ubicacionesValoraciones);
+        }, function (err) {
+            console.log(err);
         });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1009,9 +1135,11 @@ var AppComponent = /** @class */ (function () {
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html")
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
-            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
-            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
+            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
+            _my_sql_service__WEBPACK_IMPORTED_MODULE_2__["MySqlService"],
+            _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__["SQliteService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1034,11 +1162,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _my_sql_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./my-sql.service */ "./src/app/my-sql.service.ts");
+/* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./s-qlite.service */ "./src/app/s-qlite.service.ts");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+/* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1053,22 +1201,552 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]],
             entryComponents: [],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicModule"].forRoot(),
+                _ionic_storage__WEBPACK_IMPORTED_MODULE_6__["IonicStorageModule"].forRoot(),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_15__["ReactiveFormsModule"],
             ],
             providers: [
-                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_9__["StatusBar"],
+                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_8__["SplashScreen"],
+                _my_sql_service__WEBPACK_IMPORTED_MODULE_4__["MySqlService"],
+                _s_qlite_service__WEBPACK_IMPORTED_MODULE_5__["SQliteService"],
+                _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_13__["BarcodeScanner"],
+                _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_14__["Camera"],
+                _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_16__["WebView"],
+                _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_17__["File"],
+                _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_18__["FilePath"],
+                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/my-sql.service.ts":
+/*!***********************************!*\
+  !*** ./src/app/my-sql.service.ts ***!
+  \***********************************/
+/*! exports provided: MySqlService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MySqlService", function() { return MySqlService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+var MySqlService = /** @class */ (function () {
+    function MySqlService(http) {
+        this.http = http;
+        this.httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'Content-Type': 'application/json' })
+        };
+        this.api = "http://192.168.0.151/checkpoint/appMovil/";
+    }
+    MySqlService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('Something bad happened; please try again later.');
+    };
+    MySqlService.prototype.extractData = function (res) {
+        var body = res;
+        return body || {};
+    };
+    MySqlService.prototype.getServicios = function () {
+        return this.http.get(this.api + "listarServicios.php").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+    };
+    MySqlService.prototype.getValoraciones = function () {
+        return this.http.get(this.api + "listarValoraciones.php").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+    };
+    MySqlService.prototype.getUbicaciones = function () {
+        return this.http.get(this.api + "listarUbicaciones.php").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+    };
+    MySqlService.prototype.getUbicacionesValoraciones = function () {
+        return this.http.get(this.api + "listarUbicacionesValoraciones.php").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+    };
+    /*getLogs(){
+      return this.http.get(this.api+'listarLogs.php').pipe(map(this.extractData),
+      catchError(this.handleError));
+    }*/
+    MySqlService.prototype.getEstadoValoraciones = function (idEstados) {
+        console.log("Id Estados: " + JSON.stringify(idEstados));
+        return this.http.post(this.api + 'listarEstados.php', JSON.stringify(idEstados), this.httpOptions);
+    };
+    MySqlService.prototype.insertarValoracion = function (valoracion) {
+        console.log("VALORACION HECHA MYSQL: " + JSON.stringify(valoracion));
+        return this.http.post(this.api + 'insertarvaloracion.php', JSON.stringify(valoracion), this.httpOptions);
+    };
+    MySqlService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], MySqlService);
+    return MySqlService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/s-qlite.service.ts":
+/*!************************************!*\
+  !*** ./src/app/s-qlite.service.ts ***!
+  \************************************/
+/*! exports provided: SQliteService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SQliteService", function() { return SQliteService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/sqlite/ngx */ "./node_modules/@ionic-native/sqlite/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _my_sql_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./my-sql.service */ "./src/app/my-sql.service.ts");
+/* harmony import */ var _ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/sqlite-porter/ngx */ "./node_modules/@ionic-native/sqlite-porter/ngx/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+
+
+
+
+
+
+var SQliteService = /** @class */ (function () {
+    //logs: Array<any>;
+    function SQliteService(sqlitePorter, databaseMySqlProvider, storage, sqlite, platform, http) {
+        var _this = this;
+        this.sqlitePorter = sqlitePorter;
+        this.databaseMySqlProvider = databaseMySqlProvider;
+        this.storage = storage;
+        this.sqlite = sqlite;
+        this.platform = platform;
+        this.http = http;
+        this.databaseReady = new rxjs__WEBPACK_IMPORTED_MODULE_8__["BehaviorSubject"](false);
+        this.platform.ready().then(function () {
+            _this.sqlite = new _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__["SQLite"]();
+            _this.sqlite.create({
+                name: 'SQLiteData.db',
+                location: 'default'
+            })
+                .then(function (db) {
+                _this.database = db;
+                _this.fillDatabase();
+            });
+        });
+    }
+    SQliteService.prototype.fillDatabase = function () {
+        var _this = this;
+        this.http.get('assets/SQLiteDatos.sql', { responseType: 'text' })
+            .subscribe(function (sql) {
+            _this.sqlitePorter.importSqlToDb(_this.database, sql)
+                .then(function (data) {
+                _this.databaseReady.next(true);
+            })
+                .catch(function (e) { return console.error(e); });
+        });
+    };
+    SQliteService.prototype.setServicios = function (servicios) {
+        var data;
+        for (var i = 0; i < servicios.length; i++) {
+            data = this.database.executeSql("INSERT INTO servicios (idservicio, nombreservicio, iconoservicio, descripcionservicio)"
+                + " VALUES (?, ?, ?, ?)", [servicios[i].idservicio,
+                servicios[i].nombreservicio,
+                servicios[i].iconoservicio,
+                servicios[i].descripcionservicio]);
+        }
+        return data;
+    };
+    SQliteService.prototype.setValoraciones = function (valoraciones) {
+        var data;
+        for (var i = 0; i < valoraciones.length; i++) {
+            data = this.database.executeSql("INSERT INTO valoraciones ( idvaloracion, nombrevaloracion,"
+                + " tipovaloracion,  tipo_valores, descripcion, foto,   email, servicio, descripcionvaloracion )"
+                + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )", [valoraciones[i].idvaloracion,
+                valoraciones[i].nombrevaloracion,
+                valoraciones[i].tipovaloracion,
+                valoraciones[i].tipo_valores,
+                valoraciones[i].permite_descripcion,
+                valoraciones[i].permite_foto,
+                valoraciones[i].permite_email,
+                valoraciones[i].servicio,
+                valoraciones[i].descripcion]);
+        }
+        return data;
+    };
+    SQliteService.prototype.setUbicaciones = function (ubicaciones) {
+        var data;
+        for (var i = 0; i < ubicaciones.length; i++) {
+            data = this.database.executeSql("INSERT INTO ubicaciones (idubicacion, codigoqr,"
+                + " nombreubicacion, ubicacion)"
+                + " VALUES (?, ?, ?, ?)", [ubicaciones[i].idubicacion,
+                ubicaciones[i].codigoqr,
+                ubicaciones[i].nombreubicacion,
+                ubicaciones[i].ubicacion]);
+        }
+        return data;
+    };
+    SQliteService.prototype.setUbicacionValoracion = function (ubicacionesValoraciones) {
+        var data;
+        for (var i = 0; i < ubicacionesValoraciones.length; i++) {
+            data = this.database.executeSql("INSERT INTO ubicacion_valoracion (idubicacion_valoracion, "
+                + "ubicacion, valoracion)"
+                + " VALUES (?, ?, ?)", [ubicacionesValoraciones[i].idubicacion_valoracion,
+                ubicacionesValoraciones[i].ubicacion,
+                ubicacionesValoraciones[i].valoracion]);
+        }
+        return data;
+    };
+    /*setLog(log: number) {
+      var data;
+      data = this.database.executeSql("INSERT INTO log (log,idlog) VALUES (?,?)", [log , log]);
+      return data;
+    }*/
+    SQliteService.prototype.BorrarActuales = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                data = this.database.executeSql("DELETE FROM servicios; VACUUM", []);
+                data = this.database.executeSql("DELETE FROM valoraciones; VACUUM", []);
+                data = this.database.executeSql("DELETE FROM ubicaciones; VACUUM", []);
+                data = this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM", []);
+                return [2 /*return*/, null];
+            });
+        });
+    };
+    /*getLogs(){
+      return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
+      .then((data) => {
+        let log: number;
+        log = data.rows.item(0).idlog;
+        return log;
+      });
+    }*/
+    SQliteService.prototype.getServicios = function (ubicacion) {
+        if (ubicacion != null) {
+            return this.database.executeSql('SELECT * FROM servicios'
+                + ' INNER JOIN valoraciones'
+                + ' ON servicios.idservicio = valoraciones.servicio'
+                + ' INNER JOIN ubicacion_valoracion'
+                + ' ON valoraciones.idvaloracion = ubicacion_valoracion.valoracion'
+                + ' INNER JOIN ubicaciones'
+                + ' ON ubicacion_valoracion.ubicacion = ubicaciones.idubicacion'
+                + ' WHERE ubicaciones.codigoqr = "' + ubicacion + '"'
+                + ' GROUP BY servicios.idservicio', [])
+                .then(function (data) {
+                var servicios;
+                if (data.rows.length > 0) {
+                    servicios = "[";
+                    for (var i = 0; i < data.rows.length; i++) {
+                        if (servicios.charAt(servicios.length - 1) != "[") {
+                            servicios = servicios.concat(",");
+                        }
+                        servicios = servicios.concat('{"idservicio": "' + data.rows.item(i).idservicio + '",');
+                        servicios = servicios.concat('"nombreservicio": "' + data.rows.item(i).nombreservicio + '",');
+                        servicios = servicios.concat('"descripcionservicio": "' + data.rows.item(i).descripcionservicio + '",');
+                        servicios = servicios.concat('"iconoservicio": "' + data.rows.item(i).iconoservicio + '"}');
+                    }
+                    servicios = servicios.concat("]");
+                }
+                return servicios;
+            });
+        }
+        else {
+            return this.database.executeSql("SELECT * FROM servicios"
+                + " INNER JOIN valoraciones"
+                + " ON servicios.idservicio = valoraciones.servicio"
+                + " WHERE 1"
+                + " GROUP BY servicios.idservicio", [])
+                .then(function (data) {
+                var servicios;
+                if (data.rows.length > 0) {
+                    servicios = "[";
+                    for (var i = 0; i < data.rows.length; i++) {
+                        if (servicios.charAt(servicios.length - 1) != "[") {
+                            servicios = servicios.concat(",");
+                        }
+                        servicios = servicios.concat('{"idservicio": "' + data.rows.item(i).idservicio + '",');
+                        servicios = servicios.concat('"nombreservicio": "' + data.rows.item(i).nombreservicio + '",');
+                        servicios = servicios.concat('"descripcionservicio": "' + data.rows.item(i).descripcionservicio + '",');
+                        servicios = servicios.concat('"iconoservicio": "' + data.rows.item(i).iconoservicio + '"}');
+                    }
+                    servicios = servicios.concat("]");
+                }
+                return servicios;
+            });
+        }
+    };
+    SQliteService.prototype.getIdUbicacionValoracion = function (codigoqr, idvaloracion) {
+        return this.database.executeSql('SELECT idubicacion_valoracion FROM ubicacion_valoracion '
+            + ' INNER JOIN ubicaciones'
+            + ' ON ubicacion_valoracion.ubicacion = ubicaciones.idubicacion '
+            + ' WHERE  ubicaciones.codigoqr = "' + codigoqr + '" AND ubicacion_valoracion.valoracion = ' + idvaloracion, []).then(function (data) {
+            var idubicacion_valoracion;
+            if (data.rows.length > 0) {
+                idubicacion_valoracion = data.rows.item(0).idubicacion_valoracion;
+            }
+            return idubicacion_valoracion;
+        });
+    };
+    SQliteService.prototype.getNombreUbicacion = function (codigoQr) {
+        return this.database.executeSql('SELECT nombreubicacion FROM ubicaciones '
+            + ' WHERE  codigoqr = "' + codigoQr + '"', []).then(function (data) {
+            var nombreubicacion;
+            if (data.rows.length > 0) {
+                nombreubicacion = data.rows.item(0).nombreubicacion;
+            }
+            return nombreubicacion;
+        });
+    };
+    SQliteService.prototype.getUbicaciones = function (idservicio) {
+        return this.database.executeSql('SELECT idubicacion, codigoqr, nombreubicacion FROM ubicaciones'
+            + ' INNER JOIN ubicacion_valoracion'
+            + ' ON ubicaciones.idubicacion = 	ubicacion_valoracion.ubicacion'
+            + ' INNER JOIN valoraciones'
+            + ' ON ubicacion_valoracion.valoracion = valoraciones.idvaloracion'
+            + ' INNER JOIN servicios'
+            + ' ON valoraciones.servicio = servicios.idservicio'
+            + ' WHERE servicios.idservicio = ' + idservicio
+            + ' GROUP BY ubicaciones.idubicacion', []).then(function (data) {
+            var ubicaciones;
+            if (data.rows.length > 0) {
+                ubicaciones = "[";
+                for (var i = 0; i < data.rows.length; i++) {
+                    if (ubicaciones.charAt(ubicaciones.length - 1) != "[") {
+                        ubicaciones = ubicaciones.concat(",");
+                    }
+                    ubicaciones = ubicaciones.concat('{"idubicacion": "' + data.rows.item(i).idubicacion + '",');
+                    ubicaciones = ubicaciones.concat('"codigoqr": "' + data.rows.item(i).codigoqr + '",');
+                    ubicaciones = ubicaciones.concat('"nombreubicacion": "' + data.rows.item(i).nombreubicacion + '"}');
+                }
+                ubicaciones = ubicaciones.concat("]");
+            }
+            return ubicaciones;
+        });
+    };
+    SQliteService.prototype.getIdUbicacion = function (codigoQr) {
+        return this.database.executeSql("SELECT idubicacion FROM ubicaciones "
+            + "WHERE codigoqr = " + codigoQr, []).then(function (data) {
+            var idubicacion;
+            if (data.rows.length > 0) {
+                idubicacion = data.rows.item(0).idubicacion;
+            }
+            return idubicacion;
+        });
+    };
+    SQliteService.prototype.getNombreServicio = function (idservicio) {
+        return this.database.executeSql("SELECT nombreservicio FROM servicios "
+            + "WHERE idservicio = " + idservicio, []).then(function (data) {
+            var servicio;
+            if (data.rows.length > 0) {
+                servicio = '[{"nombreServicio":"' + data.rows.item(0).nombreservicio + '"}]';
+            }
+            return servicio;
+        });
+    };
+    SQliteService.prototype.getNombreValoracion = function (idvaloracion) {
+        return this.database.executeSql("SELECT nombrevaloracion FROM servicios "
+            + "WHERE idvaloracion = " + idvaloracion, []).then(function (data) {
+            var valoracion;
+            if (data.rows.length > 0) {
+                valoracion = '[{"nombreValoracion":"' + data.rows.item(0).nombrevaloracion + '"}]';
+            }
+            return valoracion;
+        });
+    };
+    SQliteService.prototype.getValoraciones = function (servicio, ubicacion) {
+        return this.database.executeSql("SELECT * FROM valoraciones v"
+            + " JOIN servicios s ON v.servicio = s.idservicio"
+            + " JOIN ubicacion_valoracion uv ON uv.valoracion = v.idvaloracion"
+            + " JOIN ubicaciones u ON uv.ubicacion = u.idubicacion"
+            + " WHERE s.idservicio = " + servicio + " AND u.codigoqr = '" + ubicacion + "'"
+            + " GROUP BY v.idvaloracion", []).then(function (data) {
+            var valoraciones;
+            if (data.rows.length > 0) {
+                valoraciones = "[";
+                for (var i = 0; i < data.rows.length; i++) {
+                    if (valoraciones.charAt(valoraciones.length - 1) != "[") {
+                        valoraciones = valoraciones.concat(",");
+                    }
+                    if (data.rows.item(i).tipo_valores == "texto") {
+                        valoraciones = valoraciones.concat('{"idvaloracion": "' + data.rows.item(i).idvaloracion + '",');
+                        valoraciones = valoraciones.concat('"nombrevaloracion": "' + data.rows.item(i).nombrevaloracion + '",');
+                        valoraciones = valoraciones.concat('"tipovaloracion": "' + data.rows.item(i).tipovaloracion + '",');
+                        valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
+                        valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '",');
+                        valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
+                        valoraciones = valoraciones.concat('"subs": [{"valor":"MALO"},{"valor":"REGULAR"},{"valor":"BUENO"},{"valor":"MUY BUENO"},{"valor":"EXCELENTE"}]}');
+                    }
+                    else {
+                        if (data.rows.item(i).tipo_valores == "numerico") {
+                            valoraciones = valoraciones.concat('{"idvaloracion": "' + data.rows.item(i).idvaloracion + '",');
+                            valoraciones = valoraciones.concat('"nombrevaloracion": "' + data.rows.item(i).nombrevaloracion + '",');
+                            valoraciones = valoraciones.concat('"tipovaloracion": "' + data.rows.item(i).tipovaloracion + '",');
+                            valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
+                            valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '",');
+                            valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
+                            valoraciones = valoraciones.concat('"subs": [{"valor":"1"},{"valor":"2"},{"valor":"3"},{"valor":"4"},{"valor":"5"}]}');
+                        }
+                        else {
+                            if (data.rows.item(i).tipo_valores == "emoticon") {
+                                valoraciones = valoraciones.concat('{"idvaloracion": "' + data.rows.item(i).idvaloracion + '",');
+                                valoraciones = valoraciones.concat('"nombrevaloracion": "' + data.rows.item(i).nombrevaloracion + '",');
+                                valoraciones = valoraciones.concat('"tipovaloracion": "' + data.rows.item(i).tipovaloracion + '",');
+                                valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
+                                valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '",');
+                                valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
+                                valoraciones = valoraciones.concat('"subs": [{"valor":"e1"},{"valor":"e2"},{"valor":"e3"},{"valor":"e4"},{"valor":"e5"}]}');
+                            }
+                            else {
+                                valoraciones = valoraciones.concat('{"idvaloracion": "' + data.rows.item(i).idvaloracion + '",');
+                                valoraciones = valoraciones.concat('"nombrevaloracion": "' + data.rows.item(i).nombrevaloracion + '",');
+                                valoraciones = valoraciones.concat('"tipovaloracion": "' + data.rows.item(i).tipovaloracion + '",');
+                                valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
+                                valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
+                                valoraciones = valoraciones.concat('"foto": "' + data.rows.item(i).foto + '",');
+                                valoraciones = valoraciones.concat('"email": "' + data.rows.item(i).email + '",');
+                                valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '"}');
+                            }
+                        }
+                    }
+                }
+                valoraciones = valoraciones.concat("]");
+            }
+            return valoraciones;
+        });
+    };
+    SQliteService.prototype.eliminarMisValoraciones = function (id) {
+        if (id != -1) {
+            return this.database.executeSql("DELETE FROM valoracion_Hecha WHERE idvaloracion_hecha = " + id, []);
+        }
+        else {
+            return this.database.executeSql("DELETE FROM valoracion_Hecha WHERE 1", []);
+        }
+    };
+    SQliteService.prototype.getMisValoraciones = function () {
+        return this.database.executeSql("SELECT idvaloracion_hecha," +
+            " valoracion, tipo," +
+            " tipo_rango," +
+            " foto, descripcion," +
+            " email," +
+            " estado," +
+            " servicio," +
+            " time(fecha) AS fecha" +
+            " FROM valoracion_Hecha"
+            + " WHERE 1", []).then(function (data) {
+            var valoraciones = null;
+            if (data.rows.length > 0) {
+                valoraciones = "[";
+                for (var i = 0; i < data.rows.length; i++) {
+                    if (valoraciones.charAt(valoraciones.length - 1) != "[") {
+                        valoraciones = valoraciones.concat(",");
+                    }
+                    valoraciones = valoraciones.concat('{"idvaloracion_hecha": "' + data.rows.item(i).idvaloracion_hecha + '",');
+                    valoraciones = valoraciones.concat('"valoracion": "' + data.rows.item(i).valoracion + '",');
+                    valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo + '",');
+                    valoraciones = valoraciones.concat('"tipo_rango": "' + data.rows.item(i).tipo_rango + '",');
+                    valoraciones = valoraciones.concat('"foto": "' + data.rows.item(i).foto + '",');
+                    valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
+                    valoraciones = valoraciones.concat('"email": "' + data.rows.item(i).email + '",');
+                    valoraciones = valoraciones.concat('"estado": "' + data.rows.item(i).estado + '",');
+                    valoraciones = valoraciones.concat('"servicio": "' + data.rows.item(i).servicio + '",');
+                    valoraciones = valoraciones.concat('"fecha": "' + data.rows.item(i).fecha + '"}');
+                }
+                valoraciones = valoraciones.concat("]");
+            }
+            return valoraciones;
+        });
+    };
+    SQliteService.prototype.cambiarEstado = function (estados) {
+        for (var i = 0; i < estados.length; i++) {
+            this.database.executeSql("UPDATE valoracion_Hecha" +
+                " SET estado = '" + estados[i].estado + "'" +
+                " WHERE idvaloracion_hecha = " + estados[i].idvaloracion_hecha);
+        }
+    };
+    SQliteService.prototype.getIdEstados = function () {
+        return this.database.executeSql("SELECT idvaloracion_hecha FROM valoracion_Hecha"
+            + " WHERE tipo = 'reclamo' AND estado = 'creado' OR estado = 'espera'", []).then(function (data) {
+            var estados = [];
+            if (data.rows.length > 0) {
+                for (var i = 1; i < data.rows.length; i++) {
+                    estados.push({ idValoracionHecha: data.rows.item(i).idvaloracion_hecha });
+                }
+            }
+            return estados;
+        });
+    };
+    SQliteService.prototype.insertarValoracion = function (valoracion) {
+        console.log("SERVICIO: " + valoracion.servicio);
+        var data;
+        data = this.database.executeSql("INSERT INTO valoracion_Hecha (idvaloracion_hecha," +
+            " valoracion," +
+            " tipo," +
+            " tipo_rango," +
+            " foto," +
+            " descripcion," +
+            " email," +
+            " estado," +
+            " servicio)" +
+            " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )", [valoracion.idvaloracion_hecha,
+            valoracion.valoracion,
+            valoracion.tipo,
+            valoracion.tipo_rango,
+            valoracion.foto,
+            valoracion.descripcion,
+            valoracion.email,
+            'creado',
+            valoracion.servicio]);
+        return data;
+    };
+    SQliteService.prototype.getDatabaseState = function () {
+        return this.databaseReady.asObservable();
+    };
+    SQliteService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_sqlite_porter_ngx__WEBPACK_IMPORTED_MODULE_7__["SQLitePorter"],
+            _my_sql_service__WEBPACK_IMPORTED_MODULE_6__["MySqlService"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"],
+            _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__["SQLite"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Platform"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+    ], SQliteService);
+    return SQliteService;
 }());
 
 
@@ -1136,7 +1814,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\mailo\Desktop\Proyecto\checkpoint\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\mailo\Documents\checkpoint\Codigo Fuente\App Movil\src\main.ts */"./src/main.ts");
 
 
 /***/ })

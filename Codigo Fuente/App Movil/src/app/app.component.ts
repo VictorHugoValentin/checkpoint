@@ -18,10 +18,15 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Mis Valoraciones',
       url: '/list',
       icon: 'list'
-    }
+    },
+    {
+      title: 'Acerca',
+      url: '/acerca',
+      icon: 'information-circle'
+    },
   ];
 
    //Declaracion arrays que guardan los datos de MySQL
@@ -46,33 +51,36 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      console.log("ENTRO A CARGRA BASE");
       this.cargaBaseInterna();
     });
   }
 
   cargaBaseInterna() {
-    this.MySql.getLogs().subscribe(
+    console.log("ENTRO A CARGRA BASE INTERNA");
+    /*this.MySql.getLogs().subscribe(
       data => {
+        console.log("ENTRO EN SOLICITUD MYSQL");
         this.logExterno = data[0].idlog;
+        console.log("LOG EXTERNO: "+this.logExterno);
         this.sQlite.getLogs().then(
           data => {
             this.logInterno = data; 
             if (this.logInterno == null) {
               this.logInterno = 0;
-              console.log("LOG INTERNO APP COMPONENT: "+this.logInterno);
             }
-            console.log("LOG INTERNO APP COMPONENT NO NULL: "+this.logInterno);
-            if (this.logExterno > this.logInterno) {
+            if (this.logExterno > this.logInterno) {*/
               this.sQlite.BorrarActuales();
-              this.sQlite.setLog(this.logExterno);
+             // this.sQlite.setLog(this.logExterno);
               this.getServiciosMysql();
               this.getValoracionesMysql();
               this.getUbicacionesMysql();
               this.getUbicacionesValoracionesMysql();
-            }
+              console.log("CARGO BASE INTERNA");
+          /*  }
           });
           
-      });
+      });*/
   }
 
   //GET's datos MySQL

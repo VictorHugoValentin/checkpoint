@@ -25,13 +25,16 @@ export class HomePage {
             prompt: "Escanee el codigoQR"
         }
         this.barcodeScanner.scan(this.options).then((barcodeData) => {
+           if(barcodeData.text != ''){
             this.servicios(barcodeData.text);
+           }
         }, (err) => {
-            console.log("Error occured : " + err);
+            console.log(err);
         });
     }
 
     servicios(ubicacion: string) {
+        console.log("UBICACION: "+ubicacion);
         if(ubicacion==null){
             ubicacion="ninguno";
         }

@@ -12,7 +12,7 @@ export class MySqlService {
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
-  api = "http://192.168.0.136/checkpoint/appMovil/";
+  api = "http://192.168.0.151/checkpoint/appMovil/";
 
   constructor(private http: HttpClient) { }
 
@@ -35,30 +35,7 @@ export class MySqlService {
     let body = res;
     return body || { };
   }
-
-  /*getClassroom(): Observable<any> {
-    return this.http.get(api, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
-  
-  getClassroomById(id: string): Observable<any> {
-    const url = `${api}/${id}`;
-    return this.http.get(url, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
-  
- 
-  
-  updateClassroom(id: string, data): Observable<any> {
-    const url = `${api}/${id}`;
-    return this.http.put(url, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }*/
-  
+   
        getServicios(){
         return this.http.get(this.api+"listarServicios.php").pipe(map(this.extractData),
         catchError(this.handleError));
@@ -80,41 +57,18 @@ export class MySqlService {
         catchError(this.handleError));
       }
       
-      getLogs(){
+      /*getLogs(){
         return this.http.get(this.api+'listarLogs.php').pipe(map(this.extractData),
         catchError(this.handleError));
+      }*/
+
+      getEstadoValoraciones(idEstados: {}){
+        console.log("Id Estados: "+JSON.stringify(idEstados));
+        return this.http.post(this.api+'listarEstados.php', JSON.stringify(idEstados), this.httpOptions);
       }
 
-      /*postClassroom(data): Observable<any> {
-        const url = `${api}/add_with_students`;
-        return this.http.post(url, data, this.httpOptions)
-          .pipe(
-            catchError(this.handleError)
-          );
-      }*/
-
-      insertarValoracion(elemento: {}) {
-       // return this.http.post(this.api + 'insertarvaloracion.php', JSON.stringify(elemento), 
-       // this.httpOptions).pipe(map(res => console.log(JSON.stringify(res))));
-      
-
-        console.log("VALORACION HECHA MYSQL: "+JSON.stringify(elemento));
-      //return new Promise(resolve => {
-        return this.http.post(this.api+'insertarvaloracion.php', JSON.stringify(elemento), this.httpOptions)
-          .subscribe((data) => {
-            console.log(data);
-          });
-  
-      
-
-    }
-        
-      /*insertarValoracion(valoracion: any): Observable<any> {
-        console.log("VALORACION_ACTUAL MYSQL: "+JSON.stringify(valoracion));
-
-        return this.http.post(this.api + 'insertarvaloracion.php', JSON.stringify(valoracion), this.httpOptions)
-        .pipe(
-          catchError(this.handleError)
-        );
-      }*/
+      insertarValoracion(valoracion: {}) {
+        console.log("VALORACION HECHA MYSQL: "+JSON.stringify(valoracion));
+        return this.http.post(this.api+'insertarvaloracion.php', JSON.stringify(valoracion), this.httpOptions);
+      }
 }

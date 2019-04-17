@@ -28,10 +28,6 @@ export class ValoracionesPage implements OnInit {
         this.descripcionservicio = this.route.snapshot.paramMap.get('descripcion');
         this.nombreservicio = this.route.snapshot.paramMap.get('nombre');
         this.iconoservicio = parseInt(this.route.snapshot.paramMap.get('icono'));
-        console.log("Nombre Servicio: "+this.nombreservicio);
-        console.log("Ubicacion: "+this.ubicacion);
-        console.log("Descripcion Servicio: "+this.descripcionservicio);
-        console.log("Icono Servicio: "+this.iconoservicio);
         this.getValoraciones(parseInt(this.route.snapshot.paramMap.get('servicio')), this.ubicacion);
    }
 
@@ -51,22 +47,17 @@ export class ValoracionesPage implements OnInit {
     getValoraciones(servicio: number, ubicacion: string){
       this.sqlite.getValoraciones(servicio, ubicacion).then(data =>{ 
       this.valoraciones =  JSON.parse(data);
-      console.log("LAS VALORACIONES: "+JSON.stringify(this.valoraciones));
       });
     }
   
     reclamo(idvaloracion: number, valor: string, permite_descripcion: number, permite_foto: number, permite_email: number){
       this.sqlite.getIdUbicacionValoracion(this.ubicacion,idvaloracion).then(data =>{
         this.idubicacion_valoracion = data;
-        console.log("ES UN RECLAMOOO");
-        console.log("VALORACION: "+ valor);
         
         this.sqlite.getNombreUbicacion(this.ubicacion).then(data =>{
           this.nombre_ubicacion = data;
-          console.log("NOMBRE UBICACION RECLAMO: "+this.nombre_ubicacion);
   
           if(permite_descripcion == 1 || permite_foto == 1 || permite_email == 1 ){
-            console.log("ENTRO EN PERMITE ALGO");
             this.router.navigate(['opcionales', 
                                 valor,
                                 'null',
@@ -86,7 +77,11 @@ export class ValoracionesPage implements OnInit {
                                 this.idubicacion_valoracion,
                                 this.nombreservicio,
                                 'null',
-                                this.nombre_ubicacion]);
+                                this.nombre_ubicacion,
+                                '',
+                                '',
+                                '',
+                                '']);
           }
         });
          
@@ -95,7 +90,6 @@ export class ValoracionesPage implements OnInit {
     }
   
     valorar(idvaloracion: number, valoracion: string, permite_descripcion: number, tipo_rango: string){
-      console.log("PERMITE DESCRIPCION: "+permite_descripcion);
       let valor: number;
       switch(valoracion) {
         case "MALO":
@@ -129,7 +123,7 @@ export class ValoracionesPage implements OnInit {
   
         this.sqlite.getNombreUbicacion(this.ubicacion).then(data =>{
           this.nombre_ubicacion = data;
-  
+  console.log("PERMITE DESCRIPCION: "+permite_descripcion);
       if(permite_descripcion == 1){
         this.router.navigate(['opcionales',
                               valoracion,
@@ -150,7 +144,11 @@ export class ValoracionesPage implements OnInit {
                                 this.idubicacion_valoracion,
                                 this.nombreservicio,
                                 tipo_rango,
-                                this.nombre_ubicacion]);
+                                this.nombre_ubicacion,
+                                '',
+                                '',
+                                '',
+                                '']);
       }
       });
     });

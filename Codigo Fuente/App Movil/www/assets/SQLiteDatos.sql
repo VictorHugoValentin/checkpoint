@@ -29,17 +29,17 @@ CREATE TABLE IF NOT EXISTS ubicacion_valoracion(idubicacion_valoracion INTEGER P
                                                 REFERENCES ubicaciones(idubicacion),
                                                 FOREIGN KEY(valoracion) 
                                                 REFERENCES valoraciones(idvaloracion)); 
-
-CREATE TABLE IF NOT EXISTS log(log INTEGER PRIMARY KEY,
-                                idlog INTEGER);
                                 
 CREATE TABLE IF NOT EXISTS valoracion_Hecha(idvaloracion_hecha INTEGER PRIMARY KEY,
-                                        ubicacion_valoracion INTEGER,
+                                        valoracion TEXT,
+                                        tipo TEXT,
+                                        tipo_rango TEXT,
                                         foto TEXT,
                                         descripcion TEXT,
-                                        email TEXT,            
-                                        FOREIGN KEY(ubicacion_valoracion) 
-                                        REFERENCES ubicacion_valoracion(idubicacion_valoracion));
+                                        email TEXT,
+                                        estado TEXT,
+                                        servicio TEXT,
+                                        fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 
 

@@ -1,27 +1,117 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      List
+    <ion-buttons *ngIf="valoraciones !=null" slot="end" color="secondary" (click)="eliminar(-1)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-buttons>
+    <ion-title text-center>
+          <img src="assets/img/logo.png" width="30" height="40" />
     </ion-title>
-  </ion-toolbar>
+  </ion-toolbar> 
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
+  <ion-list *ngIf = "valoraciones != null">
+      <ng-container *ngFor="let val of valoraciones">
+
+        <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'emoticon'">
+            <ion-item >
+                <h5>{{val.servicio}}</h5> 
+                <ion-thumbnail slot="end">
+                <div class="image-container" [style.background-image]="'url(assets/rangos/'+val.valoracion+'.png)'"></div>                 
+              </ion-thumbnail>
+              </ion-item>
+            <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'numerico'">
+            <ion-item >
+                <h5>{{val.servicio}}</h5>
+                <ion-thumbnail slot="end">
+                <div slot="end" class="image-container" [style.background-image]="'url(assets/numeros/'+val.valoracion+'.png)'"></div>            
+              </ion-thumbnail>
+            </ion-item>
+            <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'texto'">
+          
+            <ion-item >
+                <ion-row>
+                    <ion-col >
+                        <ng-container *ngIf="val.valoracion == 1">
+                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>MALO</h6>
+                        </ng-container>
+                        <ng-container *ngIf="val.valoracion == 2">
+                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>REGULAR</h6>
+                        </ng-container>
+                        <ng-container *ngIf="val.valoracion == 3">
+                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>BUENO</h6>
+                        </ng-container>
+                        <ng-container *ngIf="val.valoracion == 4">
+                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>MUY BUENO</h6>
+                        </ng-container>
+                        <ng-container *ngIf="val.valoracion == 5">
+                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>EXCELENTE</h6>
+                        </ng-container>
+                    </ion-col >
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div>{{val.fecha}}</div>
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+          
+            <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item-sliding *ngIf="val.tipo == 'reclamo'">
+            <ion-item >
+                <ng-container *ngIf="val.estado == 'espera'" slot="start">
+                  <ion-icon name="checkmark"></ion-icon>
+                </ng-container>
+                <ng-container *ngIf="val.estado == 'creado'" slot="start">
+                  <ion-icon name="alarm"></ion-icon>
+                </ng-container>
+                <ng-container *ngIf="val.estado == 'terminado'" slot="start">
+                  <ion-icon name="done-all"></ion-icon>
+                </ng-container>
+                <ng-container *ngIf="val.estado == 'vencido'" slot="start">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ng-container>
+      
+              <h5>&nbsp;&nbsp;{{val.servicio}}: &nbsp; </h5>  <h6>{{val.valoracion}}</h6>
+                     <ion-thumbnail *ngIf = "val.foto != ''" slot="end">
+                        <img src="{{val.foto}}" >
+                    </ion-thumbnail>
+          </ion-item>
+            <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
+                <ion-item-option color="danger">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ng-container>
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="tertiary">
+      <ion-title text-center color="light">Mis Valoraciones</ion-title>
+  </ion-toolbar>
+</ion-footer>

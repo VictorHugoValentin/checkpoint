@@ -52,7 +52,6 @@ export class OpcionalesPage implements OnInit {
                 this.descripcion=null;
                 this.nombreValoracion = this.route.snapshot.paramMap.get('valoracion');
                 this.valor = parseInt(this.route.snapshot.paramMap.get('valor'));
-                //console.log("VALORACION OPCIONALES: "+ this.nombreValoracion);
                 this.nombreServicio = this.route.snapshot.paramMap.get('nombreservicio');
                 this.idubicacion_valoracion = parseInt(this.route.snapshot.paramMap.get('idubicacion_valoracion'));
                 this.nombre_ubicacion = this.route.snapshot.paramMap.get('nombre_ubicacion');
@@ -77,34 +76,14 @@ export class OpcionalesPage implements OnInit {
                 
                 this.camara.getPicture(options).then((imageData) => {
                   this.foto = this.webview.convertFileSrc(imageData); 
-                  this.base64Image = imageData;                  
+                  this.base64Image = imageData;                 
               });
             }
-            
-              /*validarValoracion(servicio: number, valoracion: number){
-                var existe: number;
-                this.mysql.validarValoracion(servicio,valoracion).subscribe(res =>
-                  existe = res
-                );
-                return existe;
-              }*/
-            
+                     
               Valorar(){
-                console.log("DATOS OPCIONALES PAGE: ");
-                console.log("NOMBRE SERVICIO: "+this.nombreServicio);
-                console.log("NOMBRE VALORACION: "+this.nombreValoracion);
-                console.log("VALOR: "+this.valor);
-                console.log("FOTO: "+this.foto);
-                console.log("BASE64: "+this.base64Image);
-                console.log("EMAIL: "+this.email);
-                console.log("DESCRIPCION: "+this.descripcion);
-                console.log("ID UBICACION VALORACION: "+this.idubicacion_valoracion);
-                console.log("NOMBRE UBICACION: "+this.nombre_ubicacion);
-                console.log("TIPO: "+this.tipo);
-                console.log("TIPO RANGO: "+this.tipo_rango);
                 if(this.tipo == 'rango'){
                   if(this.descripcion == null){
-                        this.descripcion = 'null';
+                        this.descripcion = '';
                   }
                         this.router.navigate(['confirmacion', 
                                       this.nombreValoracion,
@@ -114,9 +93,9 @@ export class OpcionalesPage implements OnInit {
                                       this.nombreServicio,
                                       this.tipo_rango,
                                       this.nombre_ubicacion,
-                                      'null',
-                                      'null',
-                                      'null',
+                                      '',
+                                      '',
+                                      '',
                                       this.descripcion]);
                 }else{
                   if(this.foto == null){

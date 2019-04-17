@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MySqlService } from '../my-sql.service';
+import { SQliteService } from '../s-qlite.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,81 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  
+  public valoraciones: Array<any> = null;
+
+  constructor(private sqlite: SQliteService,
+              private mysql: MySqlService,
+              private alertController: AlertController) {
+    this.getEstadoValoraciones();
   }
 
-  ngOnInit() {
+  ngOnInit(){
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  getEstadoValoraciones(){
+    this.sqlite.getIdEstados()
+    .then(data => {
+      this.mysql.getEstadoValoraciones(data).subscribe(respuesta =>{
+        this.sqlite.cambiarEstado(respuesta);
+          this.getMisValoraciones();
+      });
+    }
+    );
+  }
+
+  getMisValoraciones(){
+    this.sqlite.getMisValoraciones()
+    .then(data => 
+      this.valoraciones = JSON.parse(data)
+    );
+  }
+
+  async eliminar(id: number){
+    if(id != -1){
+    let alert = await this.alertController.create({
+      header: 'Eliminar',
+      message: '¿Estás seguro de que deseas eliminar esta valoracion?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancelar',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            this.sqlite.eliminarMisValoraciones(id).then(data => {
+              this.getMisValoraciones();
+              console.log(data)
+            });
+          }
+        }]
+    })
+    await alert.present();
+    }else{
+      let alert = await this.alertController.create({
+        header: 'Eliminar',
+        message: '¿Estás seguro de que deseas eliminar todas sus valoraciones?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancelar',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Si',
+            handler: () => {
+              this.sqlite.eliminarMisValoraciones(id).then(data => {
+                this.getMisValoraciones();
+                console.log(data)
+              });
+            }
+          }]
+      })
+      await alert.present();
+    }
+  }
 }
