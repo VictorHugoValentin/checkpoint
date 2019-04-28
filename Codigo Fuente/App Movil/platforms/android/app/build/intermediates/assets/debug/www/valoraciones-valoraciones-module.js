@@ -58,7 +58,7 @@ var ValoracionesPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"secondary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title text-center>\n          <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n    </ion-title>\n  </ion-toolbar> \n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        <ion-grid>\n          <ion-row align-items-center>\n            <ion-col size=\"auto\">\n              <img src=\"assets/servicios/{{iconoservicio}}.png\" />\n            </ion-col>\n            <ion-col size=\"7\">\n              <h1>{{nombreservicio}}</h1>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"12\">\n              <p>{{descripcionservicio}}</p>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card-title>\n    </ion-card-content>\n  </ion-card>\n\n\n\n  <ion-list>\n    <ng-container *ngFor=\"let valor of valoraciones; let i=index\">\n    <ng-container *ngIf=\"valor.tipovaloracion == 'rango'\">\n    <ion-item text-wrap (click)=\"desplegarNivel('idx'+i)\" [ngClass]=\"{active: rangoVisible('idx'+i)}\">\n        <h3>\n          {{valor.nombrevaloracion}}\n          <ion-icon color=\"success\" [name]=\"rangoVisible('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'\"></ion-icon>\n        </h3>\n    </ion-item>\n      <ion-list *ngIf=\"rangoVisible('idx'+i)\">\n          <ng-container *ngIf=\"valor.tipo == 'emoticon'\"> \n            <ion-grid>\n              <ion-row text-center>\n                <ion-col *ngFor=\"let subvalor of valor.subs\" >\n                  <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+subvalor.valor+'.png)'\" (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\"></div>\n                </ion-col>\n              </ion-row>\n            </ion-grid>\n          </ng-container>\n          <ng-container *ngIf=\"valor.tipo == 'texto'\" text-wrap>\n              <ion-item *ngFor=\"let subvalor of valor.subs\" text-wrap (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\" >\n              {{subvalor.valor}}\n            </ion-item>\n          </ng-container>\n          <ng-container *ngIf=\"valor.tipo == 'numerico'\" text-wrap>\n              <ion-grid>\n                  <ion-row text-center>\n                    <ion-col *ngFor=\"let subvalor of valor.subs\" text-wrap>\n                      <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+subvalor.valor+'.png)'\" (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\"></div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n          </ng-container>\n      </ion-list>\n  </ng-container>\n  <ng-container *ngIf=\"valor.tipovaloracion == 'reclamo'\" >\n    <ng-container >\n      <ion-item (click)=\"reclamo(valor.idvaloracion, valor.nombrevaloracion, valor.descripcion, valor.foto, valor.email)\">\n        <h3>\n            {{valor.nombrevaloracion}}\n          </h3>\n    </ion-item>\n    </ng-container>\n  </ng-container>\n</ng-container>\n  </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar color=\"tertiary\">\n    <ion-title text-center color=\"light\">Valoraciones</ion-title>\n  </ion-toolbar>\n</ion-footer>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"secondary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title text-center>\n          <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n    </ion-title>\n  </ion-toolbar> \n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-content>\n      <ion-card-title>\n        <ion-grid>\n          <ion-row align-items-center>\n            <ion-col size=\"auto\">\n              <img src=\"assets/servicios/{{iconoservicio}}.png\" />\n            </ion-col>\n            <ion-col size=\"7\">\n              <h1>{{nombreservicio}}</h1>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"12\">\n              <p>{{descripcionservicio}}</p>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card-title>\n    </ion-card-content>\n  </ion-card>\n\n\n\n  <ion-list>\n    <ng-container *ngFor=\"let valor of valoraciones; let i=index\">\n    <ng-container *ngIf=\"valor.tipovaloracion == 'rango'\">\n    <ion-item text-wrap (click)=\"desplegarNivel('idx'+i)\" [ngClass]=\"{active: rangoVisible('idx'+i)}\">\n        <h5>\n          {{valor.nombrevaloracion}}\n          <ion-icon color=\"success\" [name]=\"rangoVisible('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'\"></ion-icon>\n        </h5>\n    </ion-item>\n      <ion-list *ngIf=\"rangoVisible('idx'+i)\">\n          <ng-container *ngIf=\"valor.tipo == 'emoticon'\"> \n            <ion-grid>\n              <ion-row text-center>\n                <ion-col *ngFor=\"let subvalor of valor.subs\" >\n                  <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+subvalor.valor+'.png)'\" (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\"></div>\n                </ion-col>\n              </ion-row>\n            </ion-grid>\n          </ng-container>\n          <ng-container *ngIf=\"valor.tipo == 'texto'\" text-wrap>\n              <ion-item *ngFor=\"let subvalor of valor.subs\" text-wrap (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\" >\n              {{subvalor.valor}}\n            </ion-item>\n          </ng-container>\n          <ng-container *ngIf=\"valor.tipo == 'numerico'\" text-wrap>\n              <ion-grid>\n                  <ion-row text-center>\n                    <ion-col *ngFor=\"let subvalor of valor.subs\" text-wrap>\n                      <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+subvalor.valor+'.png)'\" (click)=\"valorar(valor.idvaloracion, subvalor.valor, valor.descripcion, valor.tipo)\"></div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n          </ng-container>\n      </ion-list>\n  </ng-container>\n  <ng-container *ngIf=\"valor.tipovaloracion == 'reclamo'\" >\n    <ng-container >\n      <ion-item (click)=\"reclamo(valor.idvaloracion, valor.nombrevaloracion, valor.descripcion, valor.foto, valor.email)\">\n        <h5>\n            {{valor.nombrevaloracion}}\n          </h5>\n    </ion-item>\n    </ng-container>\n  </ng-container>\n</ng-container>\n  </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar color=\"tertiary\">\n    <ion-title text-center color=\"light\">Valoraciones</ion-title>\n  </ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -162,27 +162,27 @@ var ValoracionesPage = /** @class */ (function () {
         var _this = this;
         var valor;
         switch (valoracion) {
-            case "MALO":
+            case "Malo":
             case "e1":
             case "1":
                 valor = 1;
                 break;
-            case "REGULAR":
+            case "Regular":
             case "e2":
             case "2":
                 valor = 2;
                 break;
-            case "BUENO":
+            case "Bueno":
             case "e3":
             case "3":
                 valor = 3;
                 break;
-            case "MUY BUENO":
+            case "Muy Bueno":
             case "e4":
             case "4":
                 valor = 4;
                 break;
-            case "EXCELENTE":
+            case "Excelente":
             case "e5":
             case "5":
                 valor = 5;

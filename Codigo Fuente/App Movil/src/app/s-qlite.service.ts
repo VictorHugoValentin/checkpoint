@@ -14,43 +14,106 @@ export class SQliteService {
 
   database: SQLiteObject;
   private databaseReady: BehaviorSubject<boolean>;
-
-  servicios: Array<any>;
-  valoraciones: Array<any>;
-  ubicaciones: Array<any>;
-  ubicacionesValoraciones: Array<any>;
-  //logs: Array<any>;
+  
+  serviciosMySql: any={};
+  valoracionesMySql: any={};
+  ubicacionesMySql: any={};
+  ubicacionesValoracionesMySql: any={};
 
   constructor(public sqlitePorter: SQLitePorter,
               public databaseMySqlProvider: MySqlService,
               public storage: Storage,
               private sqlite: SQLite,
               public platform: Platform,
+              private MySql: MySqlService,
               public http: HttpClient
               ) {
-  this.databaseReady = new BehaviorSubject(false);
-   this.platform.ready().then(() => {
-    this.sqlite = new SQLite();
-      this.sqlite.create({
-        name: 'SQLiteData.db',
-        location: 'default'
-      })
-        .then((db: SQLiteObject) => {
-          this.database = db;
-         this.fillDatabase();
-        });
-    });
   }
 
-  fillDatabase() {
-    this.http.get('assets/SQLiteDatos.sql', {responseType: 'text'})
+  borrarBaseDatos(){
+      console.log("BORRANDOOOOOLAAA");
+      this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM",[]);
+      this.database.executeSql("DELETE FROM ubicaciones; VACUUM",[]);
+      this.database.executeSql("DELETE FROM valoraciones; VACUUM",[]);
+      this.database.executeSql("DELETE FROM servicios; VACUUM",[]);
+  }
+
+  crearBaseDatos(){
+    this.databaseReady = new BehaviorSubject(false);
+    this.platform.ready().then(() => {
+     this.sqlite = new SQLite();
+       this.sqlite.create({
+         name: 'SQLiteData.db',
+         location: 'default'
+       })
+         .then((db: SQLiteObject) => {
+           this.database = db;
+           console.log("DB"+JSON.stringify(this.database));
+           this.http.get('assets/SQLiteDatos.sql', {responseType: 'text'})
       .subscribe(sql => {
         this.sqlitePorter.importSqlToDb(this.database, sql)
           .then(data => {
+            this.borrarBaseDatos();
+            this.getServiciosMysql();
+            this.getValoracionesMysql();
+            this.getUbicacionesMysql();
+            this.getUbicacionesValoracionesMysql();
             this.databaseReady.next(true);
           })
           .catch(e => console.error(e));
       });
+         });
+     });
+  }
+
+  //CARGA BASE SQLITE
+
+  getServiciosMysql() {
+    this.MySql.getServicios().subscribe(
+      data => {
+        this.serviciosMySql = data;
+       this.setServicios(this.serviciosMySql);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getValoracionesMysql() {
+    this.MySql.getValoraciones().subscribe(
+      data => {
+        this.valoracionesMySql = data;
+        this.setValoraciones(this.valoracionesMySql);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getUbicacionesMysql() {
+    this.MySql.getUbicaciones().subscribe(
+      data => {
+        this.ubicacionesMySql = data;
+        this.setUbicaciones(this.ubicacionesMySql);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getUbicacionesValoracionesMysql() {
+    this.MySql.getUbicacionesValoraciones().subscribe(
+      data => {
+        this.ubicacionesValoracionesMySql = data;
+        this.setUbicacionValoracion(this.ubicacionesValoracionesMySql);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   setServicios(servicios: Array<any>) {
@@ -108,32 +171,6 @@ export class SQliteService {
     return data;
   }
 
-  /*setLog(log: number) {
-    var data;
-    data = this.database.executeSql("INSERT INTO log (log,idlog) VALUES (?,?)", [log , log]);
-    return data;
-  }*/
-
-  async BorrarActuales(){
-    var data;
-
-    data = this.database.executeSql("DELETE FROM servicios; VACUUM", []);
-    data = this.database.executeSql("DELETE FROM valoraciones; VACUUM", []);
-    data = this.database.executeSql("DELETE FROM ubicaciones; VACUUM", []);
-    data = this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM", []);
-  
-    return null;
-  }
-
-  /*getLogs(){
-    return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
-    .then((data) => {
-      let log: number;
-      log = data.rows.item(0).idlog;
-      return log;
-    });
-  }*/
-
   getServicios(ubicacion: string) {
     if (ubicacion != null) {
       return this.database.executeSql('SELECT * FROM servicios'
@@ -187,7 +224,6 @@ export class SQliteService {
       });
     }
   }
-
 
   getIdUbicacionValoracion(codigoqr: string, idvaloracion: number) {
     return this.database.executeSql('SELECT idubicacion_valoracion FROM ubicacion_valoracion '
@@ -299,7 +335,7 @@ return idubicacion;
             valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
             valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '",');
             valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');        
-            valoraciones = valoraciones.concat('"subs": [{"valor":"MALO"},{"valor":"REGULAR"},{"valor":"BUENO"},{"valor":"MUY BUENO"},{"valor":"EXCELENTE"}]}');
+            valoraciones = valoraciones.concat('"subs": [{"valor":"Malo"},{"valor":"Regular"},{"valor":"Bueno"},{"valor":"Muy Bueno"},{"valor":"Excelente"}]}');
             }else{
                 if(data.rows.item(i).tipo_valores == "numerico"){
                  valoraciones = valoraciones.concat('{"idvaloracion": "' + data.rows.item(i).idvaloracion + '",');
@@ -354,7 +390,7 @@ return idubicacion;
                                             " email,"+
                                             " estado,"+
                                             " servicio,"+
-                                            " time(fecha) AS fecha"+
+                                            " date(fecha) AS fecha"+
                                             " FROM valoracion_Hecha"  
                                   +" WHERE 1", []).then((data) => {
         let valoraciones: string=null;
@@ -403,10 +439,8 @@ return idubicacion;
         return estados;
       });
   }
-
   
   insertarValoracion(valoracion: any) {
-  console.log("SERVICIO: "+valoracion.servicio);
       var data;
         data = this.database.executeSql("INSERT INTO valoracion_Hecha (idvaloracion_hecha,"+
                                                                     " valoracion,"+

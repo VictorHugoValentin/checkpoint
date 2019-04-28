@@ -14,11 +14,19 @@
 
 <ion-content>
   <ion-list *ngIf = "valoraciones != null">
+      <ion-item-divider color="primary">
+      <ion-label>
+        Puntuaciones
+      </ion-label>
+    </ion-item-divider>
       <ng-container *ngFor="let val of valoraciones">
 
         <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'emoticon'">
             <ion-item >
-                <h5>{{val.servicio}}</h5> 
+              <ion-label text-wrap>
+                  <h2>{{val.servicio}}</h2>
+                  <p>{{val.fecha}}</p>
+              </ion-label>
                 <ion-thumbnail slot="end">
                 <div class="image-container" [style.background-image]="'url(assets/rangos/'+val.valoracion+'.png)'"></div>                 
               </ion-thumbnail>
@@ -32,9 +40,12 @@
 
         <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'numerico'">
             <ion-item >
-                <h5>{{val.servicio}}</h5>
+                <ion-label text-wrap>
+                <h2>{{val.servicio}}</h2>
+                <p>{{val.fecha}}</p>
+                </ion-label>
                 <ion-thumbnail slot="end">
-                <div slot="end" class="image-container" [style.background-image]="'url(assets/numeros/'+val.valoracion+'.png)'"></div>            
+                <div class="image-container" [style.background-image]="'url(assets/numeros/'+val.valoracion+'.png)'"></div>            
               </ion-thumbnail>
             </ion-item>
             <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
@@ -46,31 +57,28 @@
 
         <ion-item-sliding *ngIf="val.tipo == 'rango' && val.tipo_rango == 'texto'">
           
-            <ion-item >
-                <ion-row>
-                    <ion-col >
-                        <ng-container *ngIf="val.valoracion == 1">
-                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>MALO</h6>
-                        </ng-container>
-                        <ng-container *ngIf="val.valoracion == 2">
-                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>REGULAR</h6>
-                        </ng-container>
-                        <ng-container *ngIf="val.valoracion == 3">
-                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>BUENO</h6>
-                        </ng-container>
-                        <ng-container *ngIf="val.valoracion == 4">
-                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>MUY BUENO</h6>
-                        </ng-container>
-                        <ng-container *ngIf="val.valoracion == 5">
-                            <h5>{{val.servicio}}: &nbsp; </h5>  <h6>EXCELENTE</h6>
-                        </ng-container>
-                    </ion-col >
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <div>{{val.fecha}}</div>
-                    </ion-col>
-                </ion-row>
+            <ion-item>
+              <ion-label text-wrap>
+                  <h2>{{val.servicio}}</h2>
+                  <p>{{val.fecha}}</p>
+              </ion-label>
+                                      
+                      <ng-container *ngIf="val.valoracion == 1">
+                            <h6>Malo</h6>
+                      </ng-container>
+                      <ng-container *ngIf="val.valoracion == 2">
+                            <h6>Regular</h6>
+                      </ng-container>
+                      <ng-container *ngIf="val.valoracion == 3">
+                            <h6>Bueno</h6>
+                      </ng-container>
+                      <ng-container *ngIf="val.valoracion == 4">
+                            <h6>Muy Bueno</h6>
+                      </ng-container>
+                      <ng-container *ngIf="val.valoracion == 5">
+                            <h6>Excelente</h6>
+                      </ng-container>                                      
+                
             </ion-item>
           
             <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
@@ -79,28 +87,40 @@
                 </ion-item-option>
             </ion-item-options>
         </ion-item-sliding>
-
-        <ion-item-sliding *ngIf="val.tipo == 'reclamo'">
+      </ng-container>
+      <ion-item-divider color="primary">
+          <ion-label>
+            Observaciones
+          </ion-label>
+        </ion-item-divider>
+    <ng-container *ngFor="let valo of valoraciones">
+        <ion-item-sliding *ngIf="valo.tipo == 'reclamo'">
             <ion-item >
-                <ng-container *ngIf="val.estado == 'espera'" slot="start">
-                  <ion-icon name="checkmark"></ion-icon>
+                
+                <ng-container *ngIf="valo.estado == 'espera'" slot="start">
+                  <ion-icon slot="start" name="checkmark"></ion-icon>
                 </ng-container>
-                <ng-container *ngIf="val.estado == 'creado'" slot="start">
-                  <ion-icon name="alarm"></ion-icon>
+                <ng-container *ngIf="valo.estado == 'creado'" slot="start">
+                  <ion-icon slot="start" name="alarm"></ion-icon>
                 </ng-container>
-                <ng-container *ngIf="val.estado == 'terminado'" slot="start">
-                  <ion-icon name="done-all"></ion-icon>
+                <ng-container *ngIf="valo.estado == 'terminado'" slot="start">
+                  <ion-icon slot="start" name="done-all"></ion-icon>
                 </ng-container>
-                <ng-container *ngIf="val.estado == 'vencido'" slot="start">
-                  <ion-icon name="close-circle-outline"></ion-icon>
+                <ng-container *ngIf="valo.estado == 'vencido'" slot="start">
+                  <ion-icon slot="start" name="close-circle-outline"></ion-icon>
                 </ng-container>
-      
-              <h5>&nbsp;&nbsp;{{val.servicio}}: &nbsp; </h5>  <h6>{{val.valoracion}}</h6>
-                     <ion-thumbnail *ngIf = "val.foto != ''" slot="end">
-                        <img src="{{val.foto}}" >
+                <ion-label text-wrap>
+                    <h2>{{valo.servicio}}</h2>  
+                    <h6>{{valo.valoracion}}</h6>
+                    <p>{{valo.fecha}}</p>
+                </ion-label>
+              
+                     <ion-thumbnail *ngIf = "valo.foto != ''" slot="end">
+                        <img src="{{valo.foto}}" >
                     </ion-thumbnail>
           </ion-item>
-            <ion-item-options side="end" (click)="eliminar(val.idvaloracion_hecha)">
+          
+            <ion-item-options side="end" (click)="eliminar(valo.idvaloracion_hecha)">
                 <ion-item-option color="danger">
                   <ion-icon slot="icon-only" name="trash"></ion-icon>
                 </ion-item-option>

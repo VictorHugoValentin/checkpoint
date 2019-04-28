@@ -10,49 +10,37 @@
 </ion-header>
 
 
-<ion-content padding>
-          
-              <ion-item>
-                    <ion-grid>
-                            <ion-row >
-                                <ion-col size="Auto">
-                                        <ion-thumbnail item-left *ngIf="foto != ''">
-                                                <img src="{{ foto }}">
-                                            </ion-thumbnail>
-                                            <ion-thumbnail item-left *ngIf="tipo == 'rango' && tipo_rango == 'emoticon'">
-                                                  <div class="image-container" [style.background-image]="'url(assets/rangos/'+valoracion+'.png)'"></div>                 
-                                              </ion-thumbnail>
-                                              <ion-thumbnail item-left *ngIf="tipo == 'rango' && tipo_rango == 'numerico'">
-                                                      <div class="image-container" [style.background-image]="'url(assets/numeros/'+valoracion+'.png)'"></div>                 
-                                              </ion-thumbnail>
-                                            </ion-col>
-                                            <ion-col>
-                                                    <h3>{{ servicio }}</h3>
-                                                    <div *ngIf="tipo == 'rango' && tipo_rango == 'texto'"> 
-                                                            <h5>{{ valoracion }}</h5>
-                                                    </div>
-                                                            <div *ngIf="tipo == 'reclamo'"> 
-                                                                    <h5>{{ valoracion }}</h5>
-                                                            </div>
-                                            </ion-col>
-                            </ion-row>
-                                <ion-row >
-                                        <ion-col>
-                                                <div *ngIf="descripcion != ''">
-                                                        <p><b>Descripcion:</b> {{descripcion}}</p>
-                                                    </div> 
-                                        </ion-col>
-                                    </ion-row>
-                                    <ion-row >
-                                            <ion-col>
-                                                    <div *ngIf="email != ''">
-                                                            <p><b>e-Mail:</b> {{email}}</p>
-                                                        </div>
-                                            </ion-col>
-                                        </ion-row>
-                        </ion-grid>  
-              </ion-item>
-          
+<ion-content padding>            
+              <ion-list>
+                  <ion-item text-wrap>
+                            <ion-thumbnail slot="start" *ngIf="foto != ''">
+                                <img src="{{ foto }}">
+                            </ion-thumbnail>
+                            <ion-thumbnail slot="start" *ngIf="tipo == 'rango' && tipo_rango == 'emoticon'">
+                                <div class="image-container" [style.background-image]="'url(assets/rangos/'+valoracion+'.png)'"></div>                 
+                            </ion-thumbnail>
+                            <ion-thumbnail slot="start" *ngIf="tipo == 'rango' && tipo_rango == 'numerico'">
+                                <div class="image-container" [style.background-image]="'url(assets/numeros/'+valoracion+'.png)'"></div>                 
+                            </ion-thumbnail>
+                            <ion-label text-wrap>
+                                    <h2>{{ servicio }}</h2>
+                                    <div *ngIf="tipo == 'rango' && tipo_rango == 'texto'"> 
+                                            <h4>{{ valoracion }}</h4>
+                                    </div>
+                                    <div *ngIf="tipo == 'reclamo'"> 
+                                            <h4>{{ valoracion }}</h4>
+                                    </div>
+                                    <h4>{{nombre_ubicacion}}</h4>
+                            </ion-label>
+                  </ion-item>
+                <ion-item text-wrap *ngIf="descripcion != ''">
+                        <b>Descripcion:&nbsp;&nbsp;</b> {{descripcion}}
+                </ion-item>
+                <ion-item text-wrap *ngIf="email != ''">
+                        <b>e-Mail:&nbsp;&nbsp;</b> {{email}}
+                </ion-item>
+             </ion-list>
+                  
 
   <ion-grid>
       <ion-row>

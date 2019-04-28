@@ -92,27 +92,27 @@ export class ValoracionesPage implements OnInit {
     valorar(idvaloracion: number, valoracion: string, permite_descripcion: number, tipo_rango: string){
       let valor: number;
       switch(valoracion) {
-        case "MALO":
+        case "Malo":
         case "e1":
         case "1":
         valor = 1;
           break;
-        case "REGULAR":
+        case "Regular":
         case "e2":
         case "2":
         valor = 2;
           break;
-        case "BUENO":
+        case "Bueno":
         case "e3":
         case "3":
         valor = 3;
           break;
-        case "MUY BUENO":
+        case "Muy Bueno":
         case "e4":
         case "4":
         valor = 4;
           break;
-        case "EXCELENTE":
+        case "Excelente":
         case "e5":
         case "5":
         valor = 5;

@@ -12,7 +12,7 @@ export class MySqlService {
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
-  api = "http://192.168.0.151/checkpoint/appMovil/";
+  api = "http://192.168.0.136/checkpoint/appMovil/";
 
   constructor(private http: HttpClient) { }
 

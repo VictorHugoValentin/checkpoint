@@ -58,7 +58,7 @@ var ConfirmacionPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"secondary\">\n        <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title text-center>\n              <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n        </ion-title>\n      </ion-toolbar> \n</ion-header>\n\n\n<ion-content padding>\n          \n              <ion-item>\n                    <ion-grid>\n                            <ion-row >\n                                <ion-col size=\"Auto\">\n                                        <ion-thumbnail item-left *ngIf=\"foto != ''\">\n                                                <img src=\"{{ foto }}\">\n                                            </ion-thumbnail>\n                                            <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'emoticon'\">\n                                                  <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+valoracion+'.png)'\"></div>                 \n                                              </ion-thumbnail>\n                                              <ion-thumbnail item-left *ngIf=\"tipo == 'rango' && tipo_rango == 'numerico'\">\n                                                      <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+valoracion+'.png)'\"></div>                 \n                                              </ion-thumbnail>\n                                            </ion-col>\n                                            <ion-col>\n                                                    <h3>{{ servicio }}</h3>\n                                                    <div *ngIf=\"tipo == 'rango' && tipo_rango == 'texto'\"> \n                                                            <h5>{{ valoracion }}</h5>\n                                                    </div>\n                                                            <div *ngIf=\"tipo == 'reclamo'\"> \n                                                                    <h5>{{ valoracion }}</h5>\n                                                            </div>\n                                            </ion-col>\n                            </ion-row>\n                                <ion-row >\n                                        <ion-col>\n                                                <div *ngIf=\"descripcion != ''\">\n                                                        <p><b>Descripcion:</b> {{descripcion}}</p>\n                                                    </div> \n                                        </ion-col>\n                                    </ion-row>\n                                    <ion-row >\n                                            <ion-col>\n                                                    <div *ngIf=\"email != ''\">\n                                                            <p><b>e-Mail:</b> {{email}}</p>\n                                                        </div>\n                                            </ion-col>\n                                        </ion-row>\n                        </ion-grid>  \n              </ion-item>\n          \n\n  <ion-grid>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"confirmar()\"> \n                 CONFIRMAR\n                 <ion-icon name=\"checkmark\"></ion-icon> \n              </ion-button>\n          </ion-col>\n      </ion-row>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"cancelar()\"> \n        CANCELAR    \n        <ion-icon name=\"close\"></ion-icon>\n     </ion-button>\n          </ion-col>\n      </ion-row>\n  </ion-grid>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar color=\"tertiary\">\n      <ion-title text-center color=\"light\">Confirmación</ion-title>\n  </ion-toolbar>\n</ion-footer>"
+module.exports = "<ion-header>\n    <ion-toolbar color=\"secondary\">\n        <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n        <ion-title text-center>\n              <img src=\"assets/img/logo.png\" width=\"30\" height=\"40\" />\n        </ion-title>\n      </ion-toolbar> \n</ion-header>\n\n\n<ion-content padding>            \n              <ion-list>\n                  <ion-item text-wrap>\n                            <ion-thumbnail slot=\"start\" *ngIf=\"foto != ''\">\n                                <img src=\"{{ foto }}\">\n                            </ion-thumbnail>\n                            <ion-thumbnail slot=\"start\" *ngIf=\"tipo == 'rango' && tipo_rango == 'emoticon'\">\n                                <div class=\"image-container\" [style.background-image]=\"'url(assets/rangos/'+valoracion+'.png)'\"></div>                 \n                            </ion-thumbnail>\n                            <ion-thumbnail slot=\"start\" *ngIf=\"tipo == 'rango' && tipo_rango == 'numerico'\">\n                                <div class=\"image-container\" [style.background-image]=\"'url(assets/numeros/'+valoracion+'.png)'\"></div>                 \n                            </ion-thumbnail>\n                            <ion-label text-wrap>\n                                    <h2>{{ servicio }}</h2>\n                                    <div *ngIf=\"tipo == 'rango' && tipo_rango == 'texto'\"> \n                                            <h4>{{ valoracion }}</h4>\n                                    </div>\n                                    <div *ngIf=\"tipo == 'reclamo'\"> \n                                            <h4>{{ valoracion }}</h4>\n                                    </div>\n                                    <h4>{{nombre_ubicacion}}</h4>\n                            </ion-label>\n                  </ion-item>\n                <ion-item text-wrap *ngIf=\"descripcion != ''\">\n                        <b>Descripcion:&nbsp;&nbsp;</b> {{descripcion}}\n                </ion-item>\n                <ion-item text-wrap *ngIf=\"email != ''\">\n                        <b>e-Mail:&nbsp;&nbsp;</b> {{email}}\n                </ion-item>\n             </ion-list>\n                  \n\n  <ion-grid>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"confirmar()\"> \n                 CONFIRMAR\n                 <ion-icon name=\"checkmark\"></ion-icon> \n              </ion-button>\n          </ion-col>\n      </ion-row>\n      <ion-row>\n          <ion-col col-12 col-sm>\n              <ion-button color=\"primary\" expand=\"full\" size=\"large\" (click)=\"cancelar()\"> \n        CANCELAR    \n        <ion-icon name=\"close\"></ion-icon>\n     </ion-button>\n          </ion-col>\n      </ion-row>\n  </ion-grid>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar color=\"tertiary\">\n      <ion-title text-center color=\"light\">Confirmación</ion-title>\n  </ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"secondary\">\n        <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".image-container {\n  background-size: cover;\n  min-height: 40px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybWFjaW9uL0M6XFxVc2Vyc1xcbWFpbG9cXERvY3VtZW50c1xcY2hlY2twb2ludFxcQ29kaWdvIEZ1ZW50ZVxcQXBwIE1vdmlsL3NyY1xcYXBwXFxjb25maXJtYWNpb25cXGNvbmZpcm1hY2lvbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxzQkFBc0I7RUFFdEIsZ0JBQWdCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb25maXJtYWNpb24vY29uZmlybWFjaW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pbWFnZS1jb250YWluZXJ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG5cclxuICAgIG1pbi1oZWlnaHQ6IDQwcHg7XHJcbn0iXX0= */"
+module.exports = ".image-container {\n  background-size: cover;\n  min-height: 45px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZmlybWFjaW9uL0M6XFxVc2Vyc1xcbWFpbG9cXERvY3VtZW50c1xcY2hlY2twb2ludFxcQ29kaWdvIEZ1ZW50ZVxcQXBwIE1vdmlsL3NyY1xcYXBwXFxjb25maXJtYWNpb25cXGNvbmZpcm1hY2lvbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxzQkFBc0I7RUFFdEIsZ0JBQWdCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb25maXJtYWNpb24vY29uZmlybWFjaW9uLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5pbWFnZS1jb250YWluZXJ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG5cclxuICAgIG1pbi1oZWlnaHQ6IDQ1cHg7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -113,18 +113,6 @@ var ConfirmacionPage = /** @class */ (function () {
         this.descripcion = this.route.snapshot.paramMap.get('descripcion');
         this.tipo_rango = this.route.snapshot.paramMap.get('tipo_rango');
         this.tipo = this.route.snapshot.paramMap.get('tipo');
-        console.log("CONSTRUCTOR CONFIRMACION");
-        console.log("------------------------");
-        console.log("SERVICIO: " + this.servicio);
-        console.log("VALORACION: " + this.valoracion);
-        console.log("TIPO: " + this.tipo);
-        console.log("TIPO_RANGO: " + this.tipo_rango);
-        console.log("FOTO: " + this.foto);
-        console.log("EMAIL: " + this.email);
-        console.log("DESCRIPCION: " + this.descripcion);
-        console.log("IDUBICACION VALORACION: " + this.idubicacion_valoracion);
-        console.log("NOMBRE UBICACION: " + this.nombre_ubicacion);
-        console.log("------------------------");
     }
     ConfirmacionPage.prototype.confirmar = function () {
         var _this = this;
@@ -137,7 +125,6 @@ var ConfirmacionPage = /** @class */ (function () {
                     foto: this.foto,
                     email: this.email };
                 this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
                     _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
                         valoracion: _this.valoracion,
                         tipo: _this.tipo,
@@ -158,7 +145,6 @@ var ConfirmacionPage = /** @class */ (function () {
                     foto: this.foto,
                     email: this.email };
                 this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
                     _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
                         valoracion: _this.valor,
                         tipo: _this.tipo,
@@ -174,7 +160,6 @@ var ConfirmacionPage = /** @class */ (function () {
         }
         else {
             if (this.foto == '') {
-                console.log("ENTRO SIN FOTO");
                 this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
                     descripcion: this.descripcion,
                     tipo: this.tipo,
@@ -182,8 +167,6 @@ var ConfirmacionPage = /** @class */ (function () {
                     foto: this.foto,
                     email: this.email };
                 this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
-                    console.log("CONFIRMACION INSERTADA :" + JSON.stringify(data));
                     _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
                         valoracion: _this.valoracion,
                         tipo: _this.tipo,
@@ -208,7 +191,6 @@ var ConfirmacionPage = /** @class */ (function () {
                         foto: base64File,
                         email: _this.email };
                     _this.mysql.insertarValoracion(_this.valoracion_mySql).subscribe(function (data) {
-                        console.log("CONFIRMACION INSERTADA :" + data[0].idValoracionHecha);
                         _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
                             valoracion: _this.valoracion,
                             tipo: _this.tipo,

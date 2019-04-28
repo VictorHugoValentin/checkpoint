@@ -1,4 +1,4 @@
-#Mon Apr 15 23:13:54 ART 2019
+#Wed Apr 24 22:37:29 ART 2019
 base.0=C\:\\Users\\mailo\\Documents\\checkpoint\\Codigo Fuente\\App Movil\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

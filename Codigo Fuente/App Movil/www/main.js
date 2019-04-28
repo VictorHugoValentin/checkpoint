@@ -1015,12 +1015,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _my_sql_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./my-sql.service */ "./src/app/my-sql.service.ts");
-/* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./s-qlite.service */ "./src/app/s-qlite.service.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-
+/* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./s-qlite.service */ "./src/app/s-qlite.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 
 
 
@@ -1028,11 +1026,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, MySql, sQlite) {
+    function AppComponent(platform, splashScreen, statusBar, sQlite) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
-        this.MySql = MySql;
         this.sQlite = sQlite;
         this.appPages = [
             {
@@ -1051,11 +1048,6 @@ var AppComponent = /** @class */ (function () {
                 icon: 'information-circle'
             },
         ];
-        //Declaracion arrays que guardan los datos de MySQL
-        this.servicios = {};
-        this.valoraciones = {};
-        this.ubicaciones = {};
-        this.ubicacionesValoraciones = {};
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
@@ -1063,71 +1055,7 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            console.log("ENTRO A CARGRA BASE");
-            _this.cargaBaseInterna();
-        });
-    };
-    AppComponent.prototype.cargaBaseInterna = function () {
-        console.log("ENTRO A CARGRA BASE INTERNA");
-        /*this.MySql.getLogs().subscribe(
-          data => {
-            console.log("ENTRO EN SOLICITUD MYSQL");
-            this.logExterno = data[0].idlog;
-            console.log("LOG EXTERNO: "+this.logExterno);
-            this.sQlite.getLogs().then(
-              data => {
-                this.logInterno = data;
-                if (this.logInterno == null) {
-                  this.logInterno = 0;
-                }
-                if (this.logExterno > this.logInterno) {*/
-        this.sQlite.BorrarActuales();
-        // this.sQlite.setLog(this.logExterno);
-        this.getServiciosMysql();
-        this.getValoracionesMysql();
-        this.getUbicacionesMysql();
-        this.getUbicacionesValoracionesMysql();
-        console.log("CARGO BASE INTERNA");
-        /*  }
-        });
-        
-    });*/
-    };
-    //GET's datos MySQL
-    AppComponent.prototype.getServiciosMysql = function () {
-        var _this = this;
-        this.MySql.getServicios().subscribe(function (data) {
-            _this.servicios = data;
-            _this.sQlite.setServicios(_this.servicios);
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    AppComponent.prototype.getValoracionesMysql = function () {
-        var _this = this;
-        this.MySql.getValoraciones().subscribe(function (data) {
-            _this.valoraciones = data;
-            _this.sQlite.setValoraciones(_this.valoraciones);
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    AppComponent.prototype.getUbicacionesMysql = function () {
-        var _this = this;
-        this.MySql.getUbicaciones().subscribe(function (data) {
-            _this.ubicaciones = data;
-            _this.sQlite.setUbicaciones(_this.ubicaciones);
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    AppComponent.prototype.getUbicacionesValoracionesMysql = function () {
-        var _this = this;
-        this.MySql.getUbicacionesValoraciones().subscribe(function (data) {
-            _this.ubicacionesValoraciones = data;
-            _this.sQlite.setUbicacionValoracion(_this.ubicacionesValoraciones);
-        }, function (err) {
-            console.log(err);
+            _this.sQlite.crearBaseDatos();
         });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1135,11 +1063,10 @@ var AppComponent = /** @class */ (function () {
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html")
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
-            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-            _my_sql_service__WEBPACK_IMPORTED_MODULE_2__["MySqlService"],
-            _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__["SQliteService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
+            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
+            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
+            _s_qlite_service__WEBPACK_IMPORTED_MODULE_2__["SQliteService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1260,7 +1187,7 @@ var MySqlService = /** @class */ (function () {
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ 'Content-Type': 'application/json' })
         };
-        this.api = "http://192.168.0.151/checkpoint/appMovil/";
+        this.api = "http://192.168.0.136/checkpoint/appMovil/";
     }
     MySqlService.prototype.handleError = function (error) {
         if (error.error instanceof ErrorEvent) {
@@ -1346,15 +1273,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var SQliteService = /** @class */ (function () {
-    //logs: Array<any>;
-    function SQliteService(sqlitePorter, databaseMySqlProvider, storage, sqlite, platform, http) {
-        var _this = this;
+    function SQliteService(sqlitePorter, databaseMySqlProvider, storage, sqlite, platform, MySql, http) {
         this.sqlitePorter = sqlitePorter;
         this.databaseMySqlProvider = databaseMySqlProvider;
         this.storage = storage;
         this.sqlite = sqlite;
         this.platform = platform;
+        this.MySql = MySql;
         this.http = http;
+        this.serviciosMySql = {};
+        this.valoracionesMySql = {};
+        this.ubicacionesMySql = {};
+        this.ubicacionesValoracionesMySql = {};
+    }
+    SQliteService.prototype.borrarBaseDatos = function () {
+        console.log("BORRANDOOOOOLAAA");
+        this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM", []);
+        this.database.executeSql("DELETE FROM ubicaciones; VACUUM", []);
+        this.database.executeSql("DELETE FROM valoraciones; VACUUM", []);
+        this.database.executeSql("DELETE FROM servicios; VACUUM", []);
+    };
+    SQliteService.prototype.crearBaseDatos = function () {
+        var _this = this;
         this.databaseReady = new rxjs__WEBPACK_IMPORTED_MODULE_8__["BehaviorSubject"](false);
         this.platform.ready().then(function () {
             _this.sqlite = new _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__["SQLite"]();
@@ -1364,19 +1304,58 @@ var SQliteService = /** @class */ (function () {
             })
                 .then(function (db) {
                 _this.database = db;
-                _this.fillDatabase();
+                console.log("DB" + JSON.stringify(_this.database));
+                _this.http.get('assets/SQLiteDatos.sql', { responseType: 'text' })
+                    .subscribe(function (sql) {
+                    _this.sqlitePorter.importSqlToDb(_this.database, sql)
+                        .then(function (data) {
+                        _this.borrarBaseDatos();
+                        _this.getServiciosMysql();
+                        _this.getValoracionesMysql();
+                        _this.getUbicacionesMysql();
+                        _this.getUbicacionesValoracionesMysql();
+                        _this.databaseReady.next(true);
+                    })
+                        .catch(function (e) { return console.error(e); });
+                });
             });
         });
-    }
-    SQliteService.prototype.fillDatabase = function () {
+    };
+    //CARGA BASE SQLITE
+    SQliteService.prototype.getServiciosMysql = function () {
         var _this = this;
-        this.http.get('assets/SQLiteDatos.sql', { responseType: 'text' })
-            .subscribe(function (sql) {
-            _this.sqlitePorter.importSqlToDb(_this.database, sql)
-                .then(function (data) {
-                _this.databaseReady.next(true);
-            })
-                .catch(function (e) { return console.error(e); });
+        this.MySql.getServicios().subscribe(function (data) {
+            _this.serviciosMySql = data;
+            _this.setServicios(_this.serviciosMySql);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    SQliteService.prototype.getValoracionesMysql = function () {
+        var _this = this;
+        this.MySql.getValoraciones().subscribe(function (data) {
+            _this.valoracionesMySql = data;
+            _this.setValoraciones(_this.valoracionesMySql);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    SQliteService.prototype.getUbicacionesMysql = function () {
+        var _this = this;
+        this.MySql.getUbicaciones().subscribe(function (data) {
+            _this.ubicacionesMySql = data;
+            _this.setUbicaciones(_this.ubicacionesMySql);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    SQliteService.prototype.getUbicacionesValoracionesMysql = function () {
+        var _this = this;
+        this.MySql.getUbicacionesValoraciones().subscribe(function (data) {
+            _this.ubicacionesValoracionesMySql = data;
+            _this.setUbicacionValoracion(_this.ubicacionesValoracionesMySql);
+        }, function (err) {
+            console.log(err);
         });
     };
     SQliteService.prototype.setServicios = function (servicios) {
@@ -1430,31 +1409,6 @@ var SQliteService = /** @class */ (function () {
         }
         return data;
     };
-    /*setLog(log: number) {
-      var data;
-      data = this.database.executeSql("INSERT INTO log (log,idlog) VALUES (?,?)", [log , log]);
-      return data;
-    }*/
-    SQliteService.prototype.BorrarActuales = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var data;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                data = this.database.executeSql("DELETE FROM servicios; VACUUM", []);
-                data = this.database.executeSql("DELETE FROM valoraciones; VACUUM", []);
-                data = this.database.executeSql("DELETE FROM ubicaciones; VACUUM", []);
-                data = this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM", []);
-                return [2 /*return*/, null];
-            });
-        });
-    };
-    /*getLogs(){
-      return this.database.executeSql('SELECT MAX(idlog) idlog FROM log', [])
-      .then((data) => {
-        let log: number;
-        log = data.rows.item(0).idlog;
-        return log;
-      });
-    }*/
     SQliteService.prototype.getServicios = function (ubicacion) {
         if (ubicacion != null) {
             return this.database.executeSql('SELECT * FROM servicios'
@@ -1608,7 +1562,7 @@ var SQliteService = /** @class */ (function () {
                         valoraciones = valoraciones.concat('"tipo": "' + data.rows.item(i).tipo_valores + '",');
                         valoraciones = valoraciones.concat('"descripcionvaloracion": "' + data.rows.item(i).descripcionvaloracion + '",');
                         valoraciones = valoraciones.concat('"descripcion": "' + data.rows.item(i).descripcion + '",');
-                        valoraciones = valoraciones.concat('"subs": [{"valor":"MALO"},{"valor":"REGULAR"},{"valor":"BUENO"},{"valor":"MUY BUENO"},{"valor":"EXCELENTE"}]}');
+                        valoraciones = valoraciones.concat('"subs": [{"valor":"Malo"},{"valor":"Regular"},{"valor":"Bueno"},{"valor":"Muy Bueno"},{"valor":"Excelente"}]}');
                     }
                     else {
                         if (data.rows.item(i).tipo_valores == "numerico") {
@@ -1664,7 +1618,7 @@ var SQliteService = /** @class */ (function () {
             " email," +
             " estado," +
             " servicio," +
-            " time(fecha) AS fecha" +
+            " date(fecha) AS fecha" +
             " FROM valoracion_Hecha"
             + " WHERE 1", []).then(function (data) {
             var valoraciones = null;
@@ -1710,7 +1664,6 @@ var SQliteService = /** @class */ (function () {
         });
     };
     SQliteService.prototype.insertarValoracion = function (valoracion) {
-        console.log("SERVICIO: " + valoracion.servicio);
         var data;
         data = this.database.executeSql("INSERT INTO valoracion_Hecha (idvaloracion_hecha," +
             " valoracion," +
@@ -1744,6 +1697,7 @@ var SQliteService = /** @class */ (function () {
             _ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"],
             _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__["SQLite"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Platform"],
+            _my_sql_service__WEBPACK_IMPORTED_MODULE_6__["MySqlService"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
     ], SQliteService);
     return SQliteService;

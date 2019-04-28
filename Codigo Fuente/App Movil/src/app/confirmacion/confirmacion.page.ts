@@ -43,18 +43,6 @@ export class ConfirmacionPage implements OnInit {
             this.descripcion = this.route.snapshot.paramMap.get('descripcion');
             this.tipo_rango = this.route.snapshot.paramMap.get('tipo_rango');
             this.tipo = this.route.snapshot.paramMap.get('tipo');
-            console.log("CONSTRUCTOR CONFIRMACION");
-            console.log("------------------------");
-            console.log("SERVICIO: "+this.servicio);
-            console.log("VALORACION: "+this.valoracion);
-            console.log("TIPO: "+this.tipo);
-            console.log("TIPO_RANGO: "+this.tipo_rango);
-            console.log("FOTO: "+this.foto);
-            console.log("EMAIL: "+this.email);
-            console.log("DESCRIPCION: "+this.descripcion);
-            console.log("IDUBICACION VALORACION: "+this.idubicacion_valoracion);
-            console.log("NOMBRE UBICACION: "+this.nombre_ubicacion);
-            console.log("------------------------");
   }
 
   confirmar(){
@@ -68,7 +56,6 @@ export class ConfirmacionPage implements OnInit {
           foto: this.foto,
           email: this.email};
         this.mysql.insertarValoracion(this.valoracion_mySql).subscribe((data) => {
-          console.log("CONFIRMACION INSERTADA :"+data[0].idValoracionHecha);
   
           this.valoracion_sQlite = {idvaloracion_hecha: data[0].idValoracionHecha,
             valoracion: this.valoracion,
@@ -91,8 +78,7 @@ export class ConfirmacionPage implements OnInit {
         foto: this.foto,
         email: this.email};
         this.mysql.insertarValoracion(this.valoracion_mySql).subscribe((data) => {
-          console.log("CONFIRMACION INSERTADA :"+data[0].idValoracionHecha);
-
+          
         this.valoracion_sQlite = {idvaloracion_hecha: data[0].idValoracionHecha,
           valoracion: this.valor,
           tipo: this.tipo,
@@ -108,7 +94,6 @@ export class ConfirmacionPage implements OnInit {
       }
     }else{
       if(this.foto == ''){
-        console.log("ENTRO SIN FOTO");
         this.valoracion_mySql = {ubicacionValoracion: this.idubicacion_valoracion,
                                 descripcion: this.descripcion,
                                 tipo: this.tipo,
@@ -116,8 +101,6 @@ export class ConfirmacionPage implements OnInit {
                                 foto: this.foto,
                                 email: this.email};
         this.mysql.insertarValoracion(this.valoracion_mySql).subscribe((data) => {
-          console.log("CONFIRMACION INSERTADA :"+data[0].idValoracionHecha);
-          console.log("CONFIRMACION INSERTADA :"+JSON.stringify(data));
           this.valoracion_sQlite = {idvaloracion_hecha: data[0].idValoracionHecha,
                                   valoracion: this.valoracion,
                                   tipo: this.tipo,
@@ -141,7 +124,6 @@ export class ConfirmacionPage implements OnInit {
                                               foto: base64File,
                                               email: this.email};
                     this.mysql.insertarValoracion(this.valoracion_mySql).subscribe((data) => {
-                      console.log("CONFIRMACION INSERTADA :"+data[0].idValoracionHecha);
                     this.valoracion_sQlite = {idvaloracion_hecha: data[0].idValoracionHecha,
                       valoracion: this.valoracion,
                       tipo: this.tipo,

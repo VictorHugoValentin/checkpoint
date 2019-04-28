@@ -38,10 +38,10 @@
     <ng-container *ngFor="let valor of valoraciones; let i=index">
     <ng-container *ngIf="valor.tipovaloracion == 'rango'">
     <ion-item text-wrap (click)="desplegarNivel('idx'+i)" [ngClass]="{active: rangoVisible('idx'+i)}">
-        <h3>
+        <h5>
           {{valor.nombrevaloracion}}
           <ion-icon color="success" [name]="rangoVisible('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-        </h3>
+        </h5>
     </ion-item>
       <ion-list *ngIf="rangoVisible('idx'+i)">
           <ng-container *ngIf="valor.tipo == 'emoticon'"> 
@@ -72,9 +72,9 @@
   <ng-container *ngIf="valor.tipovaloracion == 'reclamo'" >
     <ng-container >
       <ion-item (click)="reclamo(valor.idvaloracion, valor.nombrevaloracion, valor.descripcion, valor.foto, valor.email)">
-        <h3>
+        <h5>
             {{valor.nombrevaloracion}}
-          </h3>
+          </h5>
     </ion-item>
     </ng-container>
   </ng-container>
