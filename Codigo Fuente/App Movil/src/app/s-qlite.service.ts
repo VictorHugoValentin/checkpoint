@@ -6,6 +6,7 @@ import { Platform } from '@ionic/angular';
 import { MySqlService } from './my-sql.service';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { BehaviorSubject } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,22 @@ export class SQliteService {
               private sqlite: SQLite,
               public platform: Platform,
               private MySql: MySqlService,
-              public http: HttpClient
+              public http: HttpClient,
+              private alertController: AlertController
               ) {
+  }
+
+  existeUbicacion(ubicacion: string ){
+    console.log("NOMBRE RECIBIDO: "+ubicacion);
+    return this.database.executeSql('SELECT * FROM ubicaciones '
+    + ' WHERE  codigoqr = "' + ubicacion+'"', []).then((data) => {
+      let nombreubicacion = 0;
+      if (data.rows.length > 0) {
+      
+        nombreubicacion =  -1;
+      }
+      return nombreubicacion;
+    });
   }
 
   borrarBaseDatos(){
@@ -48,7 +63,6 @@ export class SQliteService {
        })
          .then((db: SQLiteObject) => {
            this.database = db;
-           console.log("DB"+JSON.stringify(this.database));
            this.http.get('assets/SQLiteDatos.sql', {responseType: 'text'})
       .subscribe(sql => {
         this.sqlitePorter.importSqlToDb(this.database, sql)
@@ -66,13 +80,34 @@ export class SQliteService {
      });
   }
 
+ async alerta (header: string, mensaje: string){
+    let alert = await this.alertController.create({
+      header: header,
+      message: mensaje,
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+
+            }
+          }
+        ]
+    })
+    await alert.present();
+  }
+
   //CARGA BASE SQLITE
 
-  getServiciosMysql() {
+   getServiciosMysql() {
     this.MySql.getServicios().subscribe(
       data => {
         this.serviciosMySql = data;
-       this.setServicios(this.serviciosMySql);
+        if(data[0].error=="No se puede conectar a la base de datos"){
+          this.alerta("Error de conexion", "No se puede conectar a la base de datos" );
+        return;
+        }else{
+          this.setServicios(this.serviciosMySql);
+        }
       },
       err => {
         console.log(err);
@@ -84,7 +119,12 @@ export class SQliteService {
     this.MySql.getValoraciones().subscribe(
       data => {
         this.valoracionesMySql = data;
-        this.setValoraciones(this.valoracionesMySql);
+        if (this.valoracionesMySql == "No se puede conectar a la base de datos") {
+          this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+          return;
+        } else {
+          this.setValoraciones(this.valoracionesMySql);
+        }
       },
       err => {
         console.log(err);
@@ -96,7 +136,12 @@ export class SQliteService {
     this.MySql.getUbicaciones().subscribe(
       data => {
         this.ubicacionesMySql = data;
-        this.setUbicaciones(this.ubicacionesMySql);
+        if (this.ubicacionesMySql == "No se puede conectar a la base de datos") {
+          this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+          return;
+        } else {
+          this.setUbicaciones(this.ubicacionesMySql);
+        }
       },
       err => {
         console.log(err);
@@ -108,7 +153,12 @@ export class SQliteService {
     this.MySql.getUbicacionesValoraciones().subscribe(
       data => {
         this.ubicacionesValoracionesMySql = data;
-        this.setUbicacionValoracion(this.ubicacionesValoracionesMySql);
+        if (this.ubicacionesValoracionesMySql == "No se puede conectar a la base de datos") {
+          this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+          return;
+        } else {
+          this.setUbicacionValoracion(this.ubicacionesValoracionesMySql);
+        }
       },
       err => {
         console.log(err);
@@ -428,11 +478,11 @@ return idubicacion;
 
   getIdEstados(){
     return this.database.executeSql("SELECT idvaloracion_hecha FROM valoracion_Hecha"  
-                                  +" WHERE tipo = 'reclamo' AND estado = 'creado' OR estado = 'espera'", []).then((data) => {
+                                  +" WHERE tipo = 'reclamo' AND (estado LIKE 'creado' OR estado LIKE 'espera')", []).then((data) => {
       
         let estados = [];
         if (data.rows.length > 0) {
-          for (var i = 1; i < data.rows.length; i++) {
+          for (var i = 0; i < data.rows.length; i++) {
               estados.push({idValoracionHecha : data.rows.item(i).idvaloracion_hecha});
             }
         }

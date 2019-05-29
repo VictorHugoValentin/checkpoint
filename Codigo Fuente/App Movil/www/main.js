@@ -1019,6 +1019,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_native_network_interface_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/network-interface/ngx */ "./node_modules/@ionic-native/network-interface/ngx/index.js");
+
+
+
 
 
 
@@ -1026,11 +1031,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, sQlite) {
+    function AppComponent(platform, splashScreen, statusBar, sQlite, alertController, network, networkInterface) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.sQlite = sQlite;
+        this.alertController = alertController;
+        this.network = network;
+        this.networkInterface = networkInterface;
         this.appPages = [
             {
                 title: 'Home',
@@ -1048,7 +1056,12 @@ var AppComponent = /** @class */ (function () {
                 icon: 'information-circle'
             },
         ];
-        this.initializeApp();
+        if (this.network.type === 'wifi') {
+            this.initializeApp();
+        }
+        else {
+            this.alerta("Error de conexión", "Por favor encienda el wifi");
+        }
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
@@ -1056,6 +1069,33 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             _this.sQlite.crearBaseDatos();
+        });
+    };
+    AppComponent.prototype.alerta = function (header, mensaje) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: header,
+                            message: mensaje,
+                            buttons: [
+                                {
+                                    text: 'OK',
+                                    handler: function () {
+                                        navigator['app'].exitApp();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1066,7 +1106,10 @@ var AppComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
-            _s_qlite_service__WEBPACK_IMPORTED_MODULE_2__["SQliteService"]])
+            _s_qlite_service__WEBPACK_IMPORTED_MODULE_2__["SQliteService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"],
+            _ionic_native_network_interface_ngx__WEBPACK_IMPORTED_MODULE_7__["NetworkInterface"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1104,6 +1147,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_native_network_interface_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/network-interface/ngx */ "./node_modules/@ionic-native/network-interface/ngx/index.js");
+
+
 
 
 
@@ -1149,6 +1196,8 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_16__["WebView"],
                 _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_17__["File"],
                 _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_18__["FilePath"],
+                _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_19__["Network"],
+                _ionic_native_network_interface_ngx__WEBPACK_IMPORTED_MODULE_20__["NetworkInterface"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
@@ -1205,6 +1254,7 @@ var MySqlService = /** @class */ (function () {
     };
     MySqlService.prototype.extractData = function (res) {
         var body = res;
+        console.log("ESTADO BASE: " + JSON.stringify(body));
         return body || {};
     };
     MySqlService.prototype.getServicios = function () {
@@ -1272,8 +1322,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var SQliteService = /** @class */ (function () {
-    function SQliteService(sqlitePorter, databaseMySqlProvider, storage, sqlite, platform, MySql, http) {
+    function SQliteService(sqlitePorter, databaseMySqlProvider, storage, sqlite, platform, MySql, http, alertController) {
         this.sqlitePorter = sqlitePorter;
         this.databaseMySqlProvider = databaseMySqlProvider;
         this.storage = storage;
@@ -1281,11 +1332,23 @@ var SQliteService = /** @class */ (function () {
         this.platform = platform;
         this.MySql = MySql;
         this.http = http;
+        this.alertController = alertController;
         this.serviciosMySql = {};
         this.valoracionesMySql = {};
         this.ubicacionesMySql = {};
         this.ubicacionesValoracionesMySql = {};
     }
+    SQliteService.prototype.existeUbicacion = function (ubicacion) {
+        console.log("NOMBRE RECIBIDO: " + ubicacion);
+        return this.database.executeSql('SELECT * FROM ubicaciones '
+            + ' WHERE  codigoqr = "' + ubicacion + '"', []).then(function (data) {
+            var nombreubicacion = 0;
+            if (data.rows.length > 0) {
+                nombreubicacion = -1;
+            }
+            return nombreubicacion;
+        });
+    };
     SQliteService.prototype.borrarBaseDatos = function () {
         console.log("BORRANDOOOOOLAAA");
         this.database.executeSql("DELETE FROM ubicacion_valoracion; VACUUM", []);
@@ -1304,7 +1367,6 @@ var SQliteService = /** @class */ (function () {
             })
                 .then(function (db) {
                 _this.database = db;
-                console.log("DB" + JSON.stringify(_this.database));
                 _this.http.get('assets/SQLiteDatos.sql', { responseType: 'text' })
                     .subscribe(function (sql) {
                     _this.sqlitePorter.importSqlToDb(_this.database, sql)
@@ -1321,12 +1383,44 @@ var SQliteService = /** @class */ (function () {
             });
         });
     };
+    SQliteService.prototype.alerta = function (header, mensaje) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: header,
+                            message: mensaje,
+                            buttons: [
+                                {
+                                    text: 'OK',
+                                    handler: function () {
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     //CARGA BASE SQLITE
     SQliteService.prototype.getServiciosMysql = function () {
         var _this = this;
         this.MySql.getServicios().subscribe(function (data) {
             _this.serviciosMySql = data;
-            _this.setServicios(_this.serviciosMySql);
+            if (data[0].error == "No se puede conectar a la base de datos") {
+                _this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+                return;
+            }
+            else {
+                _this.setServicios(_this.serviciosMySql);
+            }
         }, function (err) {
             console.log(err);
         });
@@ -1335,7 +1429,13 @@ var SQliteService = /** @class */ (function () {
         var _this = this;
         this.MySql.getValoraciones().subscribe(function (data) {
             _this.valoracionesMySql = data;
-            _this.setValoraciones(_this.valoracionesMySql);
+            if (_this.valoracionesMySql == "No se puede conectar a la base de datos") {
+                _this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+                return;
+            }
+            else {
+                _this.setValoraciones(_this.valoracionesMySql);
+            }
         }, function (err) {
             console.log(err);
         });
@@ -1344,7 +1444,13 @@ var SQliteService = /** @class */ (function () {
         var _this = this;
         this.MySql.getUbicaciones().subscribe(function (data) {
             _this.ubicacionesMySql = data;
-            _this.setUbicaciones(_this.ubicacionesMySql);
+            if (_this.ubicacionesMySql == "No se puede conectar a la base de datos") {
+                _this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+                return;
+            }
+            else {
+                _this.setUbicaciones(_this.ubicacionesMySql);
+            }
         }, function (err) {
             console.log(err);
         });
@@ -1353,7 +1459,13 @@ var SQliteService = /** @class */ (function () {
         var _this = this;
         this.MySql.getUbicacionesValoraciones().subscribe(function (data) {
             _this.ubicacionesValoracionesMySql = data;
-            _this.setUbicacionValoracion(_this.ubicacionesValoracionesMySql);
+            if (_this.ubicacionesValoracionesMySql == "No se puede conectar a la base de datos") {
+                _this.alerta("Error de conexion", "No se puede conectar a la base de datos");
+                return;
+            }
+            else {
+                _this.setUbicacionValoracion(_this.ubicacionesValoracionesMySql);
+            }
         }, function (err) {
             console.log(err);
         });
@@ -1653,10 +1765,10 @@ var SQliteService = /** @class */ (function () {
     };
     SQliteService.prototype.getIdEstados = function () {
         return this.database.executeSql("SELECT idvaloracion_hecha FROM valoracion_Hecha"
-            + " WHERE tipo = 'reclamo' AND estado = 'creado' OR estado = 'espera'", []).then(function (data) {
+            + " WHERE tipo = 'reclamo' AND (estado LIKE 'creado' OR estado LIKE 'espera')", []).then(function (data) {
             var estados = [];
             if (data.rows.length > 0) {
-                for (var i = 1; i < data.rows.length; i++) {
+                for (var i = 0; i < data.rows.length; i++) {
                     estados.push({ idValoracionHecha: data.rows.item(i).idvaloracion_hecha });
                 }
             }
@@ -1698,7 +1810,8 @@ var SQliteService = /** @class */ (function () {
             _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__["SQLite"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["Platform"],
             _my_sql_service__WEBPACK_IMPORTED_MODULE_6__["MySqlService"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]])
     ], SQliteService);
     return SQliteService;
 }());

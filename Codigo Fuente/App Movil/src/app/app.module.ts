@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { Network } from '@ionic-native/network/ngx';
+import { NetworkInterface } from '@ionic-native/network-interface/ngx';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { FilePath } from '@ionic-native/file-path/ngx';
     WebView,
     File,
     FilePath,
+    Network,
+    NetworkInterface,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

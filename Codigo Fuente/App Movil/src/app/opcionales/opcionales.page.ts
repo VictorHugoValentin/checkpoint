@@ -34,6 +34,15 @@ export class OpcionalesPage implements OnInit {
 
   nombreServicio: string;
   nombreValoracion: string;
+  mensajesValidacion = {
+    'descripcion': [
+        { tipo: 'maxlength', mensaje: 'Maximo 200 caracteres' },
+      ],
+      'email': [
+        { tipo: 'maxlength', mensaje: 'Maximo 75 caracteres' },
+        { tipo: 'pattern', mensaje: 'Formato invalido' },
+      ]
+    };
 
   constructor(private camara: Camera,
               private mysql: MySqlService,
@@ -43,9 +52,10 @@ export class OpcionalesPage implements OnInit {
               private webview: WebView) { 
 
                 this.todo=this.formBuilder.group({
-                  descripcion: [''],
+                  descripcion: ['', Validators.maxLength(200)],
                   email: ['',Validators.compose([
-                    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+                    Validators.maxLength(75),
+                    Validators.pattern(/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.]+(?:[A-Z]{2}|com|org|net|gov|ar|biz|info|mobi|name|aero|jobs|museum)\b/)])],
                 });
                     
                 this.email=null;

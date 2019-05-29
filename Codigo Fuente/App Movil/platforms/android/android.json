@@ -51,6 +51,14 @@
             {
               "xml": "<feature name=\"FilePath\"><param name=\"android-package\" value=\"com.hiddentao.cordova.filepath.FilePath\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"networkinterface\"><param name=\"android-package\" value=\"com.albahra.plugin.networkinterface.networkinterface\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -119,6 +127,14 @@
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
               "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
             }
           ],
           "application": [
@@ -171,6 +187,12 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },
@@ -460,6 +482,31 @@
       "clobbers": [
         "window.FilePath"
       ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-networkinterface.networkinterface",
+      "file": "plugins/cordova-plugin-networkinterface/www/networkinterface.js",
+      "pluginId": "cordova-plugin-networkinterface",
+      "clobbers": [
+        "window.networkinterface"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -475,6 +522,8 @@
     "cordova-plugin-camera": "4.0.3",
     "com-badrit-base64": "0.2.0",
     "cordova-plugin-file": "6.0.1",
-    "cordova-plugin-filepath": "1.5.1"
+    "cordova-plugin-filepath": "1.5.1",
+    "cordova-plugin-network-information": "2.0.1",
+    "cordova-plugin-networkinterface": "2.0.0"
   }
 }

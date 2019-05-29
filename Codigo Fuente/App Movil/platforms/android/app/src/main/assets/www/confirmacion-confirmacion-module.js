@@ -89,6 +89,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../s-qlite.service */ "./src/app/s-qlite.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 
@@ -96,12 +100,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ConfirmacionPage = /** @class */ (function () {
-    function ConfirmacionPage(mysql, sqlite, router, route, file) {
+    function ConfirmacionPage(mysql, sqlite, router, route, file, network, alertController) {
         this.mysql = mysql;
         this.sqlite = sqlite;
         this.router = router;
         this.route = route;
         this.file = file;
+        this.network = network;
+        this.alertController = alertController;
         this.idubicacion_valoracion = parseInt(this.route.snapshot.paramMap.get('idubicacion_valoracion'));
         this.nombre_ubicacion = this.route.snapshot.paramMap.get('nombre_ubicacion');
         this.servicio = this.route.snapshot.paramMap.get('nombreservicio');
@@ -113,84 +119,62 @@ var ConfirmacionPage = /** @class */ (function () {
         this.descripcion = this.route.snapshot.paramMap.get('descripcion');
         this.tipo_rango = this.route.snapshot.paramMap.get('tipo_rango');
         this.tipo = this.route.snapshot.paramMap.get('tipo');
+        console.log("TIPO: " + this.tipo);
     }
     ConfirmacionPage.prototype.confirmar = function () {
         var _this = this;
-        if (this.tipo == 'rango') {
-            if (this.tipo_rango == 'emoticon' || this.tipo_rango == 'numerico') {
-                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
-                    descripcion: this.descripcion,
-                    tipo: this.tipo,
-                    valoracion: this.valor,
-                    foto: this.foto,
-                    email: this.email };
-                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
-                        valoracion: _this.valoracion,
-                        tipo: _this.tipo,
-                        tipo_rango: _this.tipo_rango,
-                        foto: _this.foto,
-                        descripcion: _this.descripcion,
-                        email: _this.email,
-                        servicio: _this.servicio };
-                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
-                    _this.router.navigate(['home']);
-                });
+        if (this.network.type === 'wifi') {
+            if (this.tipo == 'rango') {
+                if (this.tipo_rango == 'emoticon' || this.tipo_rango == 'numerico') {
+                    this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                        descripcion: this.descripcion,
+                        tipo: this.tipo,
+                        valoracion: this.valor,
+                        foto: this.foto,
+                        email: this.email };
+                    this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
+                        _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                            valoracion: _this.valoracion,
+                            tipo: _this.tipo,
+                            tipo_rango: _this.tipo_rango,
+                            foto: _this.foto,
+                            descripcion: _this.descripcion,
+                            email: _this.email,
+                            servicio: _this.servicio };
+                        _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                        _this.router.navigate(['home']);
+                    });
+                }
+                else {
+                    this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                        descripcion: this.descripcion,
+                        tipo: this.tipo,
+                        valoracion: this.valor,
+                        foto: this.foto,
+                        email: this.email };
+                    this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
+                        _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                            valoracion: _this.valor,
+                            tipo: _this.tipo,
+                            tipo_rango: _this.tipo_rango,
+                            foto: _this.foto,
+                            descripcion: _this.descripcion,
+                            email: _this.email,
+                            servicio: _this.servicio };
+                        _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                        _this.router.navigate(['home']);
+                    });
+                }
             }
             else {
-                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
-                    descripcion: this.descripcion,
-                    tipo: this.tipo,
-                    valoracion: this.valor,
-                    foto: this.foto,
-                    email: this.email };
-                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
-                        valoracion: _this.valor,
-                        tipo: _this.tipo,
-                        tipo_rango: _this.tipo_rango,
-                        foto: _this.foto,
-                        descripcion: _this.descripcion,
-                        email: _this.email,
-                        servicio: _this.servicio };
-                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
-                    _this.router.navigate(['home']);
-                });
-            }
-        }
-        else {
-            if (this.foto == '') {
-                this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
-                    descripcion: this.descripcion,
-                    tipo: this.tipo,
-                    valoracion: this.valoracion,
-                    foto: this.foto,
-                    email: this.email };
-                this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
-                    _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
-                        valoracion: _this.valoracion,
-                        tipo: _this.tipo,
-                        tipo_rango: null,
-                        foto: _this.foto,
-                        descripcion: _this.descripcion,
-                        email: _this.email,
-                        servicio: _this.servicio };
-                    _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
-                    _this.router.navigate(['home']);
-                });
-            }
-            else {
-                var ruta = this.base64Image.substr(0, this.base64Image.lastIndexOf('/') + 1);
-                var nombre = this.base64Image.substr(this.base64Image.lastIndexOf('/') + 1);
-                this.file.readAsDataURL(ruta, nombre)
-                    .then(function (base64File) {
-                    _this.valoracion_mySql = { ubicacionValoracion: _this.idubicacion_valoracion,
-                        descripcion: _this.descripcion,
-                        tipo: _this.tipo,
-                        valoracion: _this.valoracion,
-                        foto: base64File,
-                        email: _this.email };
-                    _this.mysql.insertarValoracion(_this.valoracion_mySql).subscribe(function (data) {
+                if (this.foto == '') {
+                    this.valoracion_mySql = { ubicacionValoracion: this.idubicacion_valoracion,
+                        descripcion: this.descripcion,
+                        tipo: this.tipo,
+                        valoracion: this.valoracion,
+                        foto: this.foto,
+                        email: this.email };
+                    this.mysql.insertarValoracion(this.valoracion_mySql).subscribe(function (data) {
                         _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
                             valoracion: _this.valoracion,
                             tipo: _this.tipo,
@@ -200,14 +184,68 @@ var ConfirmacionPage = /** @class */ (function () {
                             email: _this.email,
                             servicio: _this.servicio };
                         _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                        _this.router.navigate(['home']);
                     });
-                    _this.router.navigate(['home']);
-                });
+                }
+                else {
+                    var ruta = this.base64Image.substr(0, this.base64Image.lastIndexOf('/') + 1);
+                    var nombre = this.base64Image.substr(this.base64Image.lastIndexOf('/') + 1);
+                    this.file.readAsDataURL(ruta, nombre)
+                        .then(function (base64File) {
+                        _this.valoracion_mySql = { ubicacionValoracion: _this.idubicacion_valoracion,
+                            descripcion: _this.descripcion,
+                            tipo: _this.tipo,
+                            valoracion: _this.valoracion,
+                            foto: base64File,
+                            email: _this.email };
+                        _this.mysql.insertarValoracion(_this.valoracion_mySql).subscribe(function (data) {
+                            _this.valoracion_sQlite = { idvaloracion_hecha: data[0].idValoracionHecha,
+                                valoracion: _this.valoracion,
+                                tipo: _this.tipo,
+                                tipo_rango: null,
+                                foto: _this.foto,
+                                descripcion: _this.descripcion,
+                                email: _this.email,
+                                servicio: _this.servicio };
+                            _this.sqlite.insertarValoracion(_this.valoracion_sQlite);
+                        });
+                        _this.router.navigate(['home']);
+                    });
+                }
             }
+        }
+        else {
+            this.alerta("Error de conexión", "Por favor encienda el wifi");
         }
     };
     ConfirmacionPage.prototype.cancelar = function () {
         this.router.navigate(['home']);
+    };
+    ConfirmacionPage.prototype.alerta = function (header, mensaje) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: header,
+                            message: mensaje,
+                            buttons: [
+                                {
+                                    text: 'OK',
+                                    handler: function () {
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ConfirmacionPage.prototype.ngOnInit = function () {
     };
@@ -221,7 +259,9 @@ var ConfirmacionPage = /** @class */ (function () {
             _s_qlite_service__WEBPACK_IMPORTED_MODULE_3__["SQliteService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
-            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__["File"]])
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__["File"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"]])
     ], ConfirmacionPage);
     return ConfirmacionPage;
 }());

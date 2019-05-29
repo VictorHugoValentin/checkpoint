@@ -3,7 +3,8 @@ import { MySqlService } from '../my-sql.service';
 import { SQliteService } from '../s-qlite.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
-
+import { Network } from '@ionic-native/network/ngx';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -31,7 +32,9 @@ export class ConfirmacionPage implements OnInit {
               private sqlite: SQliteService,
               private router: Router,
               private route: ActivatedRoute,
-              private file: File) { 
+              private file: File,
+              private network: Network,
+              private alertController: AlertController) { 
             this.idubicacion_valoracion = parseInt(this.route.snapshot.paramMap.get('idubicacion_valoracion'));
             this.nombre_ubicacion = this.route.snapshot.paramMap.get('nombre_ubicacion');
             this.servicio = this.route.snapshot.paramMap.get('nombreservicio');
@@ -43,9 +46,11 @@ export class ConfirmacionPage implements OnInit {
             this.descripcion = this.route.snapshot.paramMap.get('descripcion');
             this.tipo_rango = this.route.snapshot.paramMap.get('tipo_rango');
             this.tipo = this.route.snapshot.paramMap.get('tipo');
+            console.log("TIPO: "+this.tipo);
   }
 
   confirmar(){
+    if (this.network.type === 'wifi') {
     if(this.tipo=='rango'){
 
       if(this.tipo_rango == 'emoticon' || this.tipo_rango == 'numerico'){
@@ -139,10 +144,28 @@ export class ConfirmacionPage implements OnInit {
                   });
     }
   }
+}else{
+  this.alerta("Error de conexión","Por favor encienda el wifi");
+  }
 }
 
   cancelar(){
     this.router.navigate(['home']);
+  }
+
+  async alerta (header: string, mensaje: string){
+    let alert = await this.alertController.create({
+      header: header,
+      message: mensaje,
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            }
+          }
+        ]
+    })
+    await alert.present();
   }
 
   ngOnInit() {

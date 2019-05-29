@@ -33,10 +33,11 @@ export class MySqlService {
   
   private extractData(res: Response) {
     let body = res;
+    console.log("ESTADO BASE: "+JSON.stringify(body));
     return body || { };
   }
    
-       getServicios(){
+  getServicios(){
         return this.http.get(this.api+"listarServicios.php").pipe(map(this.extractData),
         catchError(this.handleError));
         
