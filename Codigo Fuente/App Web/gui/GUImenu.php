@@ -11,10 +11,10 @@
         <span class="site-name"><?php echo Constantes::NOMBRE_SISTEMA; ?></span>
         <span class="site-desc">UNPA-UARG</span>
     </a>
+    
 
-
-    <div>
-        <nav>
+   <div>
+         <nav>
 
             <ul class="slimmenu">
                 <li><a href="../app/bienvenido.php" title="Principal">Inicio</a></li>
@@ -33,13 +33,22 @@
                     
                 <?php if (ControlAcceso::verificaPermiso(PermisosSistema::PERMISO_OPCIONES_VALORACION)) { ?>
                     <li>
-                        <a href="../app/valoraciones.ver.php">Valoracion</a>
+                        <a href="../app/valoracion.ver.php">Valoracion</a>
+                    </li>
+                    <li>
+                        <a href="../app/valoracionhecha.php">Val. Hechas</a>
                     </li>
                 <?php } ?>
                     
                 <?php if (ControlAcceso::verificaPermiso(PermisosSistema::PERMISO_HABILITA_EN_SECTOR)) { ?>
                     <li>
-                        <a href="../app/habilita.sector.ver.php"> H-Sector </a>
+                        <a href="../app/habilita.sector.ver.php"> Habilita Sector </a>
+                    </li>
+                <?php } ?>
+                
+                <?php if (ControlAcceso::verificaPermiso(PermisosSistema::PERMISO_REPORTES)) { ?>
+                    <li>
+                        <a href="../app/reportes.php"> Reportes </a>
                     </li>
                 <?php } ?>
                     
@@ -73,11 +82,11 @@
                 
             <?php } ?>
 
-        </nav>
+        </nav> 
     </div>
 
     <script src="../gui/menu/src/js/jquery.slimmenu.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../lib/jQuery/jquery.easing.min.js"></script>
     <script>
         $('.slimmenu').slimmenu(
                 {
@@ -88,5 +97,4 @@
                     childrenIndenter: '&raquo;'
                 });
     </script>
-
 </header>

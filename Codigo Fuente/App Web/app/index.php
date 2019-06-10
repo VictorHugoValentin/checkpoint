@@ -1,6 +1,6 @@
 <?php /* recibo por post email, nombre, imagen, googleid */
-include_once '../lib/ControlAcceso.class.php'; ?>
-
+include_once '../lib/ControlAcceso.class.php';
+?>
 <html>
     <head>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
@@ -9,16 +9,17 @@ include_once '../lib/ControlAcceso.class.php'; ?>
             <meta http-equiv="refresh" content="0; URL=sinJavascript.php">
         </noscript>
         
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <meta name="google-signin-client_id" content="525712718012-3orata9pbt2spvti1vt34551i34lptbm.apps.googleusercontent.com" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="google-signin-client_id" content="525712718012-8phb62kme7oj6i60pscukvla48fsvet0.apps.googleusercontent.com" />
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
         <link href="../gui/responsivo.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="../lib/jQuery/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
         <script type="text/javascript" src="../lib/jQuery/jquery.redirect.js"></script>
         <script type="text/javascript" src="../lib/login.js"></script>
     </head>
     <body>
-        <?php include_once '../gui/GUImenuEstatico.php'; ?>
+        <?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenuEstatico.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">
@@ -49,7 +50,7 @@ include_once '../lib/ControlAcceso.class.php'; ?>
                                 <span id="not_signed_in9kbu5ybb006p">Manual</span>
                             </span>
                         </div>
-                        <div id="okgoogle" class="g-signin2" onclick="ClickLogin()" data-onsuccess="onSignIn" title="Acceder al Sistema eRecibo"></div>
+                        <div id="okgoogle" class="g-signin2" onclick="ClickLogin()" data-onsuccess="onSignIn" title="Acceder al Sistema CheckPoint"></div>
                     </div>
                 </div>
             </article>

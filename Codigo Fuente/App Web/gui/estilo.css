@@ -181,6 +181,7 @@ nav ul li a:hover {
 #main-content {
     background: white;
     width: 90%;
+    height: 80%;
     max-width: 800px;
     margin: 20px auto 20px auto;
     box-shadow: 0 0 10px rgba(0,0,0,.1);

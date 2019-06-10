@@ -1,4 +1,3 @@
-<script type="text/javascript" src="../lib/jQuery/jquery-3.2.1.min.js"></script>
 <?php
 
 /**

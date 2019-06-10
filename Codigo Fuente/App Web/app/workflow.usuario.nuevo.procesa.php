@@ -3,7 +3,7 @@ include_once '../lib/ControlAcceso.class.php';
 include_once '../modelo/Workflow.class.php';
 ControlAcceso::requierePermiso(PermisosSistema::PERMISO_USUARIOS);
 
-$mensaje = "El registro ha sido agregado con exito.";
+$mensaje = "El registro ha sido agregado con éxito.";
 $WorkflowRoles = new WorkflowRoles();
 
 ObjetoDatos::getInstancia()->autocommit(false);
@@ -16,7 +16,7 @@ if (isset($_POST['nombre'])) {
                 . "VALUES (NULL, '{$_POST['email']}', '{$_POST['nombre']}', 'Google', '{$_POST['estado']}')");
     } catch (Exception $exc) {
         $mensaje = "Ha ocurrido un error. "
-                . "Codigo de error MYSQL: " . $exc->getCode() . ". ";
+                . "Código de error MYSQL: " . $exc->getCode() . ". ";
         ObjetoDatos::getInstancia()->rollback();
         
     }
@@ -50,11 +50,12 @@ ObjetoDatos::getInstancia()->commit();
             }
         </script>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
     </head>
     <body onload="alerta();">
-        <?php include_once '../gui/GUImenu.php'; ?>
+        <?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">

@@ -8,12 +8,13 @@ $RolesWorkflow = new WorkflowRoles();
 <html>
     <head>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
         <script src="../lib/validador.js" type="text/javascript"></script>
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <?php include_once '../gui/GUImenu.php'; ?>
+        <?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">

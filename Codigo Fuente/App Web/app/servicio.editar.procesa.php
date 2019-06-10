@@ -1,89 +1,62 @@
 <?php
 include_once '../lib/ControlAcceso.class.php';
 ControlAcceso::requierePermiso(PermisosSistema::PERMISO_SERVICIOS);
-
-$mensaje = "El Servicio ha sido modificado con exito.";
+include '../lib/funcionauxiliar.php';
+$mensaje = "El Servicio ha sido modificado con éxito.";
+$exito = FALSE;
 
 //print_r($_POST);
-if (isset($_POST['valoracion'])){
+if (isset($_POST['mismo'])) {
+    $email = '';
+} else {
+    //tiene que haber especificado un email
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
-    }else{
+    } else {
         $email = '';
     }
-}else{
-    $email = $_POST['email'];
 }
 
-if(isset($_POST['habilitado'])){
-    $estado = 1;
-    //en este caso hay que validar si hay valoraciones
-}else{
-    $estado = 0;
-    //se modifica directamente
-}
 try {
     //verificar si es que tiene valoraciones cargadas para el caso de habilitacion
-    $puedeActualizar = TRUE;
-    if($estado == 1){       //peticion de habilitacion
-        $cantidadValoraciones = ObjetoDatos::getInstancia()->ejecutarQuery("select count(*) as cantidad from valoraciones v "
-            ."join ubicacion_valoracion uv on uv.fk_valoraciones_idvaloraciones = v.idvaloraciones"
-            . " where v.fk_servicios_idservicios = {$_POST['idservicio']} and v.habilitado = 1");
-        $cantidad = $cantidadValoraciones->fetch_assoc();
-        if($cantidad['cantidad'] > 0){
-            //el servicio tiene valoraciones cargadas y habilitadas y asociadas a una ubicacion para ser elejido desde el movil
-            //codigo para actualizar
-            
-            $puedeActualizar = TRUE;
-            
-        }else{
-            //Mostrar mensaje indicando que no se puede habilitar porque no tiene valoraciones
-            $mensaje = "No se ha podido habilitar porque no tiene valoraciones";
-            $puedeActualizar = FALSE;
-        }
-    }
-    if($puedeActualizar){
-        ObjetoDatos::getInstancia()->autocommit(false);
-            ObjetoDatos::getInstancia()->begin_transaction();
-            $resultado = ObjetoDatos::getInstancia()->ejecutarQuery(""
-                . "UPDATE " . Constantes::BD_USERS . ".servicios "
-                . "SET email_valoraciones = '{$email}', nombre = '{$_POST['nombre']}', descripcion = '{$_POST['descripcion']}', habilitado = {$estado},icono = {$_POST['selecticon']},usuario_idusuario = {$_POST['idencargado']} "
-                . "WHERE idservicios = {$_POST['idservicio']}");
-            if(empty($resultado)){
-                //echo "Incorrecto:";
-                $mensaje = "No se pudieron registrar los cambios solicitados";
-                ObjetoDatos::getInstancia()->rollback();
-            }
-            ObjetoDatos::getInstancia()->commit();
-    }else{
-        
+    include './gestorServicio.class.php';
+    $miGestorServicio = new gestorServicio();
+
+    $miServicio = $miGestorServicio->obtenerServicio($_POST['idservicio']);
+    $miServicio->setEmail(mb_strtolower($email, "UTF-8"));
+    $miServicio->setNombre(mb_ucfirst(mb_strtolower($_POST['nombre'], "UTF-8")));
+    $miServicio->setDescripcion(mb_ucfirst(mb_strtolower($_POST['descripcion'], "UTF-8")));
+    $miServicio->setIcono($_POST['selecticon']);
+    $miServicio->setEncargado($_POST['idencargado']);
+    $resultado = $miGestorServicio->modificarServicio($miServicio);
+    if ($resultado) {
+        $exito = TRUE;
+    } else {
+        $mensaje = "No se pudieron registrar los cambios solicitados";
     }
 } catch (Exception $exc) {
-$mensaje = "Ha ocurrido un error. "
-. "Codigo de error MYSQL: " . $exc->getCode() . ". ";
-ObjetoDatos::getInstancia()->rollback();
+    $mensaje = $exc->getMessage();
 }
-
 ?>
-
-
 <html>
     <head>
-        <script>function alerta() {
-                alert("<?php echo $mensaje; ?>");
-            }
-        </script>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
     </head>
-    <body onload="alerta();">
-        <?php include_once '../gui/GUImenu.php'; ?>
+    <body>
+        <?php include_once '../gui/GUI.class.php';
+        include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">
-                    <h3>Edicion de Servicios</h3>
-                    <p><?php echo $mensaje; ?></p>
+                    <h3>Edici&oacute;n de Servicios</h3>
+                    <?php if ($exito) { ?>
+                        <div class="alert alert-success"><?php echo $mensaje; ?></div>
+                    <?php } else { ?>
+                        <div class="alert alert-danger"><?php echo $mensaje; ?></div>
+                    <?php } ?>
                     <fieldset>
                         <legend>Opciones</legend>
                         <a href="servicios.ver.php">

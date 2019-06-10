@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+//include_once '../gui/GUI.class.php';
+setlocale(LC_TIME, 'es_AR.utf8');
 include_once 'Constantes.class.php';
 include_once 'ObjetoDatos.class.php';
 

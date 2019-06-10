@@ -65,6 +65,7 @@ class ObjetoDatos extends mysqli {
         if (!self::$instancia instanceof self) {
             try {
                 self::$instancia = new self;
+                self::$instancia->set_charset("utf8");
             } catch (Exception $e) {
                 die("Error de Conexion a la BD: " . $e->getCode() . ".");
             }

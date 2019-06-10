@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>%%nombre_sistema%%</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!-- start:encabezado -->
+        <!-- end:encabezado -->
+        <section id="main-content">
+
+            <div class="content">
+
+                <h3>%%titulo%%</h3>
+
+
+                <div class="row">
+                    <!-- start:hay_servicios -->
+                    <div class="col-md-6">
+                        <p>A continuaci&oacute;n se muestran las valoraciones disponibles para los servicios que administra.</p><br>
+                        <form action="valoracion.nuevo.php" method="POST" name="formulario">
+                            <input type="hidden" name="idservicio" value="%%idservicio%%" />
+                            <input type="hidden" name="nombreservicio" value="%%nombreservicio%%" />
+                            <input type="submit" class="btn btn-primary" value="Nueva Valoraci&oacute;n" name="nueva" id="nueva" />
+                            <input type='submit' value='Nuevo Reclamo' class="btn btn-primary" onclick='this.form.action = "valoraciones.nuevoreclamo.php";' />
+                        </form>
+
+                    </div>
+
+                    <!-- start:cambio_servicio -->
+                    <div class="col-md-6 alert alert-info">
+                        <form action="valoracion.ver.php" method="POST">
+                            <label>Cambio de Servicio: </label>
+                            <!-- start:select_servicio -->
+                            <!-- end:select_servicio -->
+                            <input type="submit" class="btn btn-primary" value="Cambiar" name="cambio" id="cambio" />
+                        </form>
+                    </div>
+                    <!-- end:cambio_servicio -->
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+
+                        <table id="tablavaloraciones" class="display table table-bordered table-stripe" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Notificación Email</th>
+                                    <th>Descripción</th>
+                                    <th>Habilitado</th>
+                                    <th>Servicio</th>
+                                    <th>Acci&oacute;n</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- start:fila_servicio -->
+                                <tr>
+                                    <td>%%valoracion_nombre%%</td>
+                                    <td>%%tipo%%</td>
+                                    <td>%%recibir_notificacion_email%%</td>
+                                    <td>%%permite_descripcion%%</td>
+                                    <td>%%habilitado%%</td>
+                                    <td>%%servicio%%</td>
+                                    <td>
+                                        <a href="valoracion.%%enlace%%.php?id=%%idvaloraciones%%">
+                                            <img src="../imagenes/abm_ver.png" title="Ver/Editar">
+                                        </a>
+
+                                        <a onclick="return confirm('Seguro que desea Habilitar/Deshabilitar?')" href="valoracion.habilitar.php?id=%%idvaloraciones%%&habilitado=%%habilit%%&tipo=%%tipo%%&idservicio=%%idservicio%%">
+                                            <img src="../imagenes/%%imagenelimina%%" title="%%titulohabilitar%%">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- end:fila_servicio -->
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+                <script src="../lib/datatables/jquery.js"></script>
+                <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+                <script src="../lib/datatables/jquery.dataTables.min.js"></script>
+                <script src="../lib/datatables/dataTables.bootstrap.min.js"></script>
+                <script src="../lib/datatables/dataTables.responsive.min.js"></script>
+                <script src="../lib/datatables/responsive.bootstrap.min.js"></script>
+                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#tablavaloraciones').dataTable({
+                                            "oLanguage": {
+                                                "sUrl": "../lib/datatables/Spanish.json"
+                                            }
+                                        });
+                                    });
+                </script>
+                <!-- end:hay_servicios -->
+                <!-- start:sin_servicio -->
+                <p>Si usted tiene que administrar un servicio en el sistema CheckPoint, pongase en contacto con el administrador.</p>
+                <!-- end:sin_servicio -->
+            </div>
+
+        </section>
+        <!-- start:footer -->
+        <!-- end:footer -->
+    </body>
+</html>

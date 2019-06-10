@@ -1,76 +1,78 @@
 <?php
 include_once '../lib/ControlAcceso.class.php';
 ControlAcceso::requierePermiso(PermisosSistema::PERMISO_SERVICIOS);
-
-$mensaje = "El Servicios ha sido agregado con exito.";
-
+include '../lib/funcionauxiliar.php';
+$mensaje = "El Servicios ha sido agregado con éxito.";
+$exito = false;
+$class = "danger";
 if (isset($_POST['nombre'])) {
-    if (!isset($_POST['valoracion']) ) {
+    if (!isset($_POST['valoracion'])) {
         if (isset($_POST['email'])) {
-            $email = $_POST['email'];
+            $email = mb_strtolower($_POST['email'],"UTF-8");
         } else {
             $email = '';
         }
     } else {
         $email = '';
     }
-    
+
     $estado = 0;       //cuando es nuevo, tiene que estar deshabilitado
-    
+
     try {
-        ObjetoDatos::getInstancia()->autocommit(false);
-        ObjetoDatos::getInstancia()->begin_transaction();
+        include './gestorServicio.class.php';
+        $miGestorServicio = new gestorServicio();
+        $puedeActualizar = TRUE;
 
-        $resultado = ObjetoDatos::getInstancia()->ejecutarQuery(""
-                . "INSERT INTO " . Constantes::BD_USERS . ".servicios (idservicios,nombre,descripcion,email_valoraciones,habilitado,icono,usuario_idusuario) "
-                . "VALUES (NULL, '{$_POST['nombre']}', '{$_POST['descripcion']}', '{$email}', {$estado}, {$_POST['selecticon']},{$_POST['idencargado']})");
+        if ($puedeActualizar) {
 
-        if(!empty($resultado)){
-            ObjetoDatos::getInstancia()->commit();
-        }else{
-            ObjetoDatos::getInstancia()->rollback();
-            $mensaje = "No se pudo registrar el Nuevo Servicio";
+            $miServicio = new Servicio();
+            $miServicio->setEmail($email);
+            $miServicio->setNombre(mb_ucfirst(mb_strtolower($_POST['nombre'],"UTF-8")));
+            $miServicio->setDescripcion(mb_ucfirst(mb_strtolower($_POST['descripcion'],"UTF-8")));
+            $miServicio->setHabilitado($estado);
+            $miServicio->setIcono($_POST['selecticon']);
+            $miServicio->setEncargado($_POST['idencargado']);
+            $resultado = $miGestorServicio->agregarServicio($miServicio);
+            if ($resultado) {
+                $exito = TRUE;
+                $class = "success";
+            } else {
+                $mensaje = "No se pudo registrar el nuevo Servicio.";
+            }
+        } else {
+            $mensaje = "No es posible agregar el nuevo Servicio.";
         }
-        
+
+
     } catch (Exception $exc) {
-        $mensaje = "Ha ocurrido un error. "
-                . "Codigo de error MYSQL: " . $exc->getCode() . ". ";
-        ObjetoDatos::getInstancia()->rollback();
+        $mensaje = $exc->getMessage();
     }
 }
-
 ?>
 
 <html>
     <head>
-        <script>function alerta() {
-                alert("<?php echo $mensaje; ?>");
-            }
-        </script>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
     </head>
     <body onload="alerta();">
-        <?php include_once '../gui/GUImenu.php'; ?>
+<?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">
                     <h3>Alta de Servicios</h3>
-                    <p><?php echo $mensaje; ?></p>
+                    <div class="alert alert-<?php echo $class; ?>"><?php echo $mensaje; ?></div>
                     <fieldset>
                         <legend>Opciones</legend>
-                        <a href="servicios.nuevo.php">
-                            <input type="button" value="Agregar Otro" />
-                        </a>
                         <a href="servicios.ver.php">
-                            <input type="button" value="Ver Servicios" />
+                            <input type="button" class="btn btn-primary" value="Ver Servicios" />
                         </a>
                     </fieldset>    
-
                 </div>
             </article>
         </section>
-        <?php include_once '../gui/GUIfooter.php'; ?>
+<?php include_once '../gui/GUIfooter.php'; ?>
     </body>
 </html>

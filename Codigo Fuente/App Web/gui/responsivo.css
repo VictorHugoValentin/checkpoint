@@ -8,15 +8,15 @@ and open the template in the editor.
     Author     : esantos
 */
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1368px) {
     * {
         font-size: 1.2 em;
         line-height: normal;
     }
     #main-content {
         background: white;
-        width: 80%;
-        max-width: 900px;
+        width: 100%;
+        max-width: 1368px;
         margin: 20px auto;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
     }

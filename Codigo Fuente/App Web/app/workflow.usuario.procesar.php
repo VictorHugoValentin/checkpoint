@@ -31,11 +31,12 @@ ObjetoDatos::getInstancia()->commit();
 <html>
     <head>
         <title><?php echo Constantes::NOMBRE_SISTEMA; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="../gui/estilo.css" type="text/css" rel="stylesheet" />
+        <script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
     </head>
     <body>
-        <?php include_once '../gui/GUImenu.php'; ?>
+        <?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">

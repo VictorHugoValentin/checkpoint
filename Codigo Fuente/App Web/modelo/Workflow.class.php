@@ -265,6 +265,7 @@ class WorkflowUsuario {
      * 
      * @param Int $idRol_
      * @return boolean
+     * @assert ("Administrador") == true
      */
     function poseeRol($idRol_) {
         foreach ($this->roles as $Rol)

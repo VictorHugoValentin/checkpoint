@@ -15,7 +15,7 @@ $_SESSION['usuario'] = null;
       
     </head>
     <body>
-        <?php include_once '../gui/GUImenu.php'; ?>
+        <?php include_once '../gui/GUI.class.php';include_once '../gui/GUImenu.php'; ?>
         <section id="main-content">
             <article>
                 <div class="content">
