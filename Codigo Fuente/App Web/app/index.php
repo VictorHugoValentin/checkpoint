@@ -40,7 +40,7 @@ include_once '../lib/ControlAcceso.class.php';
                         <h4>Ingreso al Sistema</h4>
                         <p>Ud. puede consultar el sistema si est&aacute; conectado a su e-mail Institucional. Por favor haga click en el bot&oacute;n a 
                             continuaci&oacute;n y elija su cuenta institucional.</p>
-                        <div class="botonGoogle" onclick="window.open('../Instructivo.pdf', '_blank');" title="Ver Manual de Uso">
+                        <div class="botonGoogle" onclick="window.open('../ManualdeUsuario.pdf', '_blank');" title="Ver Manual de Uso">
                             <div class="abcRioButtonIcon" style="padding:8px">
                                 <div style="width:18px;height:18px;" class="abcRioButtonSvgImageWithFallback abcRioButtonIconImage abcRioButtonIconImage18">
                                     <img src="../imagenes/pdf.png" style="width: 18px; height: 18px" />

@@ -69,7 +69,7 @@ if ($datos_antes != null) {
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Correo electr&oacute;nico Valoraciones (*)</label>
+                                        <label class="col-sm-3 col-form-label">Correo electr&oacute;nico Notificaciones (*)</label>
                                         <div class="col-sm-7">
                                             <label style="font-weight:normal;">Mismo correo Encargado <input type="checkbox" name="mismo" <?php
                                                 if (($email_valoraciones_actual == '')) {
