@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 09-06-2019 a las 00:02:46
--- Versión del servidor: 5.7.25-0ubuntu0.16.04.2
--- Versión de PHP: 7.0.33-0ubuntu0.16.04.5
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-04-2019 a las 08:35:48
+-- Versión del servidor: 5.6.24
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `checkpoint`
 --
+DROP DATABASE IF EXISTS `checkpoint`;
+CREATE DATABASE `checkpoint`;
+USE `checkpoint`;
 
 -- --------------------------------------------------------
 
@@ -33,19 +38,10 @@ CREATE TABLE `cambio_estado_valoracion` (
   `fk_valoracion_hecha_idvaloracion_hecha` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `cambio_estado_valoracion`
---
-
-INSERT INTO `cambio_estado_valoracion` (`idcambio_estado_valoracion`, `estado`, `fecha`, `fk_valoracion_hecha_idvaloracion_hecha`) VALUES
-(1, 'espera', '2019-06-09 02:56:29', 4),
-(2, 'terminado', '2019-06-09 02:56:44', 4),
-(3, 'espera', '2019-06-09 02:58:05', 5);
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `PERMISO`
+-- Estructura de tabla para la tabla `permiso`
 --
 
 CREATE TABLE `PERMISO` (
@@ -54,7 +50,7 @@ CREATE TABLE `PERMISO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `PERMISO`
+-- Volcado de datos para la tabla `permiso`
 --
 
 INSERT INTO `PERMISO` (`idpermiso`, `nombre`) VALUES
@@ -92,7 +88,7 @@ CREATE TABLE `registro_habilitar_valoracion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ROL`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `ROL` (
@@ -101,7 +97,7 @@ CREATE TABLE `ROL` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `ROL`
+-- Volcado de datos para la tabla `rol`
 --
 
 INSERT INTO `ROL` (`idrol`, `nombre`) VALUES
@@ -112,7 +108,7 @@ INSERT INTO `ROL` (`idrol`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ROL_PERMISO`
+-- Estructura de tabla para la tabla `rol_permiso`
 --
 
 CREATE TABLE `ROL_PERMISO` (
@@ -121,7 +117,7 @@ CREATE TABLE `ROL_PERMISO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `ROL_PERMISO`
+-- Volcado de datos para la tabla `rol_permiso`
 --
 
 INSERT INTO `ROL_PERMISO` (`idrol`, `idpermiso`) VALUES
@@ -150,16 +146,6 @@ CREATE TABLE `servicios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `servicios`
---
-
-INSERT INTO `servicios` (`idservicios`, `nombre`, `email_valoraciones`, `habilitado`, `usuario_idusuario`, `icono`, `descripcion`) VALUES
-(1, 'Sistemas', 'mailo_182@hotmail.com', 1, 4, 3, 'El software solicitado ha de instalrse en todas las maquinas antes del inicio del cuatrimestre correspondiente'),
-(2, 'Biblioteca', '', 1, 4, 19, 'Se debe mantener el silencio y la limpieza de los ejemplares debe ser obligatoria');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `ubicacion`
 --
 
@@ -175,17 +161,7 @@ CREATE TABLE `ubicacion` (
 --
 
 INSERT INTO `ubicacion` (`idubicacion`, `nombre`, `codigo_qr`, `fk_ubicacion_idubicacion`) VALUES
-(1, 'Campus UARG', 'CAMP', NULL),
-(3, 'Buffet', 'BUFE', 1),
-(4, 'Sector A', 'Sector A', 1),
-(5, 'Sector B', 'Sector B1', 1),
-(6, 'Sector C', 'Sector C1', 1),
-(7, 'Sector D', 'Sector D1', 1),
-(8, 'Sector E', 'Sector E1', 1),
-(9, 'Sector F', 'Sector F1', 1),
-(10, 'Biblioteca', 'Biblioteca1', 1),
-(13, 'Sala de lectura', 'Sala de lectura10', 10),
-(14, 'Aula a4', 'Aula a44', 4);
+(1, 'Campus UARG', 'CAMP', NULL);
 
 -- --------------------------------------------------------
 
@@ -199,19 +175,10 @@ CREATE TABLE `ubicacion_valoracion` (
   `fk_valoraciones_idvaloraciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `ubicacion_valoracion`
---
-
-INSERT INTO `ubicacion_valoracion` (`idubicacion_valoracion`, `fk_ubicacion_idubicacion`, `fk_valoraciones_idvaloraciones`) VALUES
-(2, 10, 2),
-(1, 13, 1),
-(3, 13, 2);
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `USUARIO`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `USUARIO` (
@@ -223,21 +190,16 @@ CREATE TABLE `USUARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `USUARIO`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `USUARIO` (`idusuario`, `email`, `nombre`, `metodologin`, `estado`) VALUES
-(1, 'elsitiodegustavog@gmail.com', 'Gustavo Guanuco', 'Google', 'Activo'),
-(2, 'juanrojas2211@gmail.com', 'Juan Rojas', 'Google', 'Activo'),
-(3, 'mailo.17.09.87@gmail.com', 'Victor Valentin', 'Google', 'Activo'),
-(4, 'a.clavel.riogallegos@gmail.com', 'Antonio Clavel', 'Google', 'Activo'),
-(5, 'chkp.reporte@gmail.com', 'Usuario Reporte', 'Google', 'Activo'),
-(6, 'unpa.checkpoint@gmail.com', 'Administrador', 'Google', 'Activo');
+(1, 'unpa.checkpoint@gmail.com', 'Administrador', 'Google', 'Activo');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `USUARIO_GOOGLE`
+-- Estructura de tabla para la tabla `usuario_google`
 --
 
 CREATE TABLE `USUARIO_GOOGLE` (
@@ -249,7 +211,7 @@ CREATE TABLE `USUARIO_GOOGLE` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `USUARIO_MANUAL`
+-- Estructura de tabla para la tabla `usuario_manual`
 --
 
 CREATE TABLE `USUARIO_MANUAL` (
@@ -260,7 +222,7 @@ CREATE TABLE `USUARIO_MANUAL` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `USUARIO_ROL`
+-- Estructura de tabla para la tabla `usuario_rol`
 --
 
 CREATE TABLE `USUARIO_ROL` (
@@ -269,16 +231,11 @@ CREATE TABLE `USUARIO_ROL` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `USUARIO_ROL`
+-- Volcado de datos para la tabla `usuario_rol`
 --
 
 INSERT INTO `USUARIO_ROL` (`idrol`, `idusuario`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(3, 5),
-(1, 6);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -297,14 +254,6 @@ CREATE TABLE `valoraciones` (
   `descripcion` varchar(140) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `valoraciones`
---
-
-INSERT INTO `valoraciones` (`idvaloraciones`, `nombre`, `tipo`, `recibir_notificacion_email`, `permite_descripcion`, `habilitado`, `fk_servicios_idservicios`, `descripcion`) VALUES
-(1, 'Sala de lectura', 'rango', 1, 1, 1, 2, 'Nivel de satisfacción sobre su estadía en la sala'),
-(2, 'Instalaciones', 'reclamo', 1, 1, 1, 2, 'Observaciones relacionadas al mobiliario, facilidad de uso, etc.');
-
 -- --------------------------------------------------------
 
 --
@@ -319,17 +268,6 @@ CREATE TABLE `valoracion_hecha` (
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `valoracion_hecha`
---
-
-INSERT INTO `valoracion_hecha` (`idvaloracion_hecha`, `ubicacion_valoracion_idubicacion_valoracion`, `descripcion`, `tipo`, `fecha`) VALUES
-(1, 1, 'mucho ruido en la sala', 'rango', '2019-06-07 23:33:58'),
-(2, 1, 'pocos enchufes en la sala', 'rango', '2019-06-07 23:34:59'),
-(3, 1, 'pocas sillas en la sala', 'rango', '2019-06-07 23:35:51'),
-(4, 2, 'jdjzjzjxjx', 'reclamo', '2019-06-08 23:55:59'),
-(5, 2, 'otra', 'reclamo', '2019-06-08 23:57:53'),
-(6, 1, 'mas o menos', 'rango', '2019-06-08 23:58:33');
 
 -- --------------------------------------------------------
 
@@ -341,16 +279,6 @@ CREATE TABLE `valoracion_hecha_rango` (
   `valor` enum('1','2','3','4','5') NOT NULL,
   `idvaloracion_hecha` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `valoracion_hecha_rango`
---
-
-INSERT INTO `valoracion_hecha_rango` (`valor`, `idvaloracion_hecha`) VALUES
-('5', 1),
-('4', 2),
-('1', 3),
-('4', 6);
 
 -- --------------------------------------------------------
 
@@ -364,13 +292,6 @@ CREATE TABLE `valoracion_hecha_reclamo` (
   `idvaloracion_hecha` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `valoracion_hecha_reclamo`
---
-
-INSERT INTO `valoracion_hecha_reclamo` (`url_imagen`, `email_devolucion`, `idvaloracion_hecha`) VALUES
-('../img_valoracion/1560048959.jpg', 'mailo@hotmail.com', 4),
-('../img_valoracion/1560049073.jpg', 'mailo@hotmail.com', 5);
 
 -- --------------------------------------------------------
 
@@ -382,13 +303,6 @@ CREATE TABLE `valoracion_rango` (
   `tipo_valores` enum('numerico','emoticon','texto') NOT NULL DEFAULT 'numerico',
   `valoraciones_idvaloraciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `valoracion_rango`
---
-
-INSERT INTO `valoracion_rango` (`tipo_valores`, `valoraciones_idvaloraciones`) VALUES
-('emoticon', 1);
 
 -- --------------------------------------------------------
 
@@ -403,12 +317,6 @@ CREATE TABLE `valoracion_reclamo` (
   `valoraciones_idvaloraciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `valoracion_reclamo`
---
-
-INSERT INTO `valoracion_reclamo` (`permite_foto`, `permite_email`, `vencimiento`, `valoraciones_idvaloraciones`) VALUES
-(1, 1, -1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -423,7 +331,7 @@ ALTER TABLE `cambio_estado_valoracion`
   ADD KEY `fk_cambio_estado_valoracion_valoracion_hecha1_idx` (`fk_valoracion_hecha_idvaloracion_hecha`);
 
 --
--- Indices de la tabla `PERMISO`
+-- Indices de la tabla `permiso`
 --
 ALTER TABLE `PERMISO`
   ADD PRIMARY KEY (`idpermiso`),
@@ -444,14 +352,14 @@ ALTER TABLE `registro_habilitar_valoracion`
   ADD KEY `fk_reg_habilitar_valoracion_valoraciones1_idx` (`fk_valoraciones_idvaloraciones`);
 
 --
--- Indices de la tabla `ROL`
+-- Indices de la tabla `rol`
 --
 ALTER TABLE `ROL`
   ADD PRIMARY KEY (`idrol`),
   ADD UNIQUE KEY `ID_ROL_IND` (`idrol`);
 
 --
--- Indices de la tabla `ROL_PERMISO`
+-- Indices de la tabla `rol_permiso`
 --
 ALTER TABLE `ROL_PERMISO`
   ADD PRIMARY KEY (`idpermiso`,`idrol`),
@@ -484,7 +392,7 @@ ALTER TABLE `ubicacion_valoracion`
   ADD KEY `fk_ubicacion_valoracion_valoraciones1_idx` (`fk_valoraciones_idvaloraciones`);
 
 --
--- Indices de la tabla `USUARIO`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `USUARIO`
   ADD PRIMARY KEY (`idusuario`),
@@ -492,7 +400,7 @@ ALTER TABLE `USUARIO`
   ADD UNIQUE KEY `ID_USUARIO_IND` (`idusuario`);
 
 --
--- Indices de la tabla `USUARIO_GOOGLE`
+-- Indices de la tabla `usuario_google`
 --
 ALTER TABLE `USUARIO_GOOGLE`
   ADD PRIMARY KEY (`idusuario`),
@@ -501,14 +409,14 @@ ALTER TABLE `USUARIO_GOOGLE`
   ADD UNIQUE KEY `FKUSU_USU_1_IND` (`idusuario`);
 
 --
--- Indices de la tabla `USUARIO_MANUAL`
+-- Indices de la tabla `usuario_manual`
 --
 ALTER TABLE `USUARIO_MANUAL`
   ADD PRIMARY KEY (`idusuario`),
   ADD UNIQUE KEY `FKUSU_USU_IND` (`idusuario`);
 
 --
--- Indices de la tabla `USUARIO_ROL`
+-- Indices de la tabla `usuario_rol`
 --
 ALTER TABLE `USUARIO_ROL`
   ADD PRIMARY KEY (`idrol`,`idusuario`),
@@ -562,47 +470,56 @@ ALTER TABLE `valoracion_reclamo`
 -- AUTO_INCREMENT de la tabla `cambio_estado_valoracion`
 --
 ALTER TABLE `cambio_estado_valoracion`
-  MODIFY `idcambio_estado_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idcambio_estado_valoracion` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT de la tabla `PERMISO`
+-- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `PERMISO`
   MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT de la tabla `ROL`
+-- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `ROL`
   MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `idservicios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idservicios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `idubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `ubicacion_valoracion`
 --
 ALTER TABLE `ubicacion_valoracion`
-  MODIFY `idubicacion_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idubicacion_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 --
--- AUTO_INCREMENT de la tabla `USUARIO`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `idvaloraciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idvaloraciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 --
 -- AUTO_INCREMENT de la tabla `valoracion_hecha`
 --
 ALTER TABLE `valoracion_hecha`
-  MODIFY `idvaloracion_hecha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idvaloracion_hecha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -626,7 +543,7 @@ ALTER TABLE `registro_habilitar_valoracion`
   ADD CONSTRAINT `fk_reg_habilitar_valoracion_valoraciones1` FOREIGN KEY (`fk_valoraciones_idvaloraciones`) REFERENCES `valoraciones` (`idvaloraciones`);
 
 --
--- Filtros para la tabla `ROL_PERMISO`
+-- Filtros para la tabla `rol_permiso`
 --
 ALTER TABLE `ROL_PERMISO`
   ADD CONSTRAINT `FKASO_PER` FOREIGN KEY (`idpermiso`) REFERENCES `PERMISO` (`idpermiso`),
@@ -652,19 +569,19 @@ ALTER TABLE `ubicacion_valoracion`
   ADD CONSTRAINT `fk_ubicacion_valoracion_valoraciones1` FOREIGN KEY (`fk_valoraciones_idvaloraciones`) REFERENCES `valoraciones` (`idvaloraciones`);
 
 --
--- Filtros para la tabla `USUARIO_GOOGLE`
+-- Filtros para la tabla `usuario_google`
 --
 ALTER TABLE `USUARIO_GOOGLE`
   ADD CONSTRAINT `FKUSU_USU_1_FK` FOREIGN KEY (`idusuario`) REFERENCES `USUARIO` (`idusuario`);
 
 --
--- Filtros para la tabla `USUARIO_MANUAL`
+-- Filtros para la tabla `usuario_manual`
 --
 ALTER TABLE `USUARIO_MANUAL`
   ADD CONSTRAINT `FKUSU_USU_FK` FOREIGN KEY (`idusuario`) REFERENCES `USUARIO` (`idusuario`);
 
 --
--- Filtros para la tabla `USUARIO_ROL`
+-- Filtros para la tabla `usuario_rol`
 --
 ALTER TABLE `USUARIO_ROL`
   ADD CONSTRAINT `FKVIN_ROL` FOREIGN KEY (`idrol`) REFERENCES `ROL` (`idrol`),
@@ -705,6 +622,7 @@ ALTER TABLE `valoracion_rango`
 --
 ALTER TABLE `valoracion_reclamo`
   ADD CONSTRAINT `fk_valoracion_reclamo_valoraciones1` FOREIGN KEY (`valoraciones_idvaloraciones`) REFERENCES `valoraciones` (`idvaloraciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
